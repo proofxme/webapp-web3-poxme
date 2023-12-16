@@ -1,0 +1,21 @@
+name: Telegram Notification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Notify Telegram
+      run: |
+        curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_POXME }}/sendMessage" \
+        -H "Content-Type: application/json" \
+        --data-raw '{
+          "chat_id": "@proofxme",
+          "parse_mode": "HTML",
+          "text": "<strong>Event:</strong> ${{ github.event_name }}\n<strong>Repository:</strong> ${{ github.repository }}\n<strong>Actor:</strong> ${{ github.actor }}\n<strong>Commit Message:</strong> ${{ github.event.head_commit.message }}\n"
+        }'
