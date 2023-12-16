@@ -17,5 +17,6 @@ jobs:
         --data-raw '{
           "chat_id": "@proofxme",
           "parse_mode": "HTML",
-          "text": "<strong>Event:</strong> ${{ github.event_name }}\n<strong>Repository:</strong> ${{ github.repository }}\n<strong>Actor:</strong> ${{ github.actor }}\n<strong>Commit Message:</strong> ${{ github.event.head_commit.message }}\n"
+          "message_thread_id": 131540,
+          "text": "<strong>Repository:</strong> ${{ github.repository }}\n<strong>Event:</strong> ${{ github.event_name }}\n<strong>Actor:</strong> ${{ github.actor }}\n<strong>Commit Message:</strong> ${{ github.event.head_commit.message }}\n"
         }'

@@ -6,14 +6,14 @@ Welcome to the Proof of X Web3 Interface project! This advanced interface serves
 
 ## Table of Contents
 
-1.  [Features](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#features)
-2.  [Getting Started](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#getting-started)
-3.  [Installation](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#installation)
-4.  [Usage](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#usage)
-5.  [Learn More](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#learn-more)
-6.  [Deployment](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#deployment)
-7.  [Contributors](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#contributors)
-8.  [License](https://chat.openai.com/g/g-wpMtgVmzG-readme-generator/c/8c15188c-1ba4-4abb-a30d-a27d4929690c#license)
+1.  [Features](https://github.com/proofxme/webapp-web3-poxme#features)
+2.  [Getting Started](https://github.com/proofxme/webapp-web3-poxme#getting-started)
+3.  [Installation](https://github.com/proofxme/webapp-web3-poxme#installation)
+4.  [Usage](https://github.com/proofxme/webapp-web3-poxme#usage)
+5.  [Learn More](https://github.com/proofxme/webapp-web3-poxme#learn-more)
+6.  [Deployment](https://github.com/proofxme/webapp-web3-poxme#deployment)
+7.  [Contributors](https://github.com/proofxme/webapp-web3-poxme#contributors)
+8.  [License](https://github.com/proofxme/webapp-web3-poxme#license)
 
 ## Features
 
