@@ -84,7 +84,35 @@ export default function StakingDetails() {
   } = useContractWrite(stakeTokensConfig)
 
   if (!address || !userInfo) {
-    return null;
+    return (
+      <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div className="flex items-center space-x-3 mb-6">
+          <img
+            alt="Logo"
+            className="h-12 w-12"
+            height="50"
+            src="/tokens/euler_v1.png"
+            style={{
+              aspectRatio: "50/50",
+              objectFit: "cover",
+              // make the image round
+              borderRadius: "9999px",
+            }}
+            width="50"
+          />
+          <div>
+            <h1 className="text-2xl font-bold">Staking</h1>
+            <p className="text-gray-600">
+              If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
+            </p>
+          </div>
+        </div>
+        <hr className="my-4"/>
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold mb-3">Please connect your wallet to continue</h2>
+        </div>
+      </div>
+    )
   }
 
   console.log(userInfo.amount._hex)
@@ -153,18 +181,22 @@ export default function StakingDetails() {
         <Input placeholder="Amount to deposit"/>
       </div>
       <div className="flex space-x-4 mb-6">
-        <Button className="flex-1 bg-green-500 hover:bg-green-600 text-white" onClick={() => stakeTokens?.()}>Deposit
-          tokens to Stake</Button>
+        <Button
+          className="flex-1 bg-green-500 hover:bg-green-600 text-white"
+          onClick={() => stakeTokens?.()}>
+          Deposit tokens to Stake
+        </Button>
       </div>
       <div className="flex space-x-4">
         <Button
           className="flex-1 bg-green-500 hover:bg-green-600 text-white"
-          onClick={() => withdrawAll?.()}>
+          onClick={() => withdrawAll?.()}
+        >
           Withdraw all funds from Stake
         </Button>
         <Button
           className="flex-1 bg-green-500 hover:bg-green-600 text-white"
-          onClick={() => alert("hello")}
+          onClick={() => claimAll?.()}
         >
           Claim all funds from stake
         </Button>
