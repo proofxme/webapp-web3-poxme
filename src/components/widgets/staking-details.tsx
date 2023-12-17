@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { JSX, SVGProps, useState } from "react"
 import stakingAbi from "@/contracts/abi/staking.json"
 import { useAccount, useBalance, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
-import { parseEther } from 'viem'
 import { uint256ToBNBCurrency } from "@/utils/bigNumber";
 
 interface TokenDetail {
@@ -73,7 +72,7 @@ export default function StakingDetails() {
     address: '0xb18fab4c6f054e734ea169561787cc87928f54ee',
     abi: stakingAbi.abi,
     functionName: 'deposit',
-    args: [amount ? parseEther(amount) : undefined],
+    args: [eulerBalance ? eulerBalance?.value : undefined],
   })
   const {
     data: stakedAmount,
@@ -81,6 +80,13 @@ export default function StakingDetails() {
     isSuccess: isSuccessStake,
     write: stakeTokens
   } = useContractWrite(stakeTokensConfig)
+
+  const useEffect = () => {
+    if (isSuccessStake || isSuccessClaim || isSuccessWithdraw) {
+      // force re render
+      window.location.reload()
+    }
+  }
 
   if (!address || !userInfo) {
     return (
@@ -113,7 +119,7 @@ export default function StakingDetails() {
       </div>
     )
   }
-  
+
   return (
     <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
       <div className="flex items-center space-x-3 mb-6">
@@ -141,37 +147,39 @@ export default function StakingDetails() {
       <div className="mb-6">
         <h2 className="text-lg font-semibold mb-3">AVAILABLE CURRENCY</h2>
         <>
-          {
-            [
-              {
-                amount: uint256ToBNBCurrency(eulerBalance?.value as unknown as string),
-                name: 'Wallet Balance',
-                color: 'red',
-                button: 'Stake'
-              },
-              {
-                amount: uint256ToBNBCurrency(userInfo.amount as unknown as string),
-                name: 'Staked Tokens',
-                color: 'green',
-                button: 'Withdraw'
-              }, {
+          {[
+            {
+              amount: uint256ToBNBCurrency(eulerBalance?.value as unknown as string),
+              name: 'Wallet Balance',
+              color: 'red',
+              button: 'Stake',
+              action: stakeTokens
+            },
+            {
+              amount: uint256ToBNBCurrency(userInfo.amount as unknown as string),
+              name: 'Staked Tokens',
+              color: 'green',
+              button: 'Withdraw',
+              action: withdrawAll
+            }, {
               amount: uint256ToBNBCurrency(userInfo.pendingRewards as unknown as string),
               name: 'Claimable Rewards',
               color: 'green',
-              button: 'Claim'
+              button: 'Claim',
+              action: claimAll
             }].map((currency) => {
-              return (
-                <div className="flex justify-between items-center mb-2" key={currency.name}>
+            return (
+              <div className="flex justify-between items-center mb-2" key={currency.name}>
                   <span className="flex items-center">
                     {currency.name}
                   </span>
-                  <div className="flex items-center">
-                    <span>{currency.amount}</span>
-                    <Button className="ml-4">{currency.button}</Button>
-                  </div>
+                <div className="flex items-center">
+                  <span>{currency.amount}</span>
+                  <Button className="ml-4" onClick={() => currency.action?.()}>{currency.button}</Button>
                 </div>
-              )
-            })
+              </div>
+            )
+          })
           }
         </>
       </div>
