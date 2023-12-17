@@ -113,8 +113,7 @@ export default function StakingDetails() {
       </div>
     )
   }
-
-
+  
   return (
     <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
       <div className="flex items-center space-x-3 mb-6">
@@ -145,7 +144,7 @@ export default function StakingDetails() {
           {
             [
               {
-                amount: eulerBalance?.formatted,
+                amount: uint256ToBNBCurrency(eulerBalance?.value as unknown as string),
                 name: 'Wallet Balance',
                 color: 'red',
                 button: 'Stake'
@@ -164,7 +163,6 @@ export default function StakingDetails() {
               return (
                 <div className="flex justify-between items-center mb-2" key={currency.name}>
                   <span className="flex items-center">
-                    <CircleIcon className={`text-${currency.color}-500 mr-2`}/>
                     {currency.name}
                   </span>
                   <div className="flex items-center">

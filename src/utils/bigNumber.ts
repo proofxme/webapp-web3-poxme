@@ -72,7 +72,7 @@ export function getBigNumberCurrencyLabel(
 }
 
 export function uint256ToBNBCurrency(value: string | number): string {
-  return new BigNumber(value).shiftedBy(UINT_256_DECIMAL_PLACES).toString();
+  return new BigNumber(value).shiftedBy(UINT_256_DECIMAL_PLACES).toFixed(2);
 }
 
 export function uint256ToDecimalBn(value: string | number): BigNumber {
