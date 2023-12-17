@@ -115,7 +115,6 @@ export default function StakingDetails() {
     )
   }
 
-  console.log(userInfo.amount._hex)
 
   return (
     <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
@@ -152,11 +151,11 @@ export default function StakingDetails() {
                 color: 'green'
               },
               {
-                amount: uint256ToBNBCurrency(userInfo.amount._hex as string),
+                amount: uint256ToBNBCurrency(userInfo.amount as string),
                 name: 'Staked Tokens',
                 color: 'green'
               }, {
-              amount: uint256ToBNBCurrency(userInfo.pendingRewards._hex as string),
+              amount: uint256ToBNBCurrency(userInfo.pendingRewards as string),
               name: 'Claimable Rewards',
               color: 'green'
             }].map((currency) => {
