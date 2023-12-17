@@ -1,6 +1,5 @@
 "use client"
 
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { JSX, SVGProps, useState } from "react"
 import stakingAbi from "@/contracts/abi/staking.json"
@@ -148,57 +147,35 @@ export default function StakingDetails() {
               {
                 amount: eulerBalance?.formatted,
                 name: 'Wallet Balance',
-                color: 'green'
+                color: 'red',
+                button: 'Stake'
               },
               {
-                amount: uint256ToBNBCurrency(userInfo.amount as string),
+                amount: uint256ToBNBCurrency(userInfo.amount as unknown as string),
                 name: 'Staked Tokens',
-                color: 'green'
+                color: 'green',
+                button: 'Withdraw'
               }, {
-              amount: uint256ToBNBCurrency(userInfo.pendingRewards as string),
+              amount: uint256ToBNBCurrency(userInfo.pendingRewards as unknown as string),
               name: 'Claimable Rewards',
-              color: 'green'
+              color: 'green',
+              button: 'Claim'
             }].map((currency) => {
               return (
                 <div className="flex justify-between items-center mb-2" key={currency.name}>
-                <span className="flex items-center">
-                  <CircleIcon className="text-green-500 mr-2"/>
-                  {currency.name}
-                  {currency.amount && (
-                    <span className="text-gray-500 ml-2">
-                      {currency.amount}
-                    </span>
-                  )}
-                </span>
+                  <span className="flex items-center">
+                    <CircleIcon className={`text-${currency.color}-500 mr-2`}/>
+                    {currency.name}
+                  </span>
+                  <div className="flex items-center">
+                    <span>{currency.amount}</span>
+                    <Button className="ml-4">{currency.button}</Button>
+                  </div>
                 </div>
               )
             })
           }
         </>
-      </div>
-      <div className="mb-6">
-        <Input placeholder="Amount to deposit"/>
-      </div>
-      <div className="flex space-x-4 mb-6">
-        <Button
-          className="flex-1 bg-green-500 hover:bg-green-600 text-white"
-          onClick={() => stakeTokens?.()}>
-          Deposit tokens to Stake
-        </Button>
-      </div>
-      <div className="flex space-x-4">
-        <Button
-          className="flex-1 bg-green-500 hover:bg-green-600 text-white"
-          onClick={() => withdrawAll?.()}
-        >
-          Withdraw all funds from Stake
-        </Button>
-        <Button
-          className="flex-1 bg-green-500 hover:bg-green-600 text-white"
-          onClick={() => claimAll?.()}
-        >
-          Claim all funds from stake
-        </Button>
       </div>
     </div>
   )
