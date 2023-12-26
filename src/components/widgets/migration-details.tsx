@@ -40,12 +40,12 @@ export default function MigrationDetails() {
               <CardContent>
                 <p className="text-gray-500">
                   You have
-                  <span className="font-bold text-gray-900">100 tokens</span>
+                  <span className="font-bold text-gray-900">0 tokens</span>
                   available
                 </p>
                 <p className="text-gray-500 mt-2">
                   You have claimed
-                  <span className="font-bold text-gray-900">100 tokens</span>
+                  <span className="font-bold text-gray-900">0 tokens</span>
                 </p>
                 <Button
                   disabled
@@ -69,7 +69,7 @@ export default function MigrationDetails() {
               />
               <p className="text-gray-500">
                 You have
-                <span className="font-bold text-gray-900 bg-yellow-200 px-1 rounded">3 membership NFTs</span>
+                <span className="font-bold text-gray-900 bg-yellow-200 px-1 rounded">0 membership NFTs</span>
                 available to claim
               </p>
               <Button
@@ -93,7 +93,7 @@ export default function MigrationDetails() {
               />
               <p className="text-gray-500">
                 You have
-                <span className="font-bold text-gray-900 bg-yellow-200 px-1 rounded">2 affiliate NFTs</span>
+                <span className="font-bold text-gray-900 bg-yellow-200 px-1 rounded">0 affiliate NFTs</span>
                 available to claim
               </p>
               <Button
