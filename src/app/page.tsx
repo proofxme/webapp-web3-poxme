@@ -18,8 +18,8 @@ export default function Home() {
           <ConnectButton/>
         </div>
       </header>
-      <div className="flex flex-col items-center justify-center w-full h-full">
-        <div className="space-y-3 text-center">
+      <div className="flex flex-col items-center justify-center w-full h-full py-14 px-12">
+        <div className="space-y-3 text-center w-full">
           <h2 className="text-3xl text-center font-bold tracking-tighter sm:text-4xl md:text-5xl">Migration Center</h2>
           <p
             className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
