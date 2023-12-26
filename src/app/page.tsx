@@ -1,9 +1,10 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import MigrationDetails from "@/components/widgets/migration-details";
+import Questions from "@/components/widgets/questions";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center pt-5 lg:p-8 h-auto">
+    <main className="flex min-h-screen flex-col pt-5 lg:p-8 h-auto">
       <header className="justify-between items-center lg:flex">
         <div className="max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
           <p
@@ -17,9 +18,29 @@ export default function Home() {
           <ConnectButton/>
         </div>
       </header>
-      <div
-        className="lg:flex pt-14 relative flex place-items-center">
-        <MigrationDetails/>
+      <div className="flex flex-col items-center justify-center w-full h-full">
+        <div className="space-y-3 text-center">
+          <h2 className="text-3xl text-center font-bold tracking-tighter sm:text-4xl md:text-5xl">Migration Center</h2>
+          <p
+            className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            During the migration period, you can deposit <i style={{color: "blue"}}
+                                                            className={"" + "font-bold"}>$EULER</i> to get the new token
+            and
+            claim
+            your membership NFTs.
+          </p>
+          <p>The migration process is a unique opportunity to continue supporting @tebayoso during the Proof of X
+            development, while maintaining the value you deposited and have an opportunity to claim back the
+            investment</p>
+        </div>
+        <div
+          className="lg:flex pt-14 relative flex place-items-center">
+          <MigrationDetails/>
+        </div>
+        <div
+          className="place-items-center w-full">
+          <Questions/>
+        </div>
       </div>
     </main>
   )

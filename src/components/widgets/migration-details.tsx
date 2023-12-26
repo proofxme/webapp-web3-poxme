@@ -11,13 +11,6 @@ export default function MigrationDetails() {
   return (
     <section key="1" className="w-full py-12 md:py-24 lg:py-6">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
-        <div className="space-y-3">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Migration Center</h2>
-          <p
-            className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-            Deposit your old <i>$EULER</i> tokens and claim your new <i>$POXME</i> tokens and NFTs
-          </p>
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <StakingDetails/>
@@ -40,12 +33,12 @@ export default function MigrationDetails() {
               <CardContent>
                 <p className="text-gray-500">
                   You have
-                  <span className="font-bold text-gray-900">0 tokens</span>
+                  <span className="font-bold text-gray-900"> 0 tokens </span>
                   available
                 </p>
                 <p className="text-gray-500 mt-2">
                   You have claimed
-                  <span className="font-bold text-gray-900">0 tokens</span>
+                  <span className="font-bold text-gray-900"> 0 tokens </span>
                 </p>
                 <Button
                   disabled
