@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { JSX, SVGProps, useState } from "react"
 import stakingAbi from "@/contracts/abi/staking.json"
 import { useAccount, useBalance, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
@@ -90,33 +91,39 @@ export default function StakingDetails() {
 
   if (!address || !userInfo) {
     return (
-      <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
-        <div className="flex items-center space-x-3 mb-6">
-          <img
-            alt="Logo"
-            className="h-12 w-12"
-            height="50"
-            src="/tokens/euler_v1.png"
-            style={{
-              aspectRatio: "50/50",
-              objectFit: "cover",
-              // make the image round
-              borderRadius: "9999px",
-            }}
-            width="50"
-          />
-          <div>
-            <h1 className="text-2xl font-bold">Staking</h1>
-            <p className="text-gray-600">
-              If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
-            </p>
+      <Card>
+        <CardHeader>
+          <div className="flex items-center space-x-2">
+            <img
+              alt="Logo"
+              className="h-12 w-12"
+              height="50"
+              src="/tokens/euler_v1.png"
+              style={{
+                aspectRatio: "50/50",
+                objectFit: "cover",
+                // make the image round
+                borderRadius: "9999px",
+              }}
+              width="50"
+            />
+            <h3 className="text-lg font-semibold">Staking</h3>
           </div>
-        </div>
-        <hr className="my-4"/>
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-3">Please connect your wallet to continue</h2>
-        </div>
-      </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center space-x-3 mb-6">
+            <div>
+              <p className="text-gray-600">
+                If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
+              </p>
+            </div>
+          </div>
+          <hr className="my-4"/>
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-3">Please connect your wallet to continue</h2>
+          </div>
+        </CardContent>
+      </Card>
     )
   }
 
