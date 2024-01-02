@@ -5,21 +5,52 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 
 const questions = [
   {
-    question: "What is the migration process?",
-    answer: "The migration process is the process of converting the old $EULER tokens to the new Proof of X tokens, and the NFTs that represent the membership and affiliation of the Proof of X project."
+    question: "What is the POXME token migration?",
+    answer: "The POXME token migration is a transition from our old token to a new one that complies with ERC/BEP-20 standards. This migration is to enhance security, utility, and overall user experience within the POXME ecosystem."
   },
   {
-    question: "What is the Proof of X token?",
-    answer: "The Proof of X token represents the investment in the project, the unique goal of the token is to provide liquidity to the project and to be used as a lending and vehicle when borrowing memberships"
+    question: "When does the migration start and end?",
+    answer: "The migration begins on January 6th at 22:00 UTC. The end date will be announced, and we encourage early participation due to increasing burning tax over time."
   },
   {
-    question: "What is the NFT membership?",
-    answer: "The NFT membership represents the membership of the Proof of X project, it is a unique token that can be used to access the project's features and benefits. Every account handler in the project needs a membership to exists as they are unique. Due to the nature of memberships, infinite memberships can exist as each one can represent a different account name"
+    question: "What is the migration ratio?",
+    answer: "The migration is conducted at a 1:1 ratio, meaning for each old POXME token you hold, you will receive one new POXME token."
   },
   {
-
-    question: "What is the NFT affiliation?",
-    answer: "The NFT affiliation represents the affiliation of the Proof of X project, it is a unique token that can be used to claim rewards from the protocol. Every account handler in the project needs an affiliation to exists as they are unique. The Affiliates NFTs are limited to 2.500 units, and they are distributed in a first-come-first-serve basis."
+    question: "How do I migrate my tokens?",
+    answer: "To migrate your tokens, visit the official migration portal provided by POXME, ensure you're connected to the correct network, and follow the step-by-step instructions. Always make sure to use official links to avoid scams."
+  },
+  {
+    question: "Will there be any fees associated with migrating?",
+    answer: "There is a burning tax applied to the migration process, which increases over time. Migrating early ensures you pay a lower burning tax. Network fees for the transaction will also apply."
+  },
+  {
+    question: "What happens if I don't migrate my tokens?",
+    answer: "Tokens that are not migrated before the end of the migration period may lose functionality and won't be supported in the new ecosystem. We strongly advise migrating your tokens to continue enjoying the full benefits of the POXME protocol."
+  },
+  {
+    question: "Is the migration mandatory?",
+    answer: "Yes, to continue accessing the full suite of features and maintaining the value of your assets within the POXME ecosystem, participating in the migration is necessary."
+  },
+  {
+    question: "What are the benefits of migrating early?",
+    answer: "Migrating early allows you to benefit from a lower burning tax, ensuring more of your tokens are preserved during the migration. It also ensures you're immediately part of the enhanced and more secure ecosystem."
+  },
+  {
+    question: "Can I migrate my tokens after the initial migration period has ended?",
+    answer: "The ability to migrate after the end date is subject to community governance decisions. Keep an eye on official announcements for any changes or extensions to the migration period."
+  },
+  {
+    "question": "What is the Proof of X token?",
+    "answer": "The Proof of X token represents investment in the project. Its primary purpose is to provide liquidity to the project and serve as a medium for lending and borrowing memberships."
+  },
+  {
+    "question": "What is the NFT membership?",
+    "answer": "The NFT membership signifies affiliation with the Proof of X project. It is a unique token used to access the project's features and benefits. Each account holder in the project requires a membership as they are distinct. Given the nature of memberships, an infinite number can exist, with each representing a different account name."
+  },
+  {
+    "question": "What is the NFT affiliation?",
+    "answer": "The NFT affiliation denotes a connection to the Proof of X project. It is a unique token used to claim rewards from the protocol. Each account holder in the project requires an affiliation as they are unique. Affiliate NFTs are limited to 2,500 units and are distributed on a first-come, first-served basis."
   }
 ]
 
