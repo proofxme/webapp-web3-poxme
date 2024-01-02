@@ -5,7 +5,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import StakingDetails from "@/components/widgets/staking-details";
 
 export default function MigrationDetails() {
   return (
@@ -13,7 +12,6 @@ export default function MigrationDetails() {
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <StakingDetails/>
             <Card className="mb-4 my-3">
               <CardHeader>
                 <h3 className="text-lg font-semibold">Deposit Euler</h3>

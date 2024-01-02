@@ -1,6 +1,7 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import MigrationDetails from "@/components/widgets/migration-details";
 import Questions from "@/components/widgets/questions";
+import StakingDetails from "@/components/widgets/staking-details";
+import Countdown from "@/components/widgets/countdown";
 
 export default function Home() {
   return (
@@ -35,7 +36,11 @@ export default function Home() {
         </div>
         <div
           className="lg:flex pt-14 relative flex place-items-center">
-          <MigrationDetails/>
+          <StakingDetails/>
+        </div>
+        <div
+          className="lg:flex pt-14 relative flex place-items-center">
+          <Countdown/>
         </div>
         <div
           className="place-items-center w-full">
