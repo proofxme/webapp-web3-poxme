@@ -48,7 +48,7 @@ export default function Countdown() {
   return (
     <>
       <Card className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
-        <CardHeader className="m-4 text-xl font-semibold">Countdown Timer</CardHeader>
+        <CardHeader className="m-4 text-xl font-semibold">Time to migration Start</CardHeader>
         <CardContent className="m-4">
           <div className="text-center text-6xl font-bold mb-4">
             {Object.keys(timeLeft).length ? `${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s` : 'Time is up!'}
