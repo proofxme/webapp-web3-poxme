@@ -78,3 +78,7 @@ export function uint256ToBNBCurrency(value: string | number): string {
 export function uint256ToDecimalBn(value: string | number): BigNumber {
   return new BigNumber(value).shiftedBy(UINT_256_DECIMAL_PLACES);
 }
+
+export function uint256ToNumber(value: string | number): number {
+  return new BigNumber(value).shiftedBy(UINT_256_DECIMAL_PLACES).toNumber();
+}

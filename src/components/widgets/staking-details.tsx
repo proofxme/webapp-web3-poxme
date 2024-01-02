@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { JSX, SVGProps, useState } from "react"
 import stakingAbi from "@/contracts/abi/staking.json"
 import { useAccount, useBalance, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
-import { uint256ToBNBCurrency } from "@/utils/bigNumber";
+import { uint256ToBNBCurrency, uint256ToNumber } from "@/utils/bigNumber";
 
 interface TokenDetail {
   ticker: string;
@@ -24,15 +24,6 @@ export default function StakingDetails() {
     token: '0x3920123482070c1a2dff73aad695c60e7c6f6862'
   })
 
-  const {
-    data: allowance,
-    isLoading: isLoadingAllowance
-  } = useContractRead({
-    address: '0xb18fab4c6f054e734ea169561787cc87928f54ee',
-    abi: stakingAbi.abi,
-    functionName: 'allowance',
-  })
-
   const {data: userInfo}: {
     data: {
       amount: { _hex: string; };
@@ -45,10 +36,35 @@ export default function StakingDetails() {
     args: [address],
   })
 
+  const safeUnstakeAmount = () => {
+    // Ensuring userInfo and userInfo.amount are defined
+    if (userInfo !== undefined && userInfo.amount !== undefined) {
+      // Assuming uint256ToBNBCurrency properly converts to a number or a format that can be used as a number
+      const rawBalance = uint256ToNumber(userInfo.amount as unknown as number);
+      const balance = Number(rawBalance); // Convert to a number
+
+      // Check if balance is greater than 4000 to ensure a minimum threshold for unstaking
+      if (balance > 4000) {
+        const toUnstake = Math.floor(balance - 1) * 10 ** 18;
+        return BigInt(toUnstake); // Return the amount to unstake as a safe integer
+      } else {
+        // Handle case where balance would go negative or is below the minimum threshold
+        console.error("Unstaking would result in balance below the minimum threshold");
+        return undefined; // or handle this case as per your application's needs
+      }
+    } else {
+      // Handle undefined userInfo or userInfo.amount
+      console.error("userInfo or userInfo.amount is undefined");
+      return undefined;
+    }
+  }
+
+
   const {config: withdrawAllConfig} = usePrepareContractWrite({
     address: '0xb18fab4c6f054e734ea169561787cc87928f54ee',
     abi: stakingAbi.abi,
-    functionName: 'withdrawAll',
+    functionName: 'withdraw',
+    args: [safeUnstakeAmount()]
   })
   const {
     data: withdrawed,
