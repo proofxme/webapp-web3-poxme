@@ -14,7 +14,7 @@ const questions = [
   },
   {
     question: "What is the migration ratio?",
-    answer: "The migration is conducted at a 1:1 ratio, meaning for each old POXME token you hold, you will receive one new POXME token."
+    answer: "The migration is conducted at a 1:1 ratio. Every token you deposit will be converted to a new token. For example if you deposit 16 $EULER you'll receive 16 $POXME."
   },
   {
     question: "How do I migrate my tokens?",
