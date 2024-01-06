@@ -2,25 +2,22 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { JSX, SVGProps, useState } from "react"
+import { JSX, SVGProps } from "react"
 import stakingAbi from "@/contracts/abi/staking.json"
-import { useAccount, useBalance, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite } from "wagmi";
 import { uint256ToBNBCurrency, uint256ToNumber } from "@/utils/bigNumber";
-import { getNetwork } from "@wagmi/core";
+import addresses from "@/contracts/addresses";
+import TestnetFaucet from "@/components/widgets/testnet-faucet";
 
 export default function StakingDetails() {
-  const {address, isConnecting, isDisconnected} = useAccount();
-  const [amount, setAmount] = useState<string>('');
-  // retrieve the chain
-  const {chain, chains} = getNetwork();
+  const {address} = useAccount();
+  const {chain} = useNetwork();
 
   const {
     data: eulerBalance,
-    isError,
-    isLoading
   } = useBalance({
     address: address,
-    token: '0x3920123482070c1a2dff73aad695c60e7c6f6862'
+    token: addresses(chain?.id)['OldToken']
   })
 
   const {data: userInfo}: {
@@ -29,17 +26,18 @@ export default function StakingDetails() {
       pendingRewards: { _hex: string; };
     } | undefined;
   } = useContractRead({
-    address: '0xb18fab4c6f054e734ea169561787cc87928f54ee',
+    address: addresses(chain?.id)['Staking'],
     abi: stakingAbi.abi,
     functionName: 'getUserInfo',
     args: [address],
+    chainId: chain?.id,
   })
 
   const safeUnstakeAmount = () => {
-    // Ensuring userInfo and userInfo.amount are defined
-    if (userInfo !== undefined && userInfo.amount !== undefined) {
+    // Ensuring userInfo and userInfo?.amount are defined
+    if (userInfo !== undefined && userInfo?.amount !== undefined) {
       // Assuming uint256ToBNBCurrency properly converts to a number or a format that can be used as a number
-      const rawBalance = uint256ToNumber(userInfo.amount as unknown as number);
+      const rawBalance = uint256ToNumber(userInfo?.amount as unknown as number);
       const balance = Number(rawBalance); // Convert to a number
 
       // Check if balance is greater than 4000 to ensure a minimum threshold for unstaking
@@ -47,20 +45,15 @@ export default function StakingDetails() {
         const toUnstake = Math.floor(balance - 1) * 10 ** 18;
         return BigInt(toUnstake); // Return the amount to unstake as a safe integer
       } else {
-        // Handle case where balance would go negative or is below the minimum threshold
-        console.error("Unstaking would result in balance below the minimum threshold");
         return undefined; // or handle this case as per your application's needs
       }
     } else {
-      // Handle undefined userInfo or userInfo.amount
-      console.error("userInfo or userInfo.amount is undefined");
       return undefined;
     }
   }
 
-
   const {config: withdrawAllConfig} = usePrepareContractWrite({
-    address: '0xb18fab4c6f054e734ea169561787cc87928f54ee',
+    address: addresses(chain?.id)['Staking'],
     abi: stakingAbi.abi,
     functionName: 'withdraw',
     args: [safeUnstakeAmount()]
@@ -73,7 +66,7 @@ export default function StakingDetails() {
   } = useContractWrite(withdrawAllConfig)
 
   const {config: claimAllConfig} = usePrepareContractWrite({
-    address: '0xb18fab4c6f054e734ea169561787cc87928f54ee',
+    address: addresses(chain?.id)['Staking'],
     abi: stakingAbi.abi,
     functionName: 'claim',
   })
@@ -85,7 +78,7 @@ export default function StakingDetails() {
   } = useContractWrite(claimAllConfig)
 
   const {config: stakeTokensConfig} = usePrepareContractWrite({
-    address: '0xb18fab4c6f054e734ea169561787cc87928f54ee',
+    address: addresses(chain?.id)['Staking'],
     abi: stakingAbi.abi,
     functionName: 'deposit',
     args: [eulerBalance ? eulerBalance?.value : undefined],
@@ -97,48 +90,9 @@ export default function StakingDetails() {
     write: stakeTokens
   } = useContractWrite(stakeTokensConfig)
 
-  const useEffect = () => {
-    if (isSuccessStake || isSuccessClaim || isSuccessWithdraw) {
-      // force re render
-      window.location.reload()
-    }
-  }
-  
   if (chain?.id === 97) {
     return (
-      <Card>
-        <CardHeader>
-          <div className="flex items-center space-x-2">
-            <img
-              alt="Logo"
-              className="h-12 w-12"
-              height="50"
-              src="/tokens/euler_v1.png"
-              style={{
-                aspectRatio: "50/50",
-                objectFit: "cover",
-                // make the image round
-                borderRadius: "9999px",
-              }}
-              width="50"
-            />
-            <h3 className="text-lg font-semibold">Staking</h3>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center space-x-3 mb-6">
-            <div>
-              <p className="text-gray-600">
-                If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
-              </p>
-            </div>
-          </div>
-          <hr className="my-4"/>
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-3">The Staking Contract is not available in this network</h2>
-          </div>
-        </CardContent>
-      </Card>
+      <TestnetFaucet/>
     )
   }
 
@@ -181,8 +135,8 @@ export default function StakingDetails() {
   }
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
-      <div className="flex items-center space-x-3 mb-6">
+    <Card className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
+      <CardHeader className="flex items-center space-x-3 mb-6">
         <img
           alt="Logo"
           className="h-12 w-12"
@@ -202,9 +156,8 @@ export default function StakingDetails() {
             If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
           </p>
         </div>
-      </div>
-      <hr className="my-4"/>
-      <div className="mb-6">
+      </CardHeader>
+      <CardContent className="m-4">
         <h2 className="text-lg font-semibold mb-3">AVAILABLE CURRENCY</h2>
         <>
           {[
@@ -216,13 +169,13 @@ export default function StakingDetails() {
               action: stakeTokens
             },
             {
-              amount: uint256ToBNBCurrency(userInfo.amount as unknown as string),
+              amount: uint256ToBNBCurrency(userInfo?.amount as unknown as string),
               name: 'Staked Tokens',
               color: 'green',
               button: 'Withdraw',
               action: withdrawAll
             }, {
-              amount: uint256ToBNBCurrency(userInfo.pendingRewards as unknown as string),
+              amount: uint256ToBNBCurrency(userInfo?.pendingRewards as unknown as string),
               name: 'Claimable Rewards',
               color: 'green',
               button: 'Claim',
@@ -242,8 +195,8 @@ export default function StakingDetails() {
           })
           }
         </>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }
 

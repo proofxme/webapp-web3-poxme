@@ -71,14 +71,14 @@ export function getBigNumberCurrencyLabel(
   return trailed.toFormat(BN_FORMAT);
 }
 
-export function uint256ToBNBCurrency(value: string | number): string {
+export function uint256ToBNBCurrency(value: string | number | BigNumber): string {
   return new BigNumber(value).shiftedBy(UINT_256_DECIMAL_PLACES).toFixed(2);
 }
 
-export function uint256ToDecimalBn(value: string | number): BigNumber {
+export function uint256ToDecimalBn(value: string | number | BigNumber): BigNumber {
   return new BigNumber(value).shiftedBy(UINT_256_DECIMAL_PLACES);
 }
 
-export function uint256ToNumber(value: string | number): number {
+export function uint256ToNumber(value: string | number | BigNumber): number {
   return new BigNumber(value).shiftedBy(UINT_256_DECIMAL_PLACES).toNumber();
 }
