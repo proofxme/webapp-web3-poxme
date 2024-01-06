@@ -3,8 +3,16 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite } from "wagmi";
-import { useState } from "react";
+import {
+  useAccount,
+  useBalance,
+  useBlockNumber,
+  useContractRead,
+  useContractWrite,
+  useNetwork,
+  usePrepareContractWrite
+} from "wagmi";
+import { useEffect, useState } from "react";
 import addresses from "@/contracts/addresses";
 import migrationAbi from "@/contracts/abi/migration.json";
 import poxmeToken from "@/contracts/abi/poxmeToken.json";
@@ -14,8 +22,17 @@ import BigNumber from "bignumber.js";
 
 export default function TokenMigration() {
   const {address} = useAccount();
-  const [depositAmount, setDepositAmount] = useState(BigInt(4001 * 10 ** 18));
+  const [depositAmount, setDepositAmount] = useState(BigInt(0));
   const {chain} = useNetwork();
+  const [block, setBlock] = useState(BigInt(0));
+  const blockNumber = useBlockNumber();
+
+  useEffect(() => {
+    if (blockNumber.data) {
+      //ts-ignore
+      setBlock(blockNumber.data);
+    }
+  }, [blockNumber]);
 
   // Old Tokens
   const {
@@ -86,6 +103,7 @@ export default function TokenMigration() {
     data: {
       deposited: BigNumber;
       minted: BigNumber;
+      lastDeposit: BigNumber;
     } | undefined;
   } = useContractRead({
     address: addresses(chain?.id)['PoXMigration'],
@@ -127,10 +145,12 @@ export default function TokenMigration() {
     const deposited = uint256ToBNBCurrency(userInfo?.deposited as unknown as string)
     const claimed = uint256ToBNBCurrency(userInfo?.minted as unknown as string)
     const pending = Number(deposited) - Number(claimed)
-    return {deposited, claimed, pending, available}
+    const lastDeposited = Number(userInfo?.lastDeposit?.toString())
+    const blocksPending = Number(block) - lastDeposited > 100 ? 0 : 100 - (Number(block) - lastDeposited)
+    return {deposited, blocksPending, claimed, pending, available}
   }
 
-  const {deposited, claimed, pending, available} = calculateAmounts()
+  const {blocksPending, deposited, claimed, pending, available} = calculateAmounts()
 
   return <div>
     <Card className="mb-4 my-3">
@@ -144,12 +164,25 @@ export default function TokenMigration() {
           style={{color: 'black'}}>{Number(eulerBalance?.formatted).toFixed(2)}</strong> <span
           style={{color: 'blue'}}>$EULER</span> to
           migrate</p>
+
+        <Button
+          className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
+          onClick={(e) => {
+            const value = BigInt(Math.trunc(Number(eulerBalance?.formatted)))
+            setDepositAmount(value)
+          }
+          }>Max
+          Tokens</Button>
         <div className="space-x-3 mb-6">
           {oldTokenAllowance as number > 0 ? <div className="flex justify-between pt-3">
-            <Input placeholder="Amount" type="number" onChange={(e) => {
-              const value = BigInt(Number(e.target.value) * 10 ** 18)
-              setDepositAmount(value);
-            }}/>
+            <Input
+              placeholder="Amount"
+              type="number"
+              value={depositAmount.toString()}
+              onChange={(e) => {
+                const value = BigInt(Number(e.target.value) * 10 ** 18)
+                setDepositAmount(value);
+              }}/>
             <Button disabled={depositAmount === BigInt(0) || !isMigrationActive}
                     className="pt-3 mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
                     onClick={() => depositTokens?.()}>Deposit</Button>
@@ -184,10 +217,15 @@ export default function TokenMigration() {
             <span
               className="font-bold text-gray-900"> {pending} tokens </span>
           </p>
+          <p className="text-gray-500 mt-2">
+            You can claim after:
+            <span
+              className="font-bold text-gray-900"> {blocksPending} blocks</span>
+          </p>
         </div>
         <div className="space-x-3 mb-6">
           {oldTokenAllowance as number > 0 ? <div className="flex justify-center pt-3">
-            <Button disabled={depositAmount === BigInt(0) || !isMigrationActive}
+            <Button disabled={pending === 0 || !isMigrationActive}
                     className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
                     onClick={() => claimTokens?.()}>Claim Tokens</Button>
           </div> : <Button
