@@ -3,26 +3,12 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Questions from "@/components/widgets/questions";
 import StakingDetails from "@/components/widgets/staking-details";
-import MigrationDetails from "@/components/widgets/migration-details";
-import { useCallback } from "react";
-import Countdown from "@/components/widgets/countdown";
 import { useNetwork } from "wagmi";
 import { Button } from "@/components/ui/button";
+import MigrationDetails from "@/components/widgets/migration-details";
 
 export default function Home() {
   const {chain} = useNetwork()
-
-  const component = useCallback(() => {
-    console.log("chain", chain)
-    switch (chain?.id) {
-      case 56:
-        return <Countdown/>;
-      case 97:
-        return <MigrationDetails/>;
-      default:
-        return <Countdown/>;
-    }
-  }, [chain])
 
   return (
     <main className="flex min-h-screen flex-col lg:p-8 h-auto">
@@ -89,7 +75,7 @@ export default function Home() {
         </div>
         <div
           className="lg:flex pt-14 relative flex place-items-center">
-          {component()}
+          <MigrationDetails/>
         </div>
         <div
           className="place-items-center w-full">
