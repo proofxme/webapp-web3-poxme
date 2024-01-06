@@ -3,15 +3,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import {
-  useAccount,
-  useBalance,
-  useBlockNumber,
-  useContractRead,
-  useContractWrite,
-  useNetwork,
-  usePrepareContractWrite
-} from "wagmi";
+import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite } from "wagmi";
 import { useEffect, useState } from "react";
 import addresses from "@/contracts/addresses";
 import migrationAbi from "@/contracts/abi/migration.json";
@@ -19,21 +11,28 @@ import poxmeToken from "@/contracts/abi/poxmeToken.json";
 import eulerToken from "@/contracts/abi/eulerToken.json";
 import { uint256ToBNBCurrency } from "@/utils/bigNumber";
 import BigNumber from "bignumber.js";
+import { watchBlockNumber } from "@wagmi/core";
 
 export default function TokenMigration() {
   const {address} = useAccount();
   const [visibleAmount, setVisibleAmount] = useState(BigInt(0));
   const [depositAmount, setDepositAmount] = useState(BigInt(0));
   const {chain} = useNetwork();
-  const [block, setBlock] = useState(BigInt(0));
-  const blockNumber = useBlockNumber();
+// State to hold the latest block number
+  const [blockNumber, setBlockNumber] = useState(0);
 
   useEffect(() => {
-    if (blockNumber.data) {
-      //ts-ignore
-      setBlock(blockNumber.data);
-    }
-  }, [blockNumber]);
+    // Subscribe to block number updates
+    const unwatch = watchBlockNumber({chainId: chain?.id, listen: true}, (blockNumber) => {
+      setBlockNumber(Number(blockNumber));
+    });
+
+    // Unsubscribe from the block number updates when the component unmounts
+    return () => {
+      unwatch();
+    };
+  }, [chain?.id]); // Empty dependency array means this effect runs once on mount
+
 
   // Old Tokens
   const {
@@ -147,7 +146,7 @@ export default function TokenMigration() {
     const claimed = uint256ToBNBCurrency(userInfo?.minted as unknown as string)
     const pending = Number(deposited) - Number(claimed)
     const lastDeposited = Number(userInfo?.lastDeposit?.toString())
-    const blocksPending = Number(block) - lastDeposited > 100 ? 0 : 100 - (Number(block) - lastDeposited)
+    const blocksPending = Number(blockNumber) - lastDeposited > 100 ? 0 : 100 - (Number(blockNumber) - lastDeposited)
     return {deposited, blocksPending, claimed, pending, available}
   }
 
