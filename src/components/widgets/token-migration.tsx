@@ -165,7 +165,7 @@ export default function TokenMigration() {
           style={{color: 'blue'}}>$EULER</span> to
           migrate</p>
 
-        <Button
+        {oldTokenAllowance as number > 0 && <Button
           className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
           onClick={(e) => {
             const visibleValue = BigInt(Math.trunc(Number(eulerBalance?.formatted)))
@@ -174,7 +174,7 @@ export default function TokenMigration() {
             setDepositAmount(value);
           }
           }>Max
-          Tokens</Button>
+          Tokens</Button>}
         <div className="space-x-3 mb-6">
           {oldTokenAllowance as number > 0 ? <div className="flex justify-between pt-3">
             <Input
