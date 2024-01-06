@@ -6,14 +6,13 @@ import { JSX, SVGProps, useState } from "react"
 import stakingAbi from "@/contracts/abi/staking.json"
 import { useAccount, useBalance, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
 import { uint256ToBNBCurrency, uint256ToNumber } from "@/utils/bigNumber";
-
-interface TokenDetail {
-  ticker: string;
-}
+import { getNetwork } from "@wagmi/core";
 
 export default function StakingDetails() {
   const {address, isConnecting, isDisconnected} = useAccount();
   const [amount, setAmount] = useState<string>('');
+  // retrieve the chain
+  const {chain, chains} = getNetwork();
 
   const {
     data: eulerBalance,
@@ -103,6 +102,44 @@ export default function StakingDetails() {
       // force re render
       window.location.reload()
     }
+  }
+  
+  if (chain?.id === 97) {
+    return (
+      <Card>
+        <CardHeader>
+          <div className="flex items-center space-x-2">
+            <img
+              alt="Logo"
+              className="h-12 w-12"
+              height="50"
+              src="/tokens/euler_v1.png"
+              style={{
+                aspectRatio: "50/50",
+                objectFit: "cover",
+                // make the image round
+                borderRadius: "9999px",
+              }}
+              width="50"
+            />
+            <h3 className="text-lg font-semibold">Staking</h3>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center space-x-3 mb-6">
+            <div>
+              <p className="text-gray-600">
+                If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
+              </p>
+            </div>
+          </div>
+          <hr className="my-4"/>
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-3">The Staking Contract is not available in this network</h2>
+          </div>
+        </CardContent>
+      </Card>
+    )
   }
 
   if (!address || !userInfo) {
