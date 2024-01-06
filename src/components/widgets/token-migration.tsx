@@ -15,7 +15,6 @@ import BigNumber from "bignumber.js";
 export default function TokenMigration() {
   const {address} = useAccount();
   const [depositAmount, setDepositAmount] = useState(BigInt(4001 * 10 ** 18));
-  const [claimAmount, setClaimAmount] = useState(BigInt(0));
   const {chain} = useNetwork();
 
   // Old Tokens
@@ -124,13 +123,14 @@ export default function TokenMigration() {
   } = useContractWrite(claimTokensConfig)
 
   const calculateAmounts = () => {
+    const available = Number(eulerBalance?.formatted)
     const deposited = uint256ToBNBCurrency(userInfo?.deposited as unknown as string)
     const claimed = uint256ToBNBCurrency(userInfo?.minted as unknown as string)
     const pending = Number(deposited) - Number(claimed)
-    return {deposited, claimed, pending}
+    return {deposited, claimed, pending, available}
   }
 
-  const {deposited, claimed, pending} = calculateAmounts()
+  const {deposited, claimed, pending, available} = calculateAmounts()
 
   return <div>
     <Card className="mb-4 my-3">
@@ -140,7 +140,8 @@ export default function TokenMigration() {
       <CardContent>
         <p className="text-gray-500 pb-6">Deposit <span style={{color: 'blue'}}>$EULER</span> to claim
           the new token</p>
-        <p className="text-gray-500">You have <strong style={{color: 'black'}}>{eulerBalance?.formatted}</strong> <span
+        <p className="text-gray-500">You have <strong
+          style={{color: 'black'}}>{Number(eulerBalance?.formatted).toFixed(2)}</strong> <span
           style={{color: 'blue'}}>$EULER</span> to
           migrate</p>
         <div className="space-x-3 mb-6">

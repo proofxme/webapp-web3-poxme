@@ -15,10 +15,10 @@ const addresses = (id: number | undefined): contractAddresses => {
       return {
         "ChainName": "BNB Chain",
         "OldToken": "0x3920123482070c1a2dff73aad695c60e7c6f6862",
-        "PoxmeToken": "0x000000000000000000000000000000000000dead",
-        "PoMembership": "0x000000000000000000000000000000000000dead",
-        "PoAffiliate": "0x000000000000000000000000000000000000dead",
-        "PoXMigration": "0x000000000000000000000000000000000000dead",
+        "PoxmeToken": "0xb469783b6b3615180da05571beec716b639cbe85",
+        "PoMembership": "0xa779afe7ba6d82506501e717bf0fef5b895e92d3",
+        "PoAffiliate": "0xea1c2282b6480131020dc97c7a9ff1f57bc2ce02",
+        "PoXMigration": "0x0881e916109b80c5e065d62c8ab5c3978ff69c5c",
         "OldFaucet": "0x000000000000000000000000000000000000dead",
         "Staking": "0xb18fab4c6f054e734ea169561787cc87928f54ee"
       }
