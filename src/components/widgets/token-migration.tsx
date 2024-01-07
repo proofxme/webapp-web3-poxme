@@ -159,21 +159,16 @@ export default function TokenMigration() {
   } = useContractWrite(claimTokensConfig)
 
   const calculateAmounts = useCallback(() => {
-    console.log("userinfo", userInfo);
+    const allowance = Number(uint256ToBNBCurrency(oldTokenAllowance as unknown as string))
     const available = Number(eulerBalance?.formatted)
     const deposited = uint256ToBNBCurrency(userInfo?.deposited as unknown as string)
     const claimed = uint256ToBNBCurrency(userInfo?.minted as unknown as string)
     const pending = Number(deposited) - Number(claimed)
     const lastDeposited = Number(userInfo?.lastDeposit?.toString())
-    console.log("-----")
-    console.log("blockNumber", blockNumber)
-    console.log("lastDeposit", lastDeposited)
+    const canDeposit = allowance > available
     const blocksPending = Number(blockNumber) - lastDeposited > 100 ? 0 : 100 - (Number(blockNumber) - lastDeposited)
-    console.log("blocksPending", blocksPending)
-    return {deposited, blocksPending, claimed, pending, available}
+    return {allowance, canDeposit, deposited, blocksPending, claimed, pending, available}
   }, [blockNumber, eulerBalance, userInfo])
-
-  console.log("amounts", calculateAmounts())
 
   const addAsset = () => {
     if (address && window) {
@@ -203,8 +198,6 @@ export default function TokenMigration() {
     }
   }
 
-  console.log("allowance", oldTokenAllowance)
-
   return (
     <div>
       <Card className="mb-4 my-3">
@@ -212,14 +205,28 @@ export default function TokenMigration() {
           <h3 className="text-lg font-semibold">Deposit <span style={{color: 'blue'}}>$EULER</span></h3>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-500 pb-6">Deposit <span style={{color: 'blue'}}>$EULER</span> to claim
-            the new token</p>
-          <p className="text-gray-500">You have <strong
-            style={{color: 'black'}}>{calculateAmounts().available}</strong> <span
-            style={{color: 'blue'}}>$EULER</span> to
-            migrate</p>
+          <div className="space-x-3 mb-6">
+            <p className="text-gray-500 pb-6">Deposit <span style={{color: 'blue'}}>$EULER</span> to claim
+              the new token</p>
+            <p className="text-gray-500">You have <strong
+              style={{color: 'black'}}>{calculateAmounts().available}</strong> <span
+              style={{color: 'blue'}}>$EULER</span> to
+              migrate</p>
 
-          {oldTokenAllowance as number !== 0 && <Button
+          </div>
+          <div className="space-x-3 mb-6">
+            {!calculateAmounts().canDeposit && <>
+              <p className="text-gray-500">The migration center Allowance
+                is {calculateAmounts().allowance}</p>
+              <Button
+                className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
+                onClick={() => approveOldToken?.()}
+              >
+                Approve Contract
+              </Button>
+            </>}
+          </div>
+          {calculateAmounts().canDeposit && <Button
             className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
             onClick={(e) => {
               const visibleValue = BigInt(Math.trunc(calculateAmounts().available))
@@ -228,7 +235,7 @@ export default function TokenMigration() {
               setDepositAmount(value);
             }}>Max Tokens</Button>}
           <div className="space-x-3 mb-6">
-            {oldTokenAllowance as number !== 0 ? <div className="flex justify-between pt-3">
+            {calculateAmounts().canDeposit && <div className="flex justify-between pt-3">
               <Input
                 placeholder="Amount"
                 type="number"
@@ -242,13 +249,7 @@ export default function TokenMigration() {
               <Button disabled={depositAmount === BigInt(0) || !isMigrationActive}
                       className="pt-3 mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
                       onClick={() => depositTokens?.()}>Deposit</Button>
-            </div> : <Button
-              className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
-              onClick={() => approveOldToken?.()}
-            >
-              Approve Contract
-            </Button>
-            }
+            </div>}
           </div>
         </CardContent>
       </Card>
