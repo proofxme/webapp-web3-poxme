@@ -60,8 +60,6 @@ export default function Home() {
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-6" role="alert">
           <h2 className="font-bold text-center">Irreversible Actions</h2>
           <span className="block sm:inline">Please, read the FAQ section, or contact us in the official telegram channel if you have doubts. This is an irreversible migration process</span>
-          <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
-        </span>
         </div>
         <h2 className="text-4xl pt-14 text-center font-bold tracking-tighter" style={{color: "purple"}}><strong
           style={{color: "black"}}>First
