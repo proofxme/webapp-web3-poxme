@@ -164,8 +164,10 @@ export default function TokenMigration() {
 
   const {blocksPending, deposited, claimed, pending, available} = calculateAmounts()
 
-  // @ts-ignore
-  const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
+  if (window.ethereum && window.ethereum.on) {
+    // @ts-ignore
+    const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
+  }
 
   return <div>
     <Card className="mb-4 my-3">
@@ -221,7 +223,7 @@ export default function TokenMigration() {
       </CardHeader>
       <CardContent>
         <div className="space-x-3 mb-6">
-          {address && (
+          {address && client && (
             <Button
               className="bg-gradient-to-r from-purple-900 via-white-500 to-purple-500 hover:from-purple-400 hover:via-white-500 hover:to-purple-500"
               onClick={() => {
