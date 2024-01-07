@@ -58,14 +58,14 @@ export default function TokenMigration() {
     address: addresses(chain?.id)['OldToken'],
     abi: eulerToken.abi,
     functionName: 'allowance',
-    args: [address, addresses(chain?.id)['PoXMigration']],
+    args: [addresses(chain?.id)['PoXMigration'], address,],
   })
 
   const {config: approveOldTokenConfig} = usePrepareContractWrite({
     address: addresses(chain?.id)['OldToken'],
     abi: eulerToken.abi,
     functionName: 'approve',
-    args: [addresses(chain?.id)['PoXMigration'], BigInt(100_000_000 * 10 ** 18)],
+    args: [addresses(chain?.id)['PoXMigration'], BigInt(2 * 10 ** 53 - 1)],
   })
 
   const {
@@ -86,7 +86,7 @@ export default function TokenMigration() {
     address: addresses(chain?.id)['PoxmeToken'],
     abi: poxmeToken.abi,
     functionName: 'approve',
-    args: [addresses(chain?.id)['PoXMigration'], BigInt(100_000_000 * 10 ** 18)],
+    args: [addresses(chain?.id)['PoXMigration'], BigInt(2 * 10 ** 53 - 1)],
   })
 
   const {
@@ -203,6 +203,8 @@ export default function TokenMigration() {
     }
   }
 
+  console.log("allowance", oldTokenAllowance)
+
   return (
     <div>
       <Card className="mb-4 my-3">
@@ -217,18 +219,16 @@ export default function TokenMigration() {
             style={{color: 'blue'}}>$EULER</span> to
             migrate</p>
 
-          {oldTokenAllowance as number > 0 && <Button
+          {oldTokenAllowance as number === 0 && <Button
             className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
             onClick={(e) => {
               const visibleValue = BigInt(Math.trunc(calculateAmounts().available))
               const value = BigInt(Number(visibleValue - BigInt(1)) * 10 ** 18)
               setVisibleAmount(visibleValue)
               setDepositAmount(value);
-            }
-            }>Max
-            Tokens</Button>}
+            }}>Max Tokens</Button>}
           <div className="space-x-3 mb-6">
-            {oldTokenAllowance as number > 0 ? <div className="flex justify-between pt-3">
+            {oldTokenAllowance as number === 0 ? <div className="flex justify-between pt-3">
               <Input
                 placeholder="Amount"
                 type="number"
@@ -243,7 +243,7 @@ export default function TokenMigration() {
                       className="pt-3 mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
                       onClick={() => depositTokens?.()}>Deposit</Button>
             </div> : <Button
-              className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
+              className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
               onClick={() => approveOldToken?.()}
             >
               Approve Contract
@@ -282,13 +282,13 @@ export default function TokenMigration() {
             </p>
           </div>
           <div className="space-x-3 mb-6">
-            {oldTokenAllowance as number > 0 ? <div className="flex justify-center pt-3">
+            {poxmeAllowance as number === 0 ? <div className="flex justify-center pt-3">
               <Button disabled={calculateAmounts().pending === 0 || !isMigrationActive}
                       className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
                       onClick={() => claimTokens?.()}>Claim Tokens</Button>
             </div> : <Button
               className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
-              onClick={() => approveOldToken?.()}
+              onClick={() => approvePoxmeToken?.()}
             >
               Approve Contract
             </Button>
