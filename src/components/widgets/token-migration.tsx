@@ -23,6 +23,7 @@ import BigNumber from "bignumber.js";
 import { watchBlockNumber } from "@wagmi/core";
 import { watchAsset } from "viem/actions";
 import { createWalletClient, custom } from "viem";
+import Countdown from "@/components/widgets/countdown";
 
 export default function TokenMigration() {
   const {address, status} = useAccount();
@@ -200,6 +201,7 @@ export default function TokenMigration() {
 
   return (
     <div>
+      <Countdown/>
       <Card className="mb-4 my-3">
         <CardHeader>
           <h3 className="text-lg font-semibold">Deposit <span style={{color: 'blue'}}>$EULER</span></h3>

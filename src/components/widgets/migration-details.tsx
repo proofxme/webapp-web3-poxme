@@ -6,7 +6,6 @@ import MembershipMigration from "@/components/widgets/membership-migration";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-
 export default function MigrationDetails() {
   const {address} = useAccount();
   return (

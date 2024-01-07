@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function Countdown() {
   // Set the end date for the countdown
-  const countdownDate = new Date('2024-01-06T22:00:00Z').getTime();
+  const countdownDate = new Date('2024-01-13T22:00:00Z').getTime();
 
   // State to keep track of time left
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -41,16 +41,20 @@ export default function Countdown() {
   // Calculate the width of the progress bar
   const progressWidth = () => {
     const totalSeconds = (countdownDate - new Date().getTime()) / 1000;
-    const totalDuration = (countdownDate - new Date('2023-04-01T00:00:00Z').getTime()) / 1000;
+    const totalDuration = (countdownDate - new Date('2024-01-06T22:00:00Z').getTime()) / 1000;
     return `${(100 - (totalSeconds / totalDuration) * 100).toFixed(2)}%`;
   }
 
   return (
     <>
-      <Card className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
-        <CardHeader className="m-4 text-xl font-semibold">Time to migration Start</CardHeader>
-        <CardContent className="m-4">
-          <div className="text-center text-2xl md:text-6xl font-bold mb-4">
+      <Card className="">
+        <CardHeader className="text-xl font-semibold">Time to migrate without Tax</CardHeader>
+        <CardContent className="">
+          <div className="bg-blue-100 border border-blue-100 text-black px-4 py-3 rounded relative mb-6" role="alert">
+            <h2 className="font-bold text-center mb-3">You can migrate anytime!</h2>
+            <span className="block sm:inline">Taxes will slowly crawl up to 50%.</span>
+          </div>
+          <div className="text-center font-bold mb-4">
             {Object.keys(timeLeft).length ? `${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s` : 'Time is up!'}
           </div>
           <div className="relative pt-1">
