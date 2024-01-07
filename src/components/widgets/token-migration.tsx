@@ -166,7 +166,8 @@ export default function TokenMigration() {
 
   let client: any;
 
-  if (window.ethereum && window.ethereum.on) {
+  // @ts-ignore
+  if (window && window.ethereum) {
     // @ts-ignore
     const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
   }
