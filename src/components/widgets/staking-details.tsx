@@ -96,47 +96,66 @@ export default function StakingDetails() {
     )
   }
 
-  if (!address || !userInfo) {
-    return (
-      <Card>
-        <CardHeader>
-          <div className="flex items-center space-x-2">
-            <img
-              alt="Logo"
-              className="h-12 w-12"
-              height="50"
-              src="/tokens/euler_v1.png"
-              style={{
-                aspectRatio: "50/50",
-                objectFit: "cover",
-                // make the image round
-                borderRadius: "9999px",
-              }}
-              width="50"
-            />
-            <h3 className="text-lg font-semibold">Staking</h3>
-          </div>
-        </CardHeader>
+  const cardContent = () => {
+    if (!address) {
+      return (
         <CardContent>
-          <div className="flex items-center space-x-3 mb-6">
-            <div>
-              <p className="text-gray-600">
-                If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
-              </p>
-            </div>
-          </div>
-          <hr className="my-4"/>
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-3">Please connect your wallet to continue</h2>
+          <hr className="my-2"/>
+          <div
+            className="text-center bg-red-500 border border-red-400 text-white px-4 py-3 rounded relative mt-6">Please
+            Connect your wallet to continue
           </div>
         </CardContent>
-      </Card>
-    )
+      )
+    }
+    if (address) {
+      return (
+        <CardContent className="m-4">
+          <h2 className="text-lg font-semibold mb-3">AVAILABLE CURRENCY</h2>
+          <>
+            {[
+              {
+                amount: uint256ToBNBCurrency(eulerBalance?.value as unknown as string),
+                name: 'Wallet Balance',
+                color: 'red',
+                button: 'Stake',
+                action: stakeTokens
+              },
+              {
+                amount: uint256ToBNBCurrency(userInfo?.amount as unknown as string),
+                name: 'Staked Tokens',
+                color: 'green',
+                button: 'Withdraw',
+                action: withdrawAll
+              }, {
+                amount: uint256ToBNBCurrency(userInfo?.pendingRewards as unknown as string),
+                name: 'Claimable Rewards',
+                color: 'green',
+                button: 'Claim',
+                action: claimAll
+              }].map((currency) => {
+              return (
+                <div className="flex justify-between items-center mb-2" key={currency.name}>
+                  <span className="flex items-center">
+                    {currency.name}
+                  </span>
+                  <div className="flex items-center">
+                    <span>{currency.amount}</span>
+                    <Button className="ml-4" onClick={() => currency.action?.()}>{currency.button}</Button>
+                  </div>
+                </div>
+              )
+            })
+            }
+          </>
+        </CardContent>
+      )
+    }
   }
 
   return (
     <Card className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
-      <CardHeader className="flex items-center space-x-3 mb-6">
+      <CardHeader className="flex items-center space-x-3">
         <img
           alt="Logo"
           className="h-12 w-12"
@@ -151,51 +170,12 @@ export default function StakingDetails() {
           width="50"
         />
         <div>
-          <h1 className="text-2xl font-bold">Staking</h1>
           <p className="text-gray-600">
             If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
           </p>
         </div>
       </CardHeader>
-      <CardContent className="m-4">
-        <h2 className="text-lg font-semibold mb-3">AVAILABLE CURRENCY</h2>
-        <>
-          {[
-            {
-              amount: uint256ToBNBCurrency(eulerBalance?.value as unknown as string),
-              name: 'Wallet Balance',
-              color: 'red',
-              button: 'Stake',
-              action: stakeTokens
-            },
-            {
-              amount: uint256ToBNBCurrency(userInfo?.amount as unknown as string),
-              name: 'Staked Tokens',
-              color: 'green',
-              button: 'Withdraw',
-              action: withdrawAll
-            }, {
-              amount: uint256ToBNBCurrency(userInfo?.pendingRewards as unknown as string),
-              name: 'Claimable Rewards',
-              color: 'green',
-              button: 'Claim',
-              action: claimAll
-            }].map((currency) => {
-            return (
-              <div className="flex justify-between items-center mb-2" key={currency.name}>
-                  <span className="flex items-center">
-                    {currency.name}
-                  </span>
-                <div className="flex items-center">
-                  <span>{currency.amount}</span>
-                  <Button className="ml-4" onClick={() => currency.action?.()}>{currency.button}</Button>
-                </div>
-              </div>
-            )
-          })
-          }
-        </>
-      </CardContent>
+      {cardContent()}
     </Card>
   )
 }
