@@ -13,7 +13,7 @@ import {
   usePrepareContractWrite,
   useWalletClient
 } from "wagmi";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import addresses from "@/contracts/addresses";
 import migrationAbi from "@/contracts/abi/migration.json";
 import poxmeToken from "@/contracts/abi/poxmeToken.json";
@@ -152,7 +152,7 @@ export default function TokenMigration() {
     write: claimTokens
   } = useContractWrite(claimTokensConfig)
 
-  const calculateAmounts = () => {
+  const calculateAmounts = useCallback(() => {
     const available = Number(eulerBalance?.formatted)
     const deposited = uint256ToBNBCurrency(userInfo?.deposited as unknown as string)
     const claimed = uint256ToBNBCurrency(userInfo?.minted as unknown as string)
@@ -160,7 +160,7 @@ export default function TokenMigration() {
     const lastDeposited = Number(userInfo?.lastDeposit?.toString())
     const blocksPending = Number(blockNumber) - lastDeposited > 100 ? 0 : 100 - (Number(blockNumber) - lastDeposited)
     return {deposited, blocksPending, claimed, pending, available}
-  }
+  }, [blockNumber, eulerBalance?.formatted, userInfo?.deposited, userInfo?.lastDeposit, userInfo?.minted])
 
   const {blocksPending, deposited, claimed, pending, available} = calculateAmounts()
 
@@ -210,7 +210,7 @@ export default function TokenMigration() {
             className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
             onClick={(e) => {
               const visibleValue = BigInt(Math.trunc(Number(eulerBalance?.formatted)))
-              const value = BigInt(Number(visibleValue) * 10 ** 18)
+              const value = BigInt(Number(visibleValue - BigInt(1)) * 10 ** 18)
               setVisibleAmount(visibleValue)
               setDepositAmount(value);
             }
@@ -223,7 +223,7 @@ export default function TokenMigration() {
                 type="number"
                 value={visibleAmount.toString()}
                 onChange={(e) => {
-                  const value = BigInt(Number(e.target.value) * 10 ** 18)
+                  const value = BigInt((Number(e.target.value) - 1) * 10 ** 18)
                   const visibleValue = BigInt(Number(e.target.value))
                   setVisibleAmount(visibleValue)
                   setDepositAmount(value);
