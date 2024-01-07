@@ -165,7 +165,8 @@ export default function TokenMigration() {
   const {blocksPending, deposited, claimed, pending, available} = calculateAmounts()
 
   const addAsset = () => {
-    if (address) {
+    if (address && window) {
+      // @ts-ignore
       const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
       return (
         <div className="space-x-3 mb-6">
