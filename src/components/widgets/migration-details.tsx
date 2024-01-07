@@ -4,6 +4,7 @@ import TokenMigration from "@/components/widgets/token-migration";
 import AffiliateMigration from "@/components/widgets/affiliate-migration";
 import MembershipMigration from "@/components/widgets/membership-migration";
 import { useAccount } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 
 export default function MigrationDetails() {
@@ -23,8 +24,14 @@ export default function MigrationDetails() {
             <span className="block sm:inline">The migration represents a procedure designed to benefit all initial supporters of the protocol. Should you have been present from the outset yet were unable to acquire the minimum requirement, please direct message @tebayoso on Telegram.</span>
           </div>}
         {!address &&
-          <div className="bg-red-500 border border-red-400 text-white px-4 py-3 rounded relative mt-6">Please
-            Connect your wallet to continue</div>}
+          <>
+            <div className="bg-red-500 border border-red-400 text-white px-4 py-3 rounded relative mt-6">Please
+              Connect your wallet to continue
+            </div>
+            <div className="flex justify-center mt-3">
+              <ConnectButton/>
+            </div>
+          </>}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {address && <TokenMigration/>}
           {address && <MembershipMigration/>}

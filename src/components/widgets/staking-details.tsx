@@ -8,6 +8,7 @@ import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, 
 import { uint256ToBNBCurrency, uint256ToNumber } from "@/utils/bigNumber";
 import addresses from "@/contracts/addresses";
 import TestnetFaucet from "@/components/widgets/testnet-faucet";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function StakingDetails() {
   const {address} = useAccount();
@@ -104,6 +105,9 @@ export default function StakingDetails() {
           <div
             className="text-center bg-red-500 border border-red-400 text-white px-4 py-3 rounded relative mt-6">Please
             Connect your wallet to continue
+          </div>
+          <div className="flex justify-center mt-3">
+            <ConnectButton/>
           </div>
         </CardContent>
       )
