@@ -3,9 +3,11 @@
 import TokenMigration from "@/components/widgets/token-migration";
 import AffiliateMigration from "@/components/widgets/affiliate-migration";
 import MembershipMigration from "@/components/widgets/membership-migration";
+import { useAccount } from "wagmi";
 
 
 export default function MigrationDetails() {
+  const {address} = useAccount();
   return (
     <section key="1" className="w-full">
       <h2 className="text-4xl py-6 text-center font-bold tracking-tighter" style={{color: "purple"}}><strong
@@ -19,10 +21,13 @@ export default function MigrationDetails() {
             style={{color: 'blue'}}>$EULER</strong> tokens </h2>
           <span className="block sm:inline">The migration represents a procedure designed to benefit all initial supporters of the protocol. Should you have been present from the outset yet were unable to acquire the minimum requirement, please direct message @tebayoso on Telegram.</span>
         </div>
+        {!address &&
+          <div className="bg-red-500 border border-red-400 text-white px-4 py-3 rounded relative mt-6">Please
+            Connect your wallet to continue</div>}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <TokenMigration/>
-          <MembershipMigration/>
-          <AffiliateMigration/>
+          {address && <TokenMigration/>}
+          {address && <MembershipMigration/>}
+          {address && <AffiliateMigration/>}
         </div>
       </div>
     </section>

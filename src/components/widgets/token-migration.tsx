@@ -121,7 +121,13 @@ export default function TokenMigration() {
     address: addresses(chain?.id)['PoXMigration'],
     abi: migrationAbi.abi,
     functionName: 'getUserInfo',
+    onSuccess: () => {
+      console.log('balanceOf refeched');
+    },
     args: [address],
+    cacheTime: 5,
+    staleTime: 0,
+    scopeKey: 'balanceOf',
   })
 
   const {config: depositTokensConfig} = usePrepareContractWrite({
@@ -153,16 +159,21 @@ export default function TokenMigration() {
   } = useContractWrite(claimTokensConfig)
 
   const calculateAmounts = useCallback(() => {
+    console.log("userinfo", userInfo);
     const available = Number(eulerBalance?.formatted)
     const deposited = uint256ToBNBCurrency(userInfo?.deposited as unknown as string)
     const claimed = uint256ToBNBCurrency(userInfo?.minted as unknown as string)
     const pending = Number(deposited) - Number(claimed)
     const lastDeposited = Number(userInfo?.lastDeposit?.toString())
+    console.log("-----")
+    console.log("blockNumber", blockNumber)
+    console.log("lastDeposit", lastDeposited)
     const blocksPending = Number(blockNumber) - lastDeposited > 100 ? 0 : 100 - (Number(blockNumber) - lastDeposited)
+    console.log("blocksPending", blocksPending)
     return {deposited, blocksPending, claimed, pending, available}
-  }, [blockNumber, eulerBalance?.formatted, userInfo?.deposited, userInfo?.lastDeposit, userInfo?.minted])
+  }, [blockNumber, eulerBalance, userInfo])
 
-  const {blocksPending, deposited, claimed, pending, available} = calculateAmounts()
+  console.log("amounts", calculateAmounts())
 
   const addAsset = () => {
     if (address && window) {
@@ -202,14 +213,14 @@ export default function TokenMigration() {
           <p className="text-gray-500 pb-6">Deposit <span style={{color: 'blue'}}>$EULER</span> to claim
             the new token</p>
           <p className="text-gray-500">You have <strong
-            style={{color: 'black'}}>{Number(eulerBalance?.formatted).toFixed(2)}</strong> <span
+            style={{color: 'black'}}>{calculateAmounts().available}</strong> <span
             style={{color: 'blue'}}>$EULER</span> to
             migrate</p>
 
           {oldTokenAllowance as number > 0 && <Button
             className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
             onClick={(e) => {
-              const visibleValue = BigInt(Math.trunc(Number(eulerBalance?.formatted)))
+              const visibleValue = BigInt(Math.trunc(calculateAmounts().available))
               const value = BigInt(Number(visibleValue - BigInt(1)) * 10 ** 18)
               setVisibleAmount(visibleValue)
               setDepositAmount(value);
@@ -251,28 +262,28 @@ export default function TokenMigration() {
             <p className="text-gray-500">
               You have deposited:
               <span
-                className="font-bold text-gray-900"> {deposited} tokens
+                className="font-bold text-gray-900"> {calculateAmounts().deposited} tokens
         </span>
             </p>
             <p className="text-gray-500 mt-2">
               You have claimed:
               <span
-                className="font-bold text-gray-900"> {claimed} tokens </span>
+                className="font-bold text-gray-900"> {calculateAmounts().claimed} tokens </span>
             </p>
             <p className="text-gray-500 mt-2">
               You can claim:
               <span
-                className="font-bold text-gray-900"> {pending} tokens </span>
+                className="font-bold text-gray-900"> {calculateAmounts().pending} tokens </span>
             </p>
             <p className="text-gray-500 mt-2">
               You can claim after:
               <span
-                className="font-bold text-gray-900"> {blocksPending} blocks</span>
+                className="font-bold text-gray-900"> {calculateAmounts().blocksPending} blocks</span>
             </p>
           </div>
           <div className="space-x-3 mb-6">
             {oldTokenAllowance as number > 0 ? <div className="flex justify-center pt-3">
-              <Button disabled={pending === 0 || !isMigrationActive}
+              <Button disabled={calculateAmounts().pending === 0 || !isMigrationActive}
                       className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
                       onClick={() => claimTokens?.()}>Claim Tokens</Button>
             </div> : <Button
