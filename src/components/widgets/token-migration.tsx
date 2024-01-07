@@ -164,6 +164,8 @@ export default function TokenMigration() {
 
   const {blocksPending, deposited, claimed, pending, available} = calculateAmounts()
 
+  let client: any;
+
   if (window.ethereum && window.ethereum.on) {
     // @ts-ignore
     const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
