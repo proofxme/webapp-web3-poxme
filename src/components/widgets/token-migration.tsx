@@ -3,7 +3,16 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite } from "wagmi";
+import {
+  mainnet,
+  useAccount,
+  useBalance,
+  useContractRead,
+  useContractWrite,
+  useNetwork,
+  usePrepareContractWrite,
+  useWalletClient
+} from "wagmi";
 import { useEffect, useState } from "react";
 import addresses from "@/contracts/addresses";
 import migrationAbi from "@/contracts/abi/migration.json";
@@ -12,12 +21,15 @@ import eulerToken from "@/contracts/abi/eulerToken.json";
 import { uint256ToBNBCurrency } from "@/utils/bigNumber";
 import BigNumber from "bignumber.js";
 import { watchBlockNumber } from "@wagmi/core";
+import { watchAsset } from "viem/actions";
+import { createWalletClient, custom } from "viem";
 
 export default function TokenMigration() {
-  const {address} = useAccount();
+  const {address, status} = useAccount();
   const [visibleAmount, setVisibleAmount] = useState(BigInt(0));
   const [depositAmount, setDepositAmount] = useState(BigInt(0));
   const {chain} = useNetwork();
+  const walletClient = useWalletClient();
 // State to hold the latest block number
   const [blockNumber, setBlockNumber] = useState(0);
 
@@ -152,6 +164,9 @@ export default function TokenMigration() {
 
   const {blocksPending, deposited, claimed, pending, available} = calculateAmounts()
 
+  // @ts-ignore
+  const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
+
   return <div>
     <Card className="mb-4 my-3">
       <CardHeader>
@@ -206,10 +221,29 @@ export default function TokenMigration() {
       </CardHeader>
       <CardContent>
         <div className="space-x-3 mb-6">
+          {address && (
+            <Button
+              className="bg-gradient-to-r from-purple-900 via-white-500 to-purple-500 hover:from-purple-400 hover:via-white-500 hover:to-purple-500"
+              onClick={() => {
+                watchAsset(client, {
+                  type: 'ERC20',
+                  options: {
+                    address: addresses(chain?.id)['PoxmeToken'],
+                    decimals: 18,
+                    symbol: 'POXME',
+                  },
+                })
+              }}>
+              Add Token to Wallet
+            </Button>
+          )}
+        </div>
+        <div className="space-x-3 mb-6">
           <p className="text-gray-500">
             You have deposited:
             <span
-              className="font-bold text-gray-900"> {deposited} tokens</span>
+              className="font-bold text-gray-900"> {deposited} tokens
+        </span>
           </p>
           <p className="text-gray-500 mt-2">
             You have claimed:
@@ -242,5 +276,6 @@ export default function TokenMigration() {
         </div>
       </CardContent>
     </Card>
-  </div>;
+  </div>
+    ;
 }
