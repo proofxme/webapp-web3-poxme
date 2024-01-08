@@ -284,15 +284,16 @@ export default function TokenMigration() {
               <p className="bg-red-500 border border-red-400 text-white mt-2">
                 Please wait:
                 <span
-                  className="font-bold text-gray-900"> {calculateAmounts().blocksPending} blocks</span> to claim.
+                  className="font-bold text-white"> {calculateAmounts().blocksPending} blocks</span> to claim.
               </p>
             }
           </div>
           <div className="space-x-3 mb-6">
             <div className="flex justify-center pt-3">
-              <Button disabled={calculateAmounts().pending === 0 || !isMigrationActive}
-                      className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
-                      onClick={() => claimTokens?.()}>Claim Tokens</Button>
+              <Button
+                disabled={calculateAmounts().pending === 0 || calculateAmounts().blocksPending > 0 || !isMigrationActive}
+                className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
+                onClick={() => claimTokens?.()}>Claim Tokens</Button>
             </div>
           </div>
         </CardContent>
