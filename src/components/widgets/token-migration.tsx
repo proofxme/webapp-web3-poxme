@@ -280,6 +280,8 @@ export default function TokenMigration() {
               <span
                 className="font-bold text-gray-900"> {calculateAmounts().pending} tokens </span>
             </p>
+          </div>
+          <div className="space-x-3 mb-6">
             {calculateAmounts().blocksPending > 0 &&
               <p className="bg-red-500 border border-red-400 text-white mt-2">
                 Please wait:
@@ -287,8 +289,6 @@ export default function TokenMigration() {
                   className="font-bold text-white"> {calculateAmounts().blocksPending} blocks</span> to claim.
               </p>
             }
-          </div>
-          <div className="space-x-3 mb-6">
             <div className="flex justify-center pt-3">
               <Button
                 disabled={calculateAmounts().pending === 0 || calculateAmounts().blocksPending > 0 || !isMigrationActive}
