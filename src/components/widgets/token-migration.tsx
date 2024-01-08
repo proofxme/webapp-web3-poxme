@@ -283,11 +283,13 @@ export default function TokenMigration() {
               <span
                 className="font-bold text-gray-900"> {calculateAmounts().pending} tokens </span>
             </p>
-            <p className="text-gray-500 mt-2">
-              You can claim after:
-              <span
-                className="font-bold text-gray-900"> {calculateAmounts().blocksPending} blocks</span>
-            </p>
+            {calculateAmounts().blocksPending > 0 &&
+              <p className="bg-red-500 border border-red-400 text-white mt-2">
+                Please wait:
+                <span
+                  className="font-bold text-gray-900"> {calculateAmounts().blocksPending} blocks</span> to claim.
+              </p>
+            }
           </div>
           <div className="space-x-3 mb-6">
             <div className="flex justify-center pt-3">
