@@ -230,7 +230,7 @@ export default function TokenMigration() {
             className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
             onClick={(e) => {
               const visibleValue = BigInt(Math.trunc(calculateAmounts().available))
-              const value = BigInt(Number(visibleValue - BigInt(1)) * 10 ** 18)
+              const value = BigInt(Number(visibleValue) * 10 ** 18)
               setVisibleAmount(visibleValue)
               setDepositAmount(value);
             }}>Max Tokens</Button>}
@@ -241,7 +241,7 @@ export default function TokenMigration() {
                 type="number"
                 value={visibleAmount.toString()}
                 onChange={(e) => {
-                  const value = BigInt((Number(e.target.value) - 1) * 10 ** 18)
+                  const value = BigInt((Number(e.target.value)) * 10 ** 18)
                   const visibleValue = BigInt(Number(e.target.value))
                   setVisibleAmount(visibleValue)
                   setDepositAmount(value);
