@@ -18,7 +18,7 @@ import addresses from "@/contracts/addresses";
 import migrationAbi from "@/contracts/abi/migration.json";
 import poxmeToken from "@/contracts/abi/poxmeToken.json";
 import eulerToken from "@/contracts/abi/eulerToken.json";
-import { uint256ToBNBCurrency } from "@/utils/bigNumber";
+import { getBigNumberCurrencyLabel, uint256ToBNBCurrency } from "@/utils/bigNumber";
 import BigNumber from "bignumber.js";
 import { watchBlockNumber } from "@wagmi/core";
 import { watchAsset } from "viem/actions";
@@ -45,6 +45,14 @@ export default function TokenMigration() {
       unwatch();
     };
   }, [chain?.id]); // Empty dependency array means this effect runs once on mount
+
+  // calculate the current supply of POXME
+  const {data: poxmeSupply} = useContractRead({
+    address: addresses(chain?.id)['PoxmeToken'],
+    abi: poxmeToken.abi,
+    functionName: 'totalSupply',
+    args: [],
+  })
 
 
   // Old Tokens
@@ -82,20 +90,6 @@ export default function TokenMigration() {
     functionName: 'allowance',
     args: [address, addresses(chain?.id)['PoXMigration']],
   })
-
-  const {config: approveNewTokenConfig} = usePrepareContractWrite({
-    address: addresses(chain?.id)['PoxmeToken'],
-    abi: poxmeToken.abi,
-    functionName: 'approve',
-    args: [addresses(chain?.id)['PoXMigration'], BigInt(2 * 10 ** 53 - 1)],
-  })
-
-  const {
-    data: approvedPoxmeAmount,
-    isLoading: isLoadingPoxmeApproval,
-    isSuccess: isSuccessPoxmeApproval,
-    write: approvePoxmeToken
-  } = useContractWrite(approveNewTokenConfig)
 
   // Migration Contract
   const {data: isMigrationActive} = useContractRead({
@@ -263,6 +257,9 @@ export default function TokenMigration() {
         <CardHeader>
           <h3 className="text-lg font-semibold">Claim new <strong style={{color: 'purple'}}>$POXME</strong> Tokens
           </h3>
+          <h4 className="font-bold text-gray-900 bg-indigo-300 px-6 rounded">Total tokens
+            migrated: {getBigNumberCurrencyLabel(poxmeSupply as unknown as string, true, 2, true)}
+          </h4>
         </CardHeader>
         <CardContent>
           {addAsset()}
