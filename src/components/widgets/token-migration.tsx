@@ -172,29 +172,33 @@ export default function TokenMigration() {
   }, [blockNumber, eulerBalance, userInfo])
 
   const addAsset = () => {
-    if (address && window) {
-      // @ts-ignore
-      const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
-      return (
-        <div className="space-x-3 mb-6">
-          {address && (
-            <Button
-              className="bg-gradient-to-r from-purple-900 via-white-500 to-purple-500 hover:from-purple-400 hover:via-white-500 hover:to-purple-500"
-              onClick={() => {
-                watchAsset(client, {
-                  type: 'ERC20',
-                  options: {
-                    address: addresses(chain?.id)['PoxmeToken'],
-                    decimals: 18,
-                    symbol: 'POXME',
-                  },
-                })
-              }}>
-              Add Token to Wallet
-            </Button>
-          )}
-        </div>)
-    } else {
+    try {
+      if (address && window) {
+        // @ts-ignore
+        const client = createWalletClient({chain: mainnet, transport: custom(window.ethereum),})
+        return (
+          <div className="space-x-3 mb-6">
+            {address && (
+              <Button
+                className="bg-gradient-to-r from-purple-900 via-white-500 to-purple-500 hover:from-purple-400 hover:via-white-500 hover:to-purple-500"
+                onClick={() => {
+                  watchAsset(client, {
+                    type: 'ERC20',
+                    options: {
+                      address: addresses(chain?.id)['PoxmeToken'],
+                      decimals: 18,
+                      symbol: 'POXME',
+                    },
+                  })
+                }}>
+                Add Token to Wallet
+              </Button>
+            )}
+          </div>)
+      } else {
+        return null
+      }
+    } catch (e) {
       return null
     }
   }
@@ -257,7 +261,8 @@ export default function TokenMigration() {
       </Card>
       <Card>
         <CardHeader>
-          <h3 className="text-lg font-semibold">Claim new <strong style={{color: 'purple'}}>$POXME</strong> Tokens</h3>
+          <h3 className="text-lg font-semibold">Claim new <strong style={{color: 'purple'}}>$POXME</strong> Tokens
+          </h3>
         </CardHeader>
         <CardContent>
           {addAsset()}
