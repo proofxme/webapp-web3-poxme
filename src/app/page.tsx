@@ -63,13 +63,10 @@ export default function Home() {
         </div>
         <h2 className="text-4xl pt-14 text-center font-bold tracking-tighter" style={{color: "purple"}}><strong
           style={{color: "black"}}>First
-          Step:</strong> Withdraw
-          the tokens from the staking</h2>
+          Step:</strong> Withdraw the tokens from the staking</h2>
         <div
-          className="flex relative place-items-center">
-          <div className="flex flex-col items-center justify-center w-full h-full pt-6 px-12 z-0">
-            <StakingDetails/>
-          </div>
+          className="lg:flex pt-14 relative flex place-items-center">
+          <StakingDetails/>
         </div>
         <div
           className="lg:flex pt-14 relative flex place-items-center">

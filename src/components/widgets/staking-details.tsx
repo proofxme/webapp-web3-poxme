@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { JSX, SVGProps } from "react"
 import stakingAbi from "@/contracts/abi/staking.json"
 import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite } from "wagmi";
 import { uint256ToBNBCurrency, uint256ToNumber } from "@/utils/bigNumber";
@@ -158,47 +157,33 @@ export default function StakingDetails() {
   }
 
   return (
-    <Card className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
-      <CardHeader className="flex items-center space-x-3">
-        <img
-          alt="Logo"
-          className="h-12 w-12"
-          height="50"
-          src="/tokens/euler_v1.png"
-          style={{
-            aspectRatio: "50/50",
-            objectFit: "cover",
-            // make the image round
-            borderRadius: "9999px",
-          }}
-          width="50"
-        />
-        <div>
-          <p className="text-gray-600">
-            If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
-          </p>
-        </div>
-      </CardHeader>
-      {cardContent()}
-    </Card>
+    <section key="1" className="w-full">
+      <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+        <Card className="mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <CardHeader className="flex items-center space-x-3">
+            <img
+              alt="Logo"
+              className="h-12 w-12"
+              height="50"
+              src="/tokens/euler_v1.png"
+              style={{
+                aspectRatio: "50/50",
+                objectFit: "cover",
+                // make the image round
+                borderRadius: "9999px",
+              }}
+              width="50"
+            />
+            <div>
+              <p className="text-gray-600">
+                If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
+              </p>
+            </div>
+          </CardHeader>
+          {cardContent()}
+        </Card>
+      </div>
+    </section>
   )
 }
 
-function CircleIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10"/>
-    </svg>
-  )
-}
