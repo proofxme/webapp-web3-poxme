@@ -23,7 +23,6 @@ import BigNumber from "bignumber.js";
 import { watchBlockNumber } from "@wagmi/core";
 import { watchAsset } from "viem/actions";
 import { createWalletClient, custom } from "viem";
-import Countdown from "@/components/widgets/countdown";
 
 export default function TokenMigration() {
   const {address, status} = useAccount();
@@ -225,7 +224,6 @@ export default function TokenMigration() {
 
   return (
     <div>
-      <Countdown/>
       <Card className="mb-4 my-3">
         <CardHeader>
           <h4 className="font-bold text-white bg-red-600 px-6 rounded py-6">Total Penalty
