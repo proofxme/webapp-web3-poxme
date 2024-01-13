@@ -33,6 +33,7 @@ export default function TokenMigration() {
   const walletClient = useWalletClient();
 // State to hold the latest block number
   const [blockNumber, setBlockNumber] = useState(0);
+  const [penalty, setPenalty] = useState(0);
 
   useEffect(() => {
     // Subscribe to block number updates
@@ -54,6 +55,12 @@ export default function TokenMigration() {
     args: [],
   })
 
+  const {data: startBlock} = useContractRead({
+    address: addresses(chain?.id)['PoXMigration'],
+    abi: migrationAbi.abi,
+    functionName: 'migrationStartedAt',
+    args: [],
+  })
 
   // Old Tokens
   const {
@@ -165,6 +172,25 @@ export default function TokenMigration() {
     return {allowance, canDeposit, deposited, blocksPending, claimed, pending, available}
   }, [blockNumber, eulerBalance, userInfo])
 
+  useEffect(() => {
+    if (startBlock) {
+      const maxFee = 5184000; // 180 days in blocks
+      const gracePeriod = 201600; // 7 days in blocks
+      let blocksPassed = blockNumber - Number(startBlock);
+
+      if (blocksPassed <= gracePeriod) {
+        setPenalty(0); // No penalty if within or equal to the grace period
+      } else if (blocksPassed > maxFee) {
+        setPenalty(50); // 50% fee if the blocks passed are greater than maxFee
+      } else {
+        // Calculate penalty based on the time after the grace period
+        let effectiveBlocks = blocksPassed - gracePeriod;
+        setPenalty((effectiveBlocks / (maxFee - gracePeriod)) * 50);
+      }
+    }
+  }, [blockNumber, startBlock]);
+
+
   const addAsset = () => {
     try {
       if (address && window) {
@@ -202,6 +228,15 @@ export default function TokenMigration() {
       <Countdown/>
       <Card className="mb-4 my-3">
         <CardHeader>
+          <h4 className="font-bold text-white bg-red-600 px-6 rounded py-6">Total Penalty
+            Applied {penalty.toString()}%</h4>
+          <span className="text-sm text-gray-500">
+            Penalty is applied to the token claim, and will slowly increase to 50% over 180 days.
+          </span>
+        </CardHeader>
+      </Card>
+      <Card className="mb-4 my-3">
+        <CardHeader>
           <h3 className="text-lg font-semibold">Deposit <span style={{color: 'blue'}}>$EULER</span></h3>
         </CardHeader>
         <CardContent>
@@ -212,7 +247,6 @@ export default function TokenMigration() {
               style={{color: 'black'}}>{calculateAmounts().available}</strong> <span
               style={{color: 'blue'}}>$EULER</span> to
               migrate</p>
-
           </div>
           <div className="space-x-3 mb-6">
             {!calculateAmounts().canDeposit && <>
