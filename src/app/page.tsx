@@ -73,7 +73,7 @@ export default function Home() {
           <MigrationDetails/>
         </div>
         <div
-          className="place-items-center w-full">
+          className="lg:flex pt-14 relative flex place-items-center">
           <Questions/>
         </div>
       </div>

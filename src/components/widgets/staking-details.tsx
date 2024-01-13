@@ -158,7 +158,7 @@ export default function StakingDetails() {
 
   return (
     <section key="1" className="w-full">
-      <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+      <div className="container grid items-center justify-center gap-4 text-center md:px-6 lg:gap-10">
         <Card className="mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <CardHeader className="flex items-center space-x-3">
             <img

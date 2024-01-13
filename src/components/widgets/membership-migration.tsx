@@ -61,7 +61,7 @@ export default function MembershipMigration() {
         alt="NFT Image"
         className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800 mb-4"
         height="100"
-        src="/tokens/revealing-nft.png"
+        src="https://assets.pox.me/memberships/membership.png"
         width="100"
       />
       <p className="text-gray-500 pb-6">
