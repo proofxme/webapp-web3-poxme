@@ -78,7 +78,7 @@ export default function AffiliateMigration() {
         <span className="block sm:inline">The NFTs APIs are being developed, the claim process will start soon.</span>
       </div>
       <Button
-        disabled
+        disabled={claimableAffiliates() === 0 || isLoadingClaim || isSuccessClaim}
         onClick={() => claimAffiliates?.()}
         className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300">
         Claim Affiliate NFTs

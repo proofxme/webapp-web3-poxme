@@ -46,6 +46,7 @@ export default function MembershipMigration() {
       // Divide the amount of tokens deposited by 4000 rounding to the floor to get the amount of NFTs
       return Math.floor(deposited / 4000) - mintedMemberships;
     }
+    return 0
   }
 
   const claimedMemberships = () => {
@@ -79,7 +80,7 @@ export default function MembershipMigration() {
         <span className="block sm:inline">The NFTs APIs are being developed, the claim process will start soon.</span>
       </div>
       <Button
-        disabled
+        disabled={claimableMemberships() < 1}
         onClick={() => claimMemberships?.()}
         className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300">
         Claim Membership NFTs
