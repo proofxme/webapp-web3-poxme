@@ -75,10 +75,6 @@ export default function MembershipMigration() {
           className="font-bold text-gray-900 bg-yellow-200 px-1 rounded">{claimableMemberships()} membership NFTs</span>
         available to claim
       </p>
-      <div className="bg-blue-100 border border-blue-100 text-black px-4 py-3 rounded relative mt-6" role="alert">
-        <h2 className="font-bold text-center">Migration Paused</h2>
-        <span className="block sm:inline">The NFTs APIs are being developed, the claim process will start soon.</span>
-      </div>
       <Button
         disabled={claimableMemberships() < 1}
         onClick={() => claimMemberships?.()}
