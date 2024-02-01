@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { NavigationMenu, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger
+} from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { JSX, SVGProps } from "react";
 
