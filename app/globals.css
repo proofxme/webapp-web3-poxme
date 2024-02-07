@@ -75,3 +75,9 @@
         @apply bg-background text-foreground;
     }
 }
+
+.vertical-line {
+    border-left: 0.25vh solid white;
+    height: 5vw; 
+  }
+
