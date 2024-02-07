@@ -6,14 +6,12 @@ import StakingDetails from "@/components/widgets/staking-details";
 import { useNetwork } from "wagmi";
 import { Button } from "@/components/ui/button";
 import MigrationDetails from "@/components/widgets/migration-details";
-import { TopNavBrowser } from "@/components/ui/navigations/top-nav-browser";
 
 export default function Home() {
   const {chain} = useNetwork()
 
   return (
     <main className="flex min-h-screen flex-col lg:p-8 h-auto">
-      <TopNavBrowser/>
       <header className="justify-end items-center lg:flex pt-0">
         <div
           className="flex w-full justify-end bg-gradient-to-t from-white via-white mt-16 lg:mt-0 dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">

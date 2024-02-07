@@ -2,12 +2,10 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { TopNavBrowser } from "@/components/ui/navigations/top-nav-browser";
 
 export default function Component() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
-      <TopNavBrowser/>
       <main className="flex-1">
         <section className="w-full pt-12 md:pt-24 lg:pt-32">
           <div className="container px-4 md:px-6">
