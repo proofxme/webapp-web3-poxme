@@ -56,7 +56,7 @@ const ContactPage = () => {
             </form>
           </CardHeader>
         </Card>
-      </div>
+        </div>
       <SocialIconsSection/>
     </>
   );

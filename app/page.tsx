@@ -4,6 +4,7 @@ import Link from "next/link"
 import { JSX, SVGProps } from "react"
 import { HeroCustomers } from "@/components/widgets/hero-component";
 import { HeroPerformance } from "@/components/widgets/hero-performance";
+import Footer from "@/components/footer";
 
 export default function Component() {
   return (
