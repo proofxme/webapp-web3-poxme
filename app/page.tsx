@@ -186,6 +186,8 @@ export default function Component() {
           </div>
         </div>
       </section>
+      <div className="wave-container mt-12"></div>
+      <Footer/>
       {false && <HeroCustomers/>}
       {false && <HeroPerformance/>}
     </main>

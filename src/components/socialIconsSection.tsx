@@ -1,3 +1,4 @@
+import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 
@@ -13,9 +14,9 @@ export default function Component() {
       <CardContent className="p-0 grid gap-4 ">
         <div className="flex items-center gap-4 text-sm">
           <TwitterIcon className="h-5 w-5"/>
-          <a className="hover:underline" target="_blank" href="https://www.x.com/proofxme">
+          <Link className="hover:underline" target="_blank" href="https://www.x.com/proofxme">
             Twitter
-          </a>
+          </Link>
         </div>
         <div className="flex items-center gap-4 text-sm">
           <TelegramIcon className="h-5 w-5"/>
@@ -46,7 +47,7 @@ export default function Component() {
   )
 }
 
-function FacebookIcon(props: any) {
+export function FacebookIcon(props: any) {
   return (
     <svg
       {...props}
@@ -66,7 +67,7 @@ function FacebookIcon(props: any) {
 }
 
 
-function LinkedinIcon(props: any) {
+export function LinkedinIcon(props: any) {
   return (
     <svg
       {...props}
@@ -88,7 +89,7 @@ function LinkedinIcon(props: any) {
 }
 
 
-function TwitterIcon(props: any) {
+export function TwitterIcon(props: any) {
   return (
     <svg
       {...props}
@@ -108,7 +109,7 @@ function TwitterIcon(props: any) {
   )
 }
 
-function TelegramIcon(props: any) {
+export function TelegramIcon(props: any) {
   return (
     <svg
       {...props}
@@ -128,7 +129,7 @@ function TelegramIcon(props: any) {
   );
 }
 
-function GitHubIcon(props: any) {
+export function GitHubIcon(props: any) {
   return (
     <svg
       {...props}
