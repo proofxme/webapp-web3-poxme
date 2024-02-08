@@ -6,77 +6,94 @@ import { FacebookIcon, LinkedinIcon, TwitterIcon, TelegramIcon, GitHubIcon } fro
 const Footer = () => {
     return (
 
-        <footer className="bg-gray-800 text-white p-10 flex flex-col items-center justify-center">
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-5 text-center mt-12">
+        <footer className="bg-gray-900 text-gray-400 p-8 flex flex-col items-center justify-center">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 text-center mt-12">
                 <div className="mb-4 md:mb-0">
                     <PoxIcon />
                 </div>
                 <div className="mb-4 md:mb-0">
-                    <h3 className="text-xl font-bold mb-2">Information</h3>
+                    <h3 className="text-lg mb-2">Information</h3>
                     <ul>
-                        <li>
-                            <Link className="text-md hover:underline underline-offset-4" href="#">
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
                                 Product
                             </Link>
                         </li>
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
+                                Features
+                            </Link>
+                        </li>
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
+                                FAQ
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="mb-4 md:mb-0">
-                    <h3 className="text-xl font-bold mb-2">Contact</h3>
+                    <h3 className="text-lg mb-2">Contact</h3>
                     <ul>
-                        <li>
-                            <Link className="text-md hover:underline underline-offset-4" href="#">
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
                                 Link 1
                             </Link>
                         </li>
-                        <li>
-                            <Link className="text-md hover:underline underline-offset-4" href="#">
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
                                 Link 2
                             </Link>
                         </li>
                     </ul>
                 </div>
                 <div className="mb-4 md:mb-0">
-                    <h3 className="text-xl font-bold mb-2">News</h3>
+                    <h3 className="text-lg mb-2">News</h3>
                     <ul>
-                        <li>
-                            <Link className="text-md hover:underline underline-offset-4" href="#">
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
                                 Link 1
                             </Link>
                         </li>
-                        <li>
-                            <Link className="text-md hover:underline underline-offset-4" href="#">
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
                                 Link 2
                             </Link>
                         </li>
-                        <li>
-                            <Link className="text-md hover:underline underline-offset-4" href="#">
+                        <li className='mb-2'>
+                            <Link className="text-sm hover:underline underline-offset-4" href="#">
                                 Link 3
                             </Link>
                         </li>
                     </ul>
                 </div>
                 <div className="mb-4 md:mb-0">
-                    <h3 className="text-xl font-bold mb-3">Follow Us</h3>
+                    <h3 className="text-lg mb-3">Follow Us</h3>
                     <div className="flex gap-8 justify-center items-center">
-                        <Link className="hover:underline" target="_blank" href="https://www.github.com/proofxme">
-                            <GitHubIcon className="h-6 w-6" />
-                        </Link>
                         <Link className="hover:underline" target="_blank" href="https://www.x.com/proofxme">
-                            <TwitterIcon />
+                            <TwitterIcon className="h-5 w-5" />
                         </Link>
                         <Link className="hover:underline" target="_blank" href="https://t.me/proofxme">
-                            <TelegramIcon />
+                            <TelegramIcon className="h-5 w-5" />
                         </Link>
-                        <Link className="hover:underline" target="_blank" href="">
-                            <FacebookIcon />
+                        <Link className="hover:underline" target="_blank" href="https://www.github.com/proofxme">
+                            <GitHubIcon className="h-5 w-5" />
                         </Link>
-                        <Link className="hover:underline" target="_blank" href="">
-                            <LinkedinIcon />
+                        <Link className="hover:underline" target="_blank" href="https://linkedin.com/company/proof-of-x">
+                            <LinkedinIcon className="h-5 w-5" />
                         </Link>
                     </div>
-
                 </div>
+            </div>
+            <div className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+                <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Acme Inc. All rights reserved.</p>
+                <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+                    <Link className="text-xs hover:underline underline-offset-4" href="#">
+                        Terms of Service
+                    </Link>
+                    <Link className="text-xs hover:underline underline-offset-4" href="#">
+                        Privacy
+                    </Link>
+                </nav>
             </div>
         </footer>
     );
@@ -105,6 +122,5 @@ function PoxIcon(props: any) {
             <path d="M10.5907 18.8485H10.5905L12.2464 21.0702L12.2819 21.1185H17.4531L13.1534 15.5469L10.5907 18.8485Z"
                 fill="white" />
         </svg>
-
     )
 }

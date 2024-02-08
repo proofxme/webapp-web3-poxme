@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function Component() {
   return (
-    <Card className="w-full max-w-full p-10 grid gap-10 flex justify-center">
+    <Card className="w-full max-w-full p-10 grid gap-10 flex justify-center mb-12">
       <CardHeader className="items-center space-y-0 gap-4 p-0">
         <div className="grid gap-1 text-center">
           <CardTitle className="text-lg">Connect with us</CardTitle>
