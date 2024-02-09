@@ -1,0 +1,32 @@
+{
+    "sections": [
+      {
+        "title": "Information",
+        "links": [
+          {"text": "Product", "url": "#"},
+          {"text": "Features", "url": "#"},
+          {"text": "FAQ", "url": "#"}
+        ]
+      },
+      {
+        "title": "Contact",
+        "links": [
+          {"text": "Link 1", "url": "#"},
+          {"text": "Link 2", "url": "#"}
+        ]
+      },
+      {
+        "title": "News",
+        "links": [
+          {"text": "Link 1", "url": "#"},
+          {"text": "Link 2", "url": "#"},
+          {"text": "Link 3", "url": "#"}
+        ]
+      }
+    ],
+    "footerLinks": [
+      {"text": "Terms of Service", "url": "#"},
+      {"text": "Privacy", "url": "#"}
+    ]
+  }
+  
