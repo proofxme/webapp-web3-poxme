@@ -3,92 +3,150 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
-        --radius: 0.5rem;
-    }
+    --radius: 0.5rem;
+  }
 
-    .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
-    }
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
 }
 
 @layer base {
-    * {
-        @apply border-border;
-    }
+  * {
+    @apply border-border;
+  }
 
-    body {
-        @apply bg-background text-foreground;
-    }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-  .wave-container {
-    position: relative;
-    padding: -20px;
-    margin-top: 12vh;
-  }
-  
-  .wave-container::before {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-    clip-path: polygon(100% 100%, 0% 100% , 0.00% 4.50%, 2.00% 2.65%, 4.00% 1.33%, 6.00% 0.57%, 8.00% 0.37%, 10.00% 0.73%, 12.00% 1.65%, 14.00% 3.12%, 16.00% 5.12%, 18.00% 7.63%, 20.00% 10.60%, 22.00% 14.02%, 24.00% 17.82%, 26.00% 21.96%, 28.00% 26.39%, 30.00% 31.05%, 32.00% 35.89%, 34.00% 40.84%, 36.00% 45.83%, 38.00% 50.81%, 40.00% 55.71%, 42.00% 60.46%, 44.00% 65.02%, 46.00% 69.31%, 48.00% 73.28%, 50.00% 76.89%, 52.00% 80.09%, 54.00% 82.83%, 56.00% 85.08%, 58.00% 86.82%, 60.00% 88.01%, 62.00% 88.65%, 64.00% 88.73%, 66.00% 88.24%, 68.00% 87.20%, 70.00% 85.61%, 72.00% 83.49%, 74.00% 80.88%, 76.00% 77.80%, 78.00% 74.30%, 80.00% 70.42%, 82.00% 66.21%, 84.00% 61.72%, 86.00% 57.02%, 88.00% 52.15%, 90.00% 47.19%, 92.00% 42.19%, 94.00% 37.22%, 96.00% 32.35%, 98.00% 27.64%, 100.00% 23.14%);
-  }
+.wave-container {
+  position: relative;
+  padding: -20px;
+  margin-top: 12vh;
+}
+
+.wave-container::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  clip-path: polygon(
+    100% 100%,
+    0% 100%,
+    0% 4.5%,
+    2% 2.65%,
+    4% 1.33%,
+    6% 0.57%,
+    8% 0.37%,
+    10% 0.73%,
+    12% 1.65%,
+    14% 3.12%,
+    16% 5.12%,
+    18% 7.63%,
+    20% 10.6%,
+    22% 14.02%,
+    24% 17.82%,
+    26% 21.96%,
+    28% 26.39%,
+    30% 31.05%,
+    32% 35.89%,
+    34% 40.84%,
+    36% 45.83%,
+    38% 50.81%,
+    40% 55.71%,
+    42% 60.46%,
+    44% 65.02%,
+    46% 69.31%,
+    48% 73.28%,
+    50% 76.89%,
+    52% 80.09%,
+    54% 82.83%,
+    56% 85.08%,
+    58% 86.82%,
+    60% 88.01%,
+    62% 88.65%,
+    64% 88.73%,
+    66% 88.24%,
+    68% 87.2%,
+    70% 85.61%,
+    72% 83.49%,
+    74% 80.88%,
+    76% 77.8%,
+    78% 74.3%,
+    80% 70.42%,
+    82% 66.21%,
+    84% 61.72%,
+    86% 57.02%,
+    88% 52.15%,
+    90% 47.19%,
+    92% 42.19%,
+    94% 37.22%,
+    96% 32.35%,
+    98% 27.64%,
+    100% 23.14%
+  );
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
