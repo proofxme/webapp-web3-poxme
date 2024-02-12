@@ -18,6 +18,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import { Button } from "@/components/ui/button";
 import { JSX, SVGProps } from "react";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 function ProofOfXIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -69,7 +70,7 @@ function HamIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
 export function TopNavBrowser() {
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 ">
-      <Link className="mr-6 flex" href="#">
+      <Link className="mr-6 flex" href="/">
         <ProofOfXIcon className="h-6 w-6" />
         <span className="sr-only">Proof of X</span>
       </Link>
@@ -145,6 +146,7 @@ export function TopNavBrowser() {
               Pricing
             </Link>
           </NavigationMenuLink>
+
           <NavigationMenuItem>
             <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -161,173 +163,6 @@ export function TopNavBrowser() {
                       Read our latest blog posts.
                     </div>
                   </Link>
-                  <NavigationMenu className="hidden lg:flex">
-                    <NavigationMenuList>
-                      <NavigationMenuItem>
-                        <NavigationMenuTrigger>Features</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                          <div className="grid w-[400px] p-2">
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  OmniChannel
-                                </div>
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Connect all your communication protocols in a
-                                  single place.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  No Code Tools
-                                </div>
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Automate your communications without writing a
-                                  single line of code.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  Security & Compliance
-                                </div>
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Keep your data secure with our security
-                                  features.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  Web3
-                                </div>
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Protect your communications using the best of
-                                  blockchain.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </div>
-                        </NavigationMenuContent>
-                      </NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                          href="#"
-                        >
-                          Pricing
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuItem>
-                        <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                          <div className="grid w-[550px] grid-cols-2 p-2">
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  Blog Posts
-                                </div>
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Read our latest blog posts.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  Case Studies
-                                </div>
-
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Read our customer case studies.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  Documentation
-                                </div>
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Learn how to use our product.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                                href="#"
-                              >
-                                <div className="text-sm font-medium leading-none group-hover:underline">
-                                  Help Center
-                                </div>
-                                <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
-                                  Get help with our product.
-                                </div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </div>
-                        </NavigationMenuContent>
-                      </NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                          href="/membership"
-                        >
-                          Membership
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                          href="/dashboard/migration"
-                        >
-                          Migration
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                          href="/roadmap"
-                        >
-                          Roadmap
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                          href="/contact"
-                        >
-                          Contact
-                        </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuList>
-                  </NavigationMenu>
                 </NavigationMenuLink>
                 <NavigationMenuLink asChild>
                   <Link
@@ -371,6 +206,7 @@ export function TopNavBrowser() {
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
@@ -395,6 +231,7 @@ export function TopNavBrowser() {
               Roadmap
             </Link>
           </NavigationMenuLink>
+
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
@@ -408,58 +245,69 @@ export function TopNavBrowser() {
       <div className="flex lg:hidden">
         <Sheet>
           <SheetTrigger className="flex justify-end " asChild>
-            <Button
-              className="absolute top-5 right-4 lg:hidden"
-              variant="outline"
-            >
-              <HamIcon className="h-6 w-6" />
+            <div className="absolute top-5 right-4 lg:hidden">
+              <Button variant="outline">
+                <HamIcon className="h-6 w-6" />
+              </Button>
               <span className="sr-only">Toggle navigation menu</span>
-            </Button>
+            </div>
           </SheetTrigger>
           <SheetContent side="right">
             <div className="flex flex-col gap-4 p-6">
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="/"
+              >
+                Home
+              </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    className="flex h-auto items-center justify-start text-lg font-semibold px-0"
+                    className="flex items-center justify-start text-lg font-semibold py-0 px-0"
                     variant="link"
                   >
                     Features
+                    <ChevronDownIcon aria-hidden="true" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
-                  <DropdownMenuItem>OmniChannel</DropdownMenuItem>
-                  <DropdownMenuItem>No Code Tools</DropdownMenuItem>
-                  <DropdownMenuItem>Security & Compliance</DropdownMenuItem>
-                  <DropdownMenuItem>Web3</DropdownMenuItem>
+                  <DropdownMenuItem disabled>OmniChannel</DropdownMenuItem>
+                  <DropdownMenuItem disabled>No Code Tools</DropdownMenuItem>
+                  <DropdownMenuItem disabled>
+                    Security & Compliance
+                  </DropdownMenuItem>
+                  <DropdownMenuItem disabled>Web3</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Link
-                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold "
-                href="#"
+              <Button
+                className="flex items-center justify-start text-lg font-semibold py-0 px-0 "
+                variant="link"
+                disabled
               >
                 Pricing
-              </Link>
-              <Link
-                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-                href="#"
+              </Button>
+              <Button
+                className="flex items-center justify-start text-lg font-semibold py-0 px-0 "
+                variant="link"
+                disabled
               >
                 Services
-              </Link>
+              </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
-                    className="flex h-auto items-center justify-start gap-1 text-lg font-semibold px-0"
+                    className="flex items-center justify-start text-lg font-semibold py-0 px-0"
                     variant="link"
                   >
                     Resources
+                    <ChevronDownIcon aria-hidden="true" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
-                  <DropdownMenuItem>Blog posts</DropdownMenuItem>
-                  <DropdownMenuItem>Case Studies</DropdownMenuItem>
-                  <DropdownMenuItem>Documentation</DropdownMenuItem>
-                  <DropdownMenuItem>Help Center</DropdownMenuItem>
+                  <DropdownMenuItem disabled>Blog posts</DropdownMenuItem>
+                  <DropdownMenuItem disabled>Case Studies</DropdownMenuItem>
+                  <DropdownMenuItem disabled>Documentation</DropdownMenuItem>
+                  <DropdownMenuItem disabled>Help Center</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link

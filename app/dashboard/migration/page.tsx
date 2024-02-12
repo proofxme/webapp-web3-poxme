@@ -12,10 +12,6 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col lg:p-8 h-auto">
-      <div className="flex justify-end p-4 lg:hidden">
-        <ConnectButton />
-      </div>
-
       <div className="flex flex-col items-center justify-center w-full h-full py-14 px-12">
         <div className="space-y-3 text-center w-full">
           <h2 className="text-4xl text-center font-bold tracking-tighter">
