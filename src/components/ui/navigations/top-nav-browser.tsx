@@ -51,9 +51,10 @@ function ProofOfXIcon(
   );
 }
 
-function HamIcon(props) {
+function HamIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
+      {...props}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -404,89 +405,91 @@ export function TopNavBrowser() {
           </NavigationMenuLink>
         </NavigationMenuList>
       </NavigationMenu>
-      <Sheet className="flex lg:hidden">
-        <SheetTrigger className="flex justify-end " asChild>
-          <Button
-            className="absolute top-5 right-4 lg:hidden"
-            variant="outline"
-          >
-            <HamIcon className="h-6 w-6" />
-            <span className="sr-only">Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="right">
-          <div className="flex flex-col gap-4 p-6">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  className="flex h-auto items-center justify-start text-lg font-semibold px-0"
-                  variant="link"
-                >
-                  Features
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                <DropdownMenuItem>OmniChannel</DropdownMenuItem>
-                <DropdownMenuItem>No Code Tools</DropdownMenuItem>
-                <DropdownMenuItem>Security & Compliance</DropdownMenuItem>
-                <DropdownMenuItem>Web3</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link
-              className="flex h-auto items-center justify-start gap-1 text-lg font-semibold "
-              href="#"
+      <div className="flex lg:hidden">
+        <Sheet>
+          <SheetTrigger className="flex justify-end " asChild>
+            <Button
+              className="absolute top-5 right-4 lg:hidden"
+              variant="outline"
             >
-              Pricing
-            </Link>
-            <Link
-              className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-              href="#"
-            >
-              Services
-            </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  className="flex h-auto items-center justify-start gap-1 text-lg font-semibold px-0"
-                  variant="link"
-                >
-                  Resources
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                <DropdownMenuItem>Blog posts</DropdownMenuItem>
-                <DropdownMenuItem>Case Studies</DropdownMenuItem>
-                <DropdownMenuItem>Documentation</DropdownMenuItem>
-                <DropdownMenuItem>Help Center</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link
-              className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-              href="/membership"
-            >
-              Membership
-            </Link>
-            <Link
-              className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-              href="/dashboard/migration"
-            >
-              Migration
-            </Link>
-            <Link
-              className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-              href="/roadmap"
-            >
-              Roadmap
-            </Link>
-            <Link
-              className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-              href="/contact"
-            >
-              Contact
-            </Link>
-          </div>
-        </SheetContent>
-      </Sheet>
+              <HamIcon className="h-6 w-6" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <div className="flex flex-col gap-4 p-6">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    className="flex h-auto items-center justify-start text-lg font-semibold px-0"
+                    variant="link"
+                  >
+                    Features
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                  <DropdownMenuItem>OmniChannel</DropdownMenuItem>
+                  <DropdownMenuItem>No Code Tools</DropdownMenuItem>
+                  <DropdownMenuItem>Security & Compliance</DropdownMenuItem>
+                  <DropdownMenuItem>Web3</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold "
+                href="#"
+              >
+                Pricing
+              </Link>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="#"
+              >
+                Services
+              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    className="flex h-auto items-center justify-start gap-1 text-lg font-semibold px-0"
+                    variant="link"
+                  >
+                    Resources
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                  <DropdownMenuItem>Blog posts</DropdownMenuItem>
+                  <DropdownMenuItem>Case Studies</DropdownMenuItem>
+                  <DropdownMenuItem>Documentation</DropdownMenuItem>
+                  <DropdownMenuItem>Help Center</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="/membership"
+              >
+                Membership
+              </Link>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="/dashboard/migration"
+              >
+                Migration
+              </Link>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="/roadmap"
+              >
+                Roadmap
+              </Link>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="/contact"
+              >
+                Contact
+              </Link>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
       <div className="hidden lg:flex  ml-auto">
         <ConnectButton />
       </div>
