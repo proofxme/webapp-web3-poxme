@@ -11,28 +11,27 @@ export default function Migration() {
 
   return (
     <>
-      <main className="flex min-h-screen flex-col lg:p-8 h-auto">
+      <main className="flex min-h-screen flex-col lg:p-8 h-auto bg-gray-50">
         <div className="flex flex-col items-center justify-center w-full h-full py-14 px-12">
-          <div className="space-y-3 text-center w-full">
-            <h2 className="text-4xl text-center font-bold tracking-tighter">
+          <div className="text-center w-full">
+            <h2 className="text-5xl text-center font-bold tracking-tighter mt-9 mb-4">
               Migration Center
             </h2>
-            <p className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            <p className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 p-6">
               During the migration period, you can deposit{" "}
               <i style={{ color: "blue" }} className={"" + "font-bold"}>
                 $EULER{" "}
               </i>
               to get the new token and claim your membership NFTs.
             </p>
-            <p className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            <p className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 md:w-10/12 mb-12">
               The migration process is a unique opportunity to continue
-              supporting @tebayoso during the Proof of X development, while
+              supporting <strong>@tebayoso</strong> during the Proof of X development, while
               maintaining the value you deposited and have an opportunity to
-              claim back the investment
+              claim back the investment.
             </p>
-
             <Button
-              className="bg-gradient-to-r from-purple-900 via-white-500 to-purple-500 hover:from-purple-400 hover:via-white-500 hover:to-purple-500"
+              className="bg-gradient-to-r from-blue-900 via-white-500 to-blue-500 hover:from-blue-400 hover:via-white-500 hover:to-blue-500"
               onClick={() => window.open("https://t.me/proofxme", "_blank")}
             >
               <svg
@@ -50,31 +49,78 @@ export default function Migration() {
               Join our telegram{" "}
             </Button>
           </div>
-          <div
-            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-6"
-            role="alert"
-          >
-            <h2 className="font-bold text-center">Irreversible Actions</h2>
-            <span className="block sm:inline">
-              Please, read the FAQ section, or contact us in the official
-              telegram channel if you have doubts. This is an irreversible
-              migration process
-            </span>
+          <div className="bg-red-100 border-l-4 border-orange-500 text-orange-700 p-4 mt-8 mb-12" role="alert">
+            <p className="font-bold">Irreversible Actions</p>
+            <p className="text-sm">Please, read the FAQ section, or contact us in the official
+              telegram channel if you have doubts.<br />This is an <b>irreversible
+                migration process.</b></p>
           </div>
-          <h2
-            className="text-4xl pt-14 text-center font-bold tracking-tighter"
-            style={{ color: "purple" }}
-          >
-            <strong style={{ color: "black" }}>First Step:</strong> Withdraw the
-            tokens from the staking
-          </h2>
-          <div className="lg:flex pt-14 relative flex place-items-center">
-            <StakingDetails />
+          <div className="mt-12">
+            <ul
+              className="relative m-0 w-full list-none p-0 transition-[height] duration-200 ease-in-out mr-10"
+              data-te-stepper-init
+              data-te-stepper-type="vertical">
+              <li
+                data-te-stepper-step-ref
+                className="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-neutral-600">
+                <div
+                  data-te-stepper-head-ref
+                  className="flex items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:after:bg-neutral-600">
+                  <span
+                    data-te-stepper-head-icon-ref
+                    className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]">
+                    1
+                  </span>
+                  <span
+                    data-te-stepper-head-text-ref
+                    className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300">
+                    <strong>Withdraw the tokens from the staking</strong>
+                  </span>
+                </div>
+                <div className="ml-6">
+                  <StakingDetails />
+                </div>
+              </li>
+              <li
+                data-te-stepper-step-ref
+                className="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-neutral-600">
+                <div
+                  data-te-stepper-head-ref
+                  className="flex items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:after:bg-neutral-600">
+                  <span
+                    data-te-stepper-head-icon-ref
+                    className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]">
+                    2
+                  </span>
+                  <span
+                    data-te-stepper-head-text-ref
+                    className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300">
+                    <strong> Migrate the tokens to the new Protocol</strong>
+                  </span>
+                </div>
+                <div className="ml-6">
+                  <MigrationDetails />
+                </div>
+              </li>
+              <li data-te-stepper-step-ref className="relative h-fit">
+                <div
+                  data-te-stepper-head-ref
+                  className="flex items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:after:bg-neutral-600">
+                  <span
+                    data-te-stepper-head-icon-ref
+                    className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]">
+                    3
+                  </span>
+                  <span
+                    data-te-stepper-head-text-ref
+                    className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300">
+                    <strong>You are done!</strong>
+                  </span>
+                </div>
+              </li>
+            </ul>
           </div>
-          <div className="lg:flex pt-14 relative flex place-items-center">
-            <MigrationDetails />
-          </div>
-          <div className="lg:flex pt-14 relative flex place-items-center">
+          <div className="lg:flex pt-14 relative flex place-items-center m-5">
             <Questions />
           </div>
         </div>
