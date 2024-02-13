@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Proof of X | Web3",
+    title: "Proof of X | Home",
     description: "Proof of X | Home",
     creator: "@proofxme",
     images: ["/images/home-hero.jpg"],

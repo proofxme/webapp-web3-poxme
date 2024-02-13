@@ -6,65 +6,79 @@
         "children": [
           {
             "title": "Omnichannel",
-            "link": "#"
+            "link": "#",
+            "disabled": true
           },
           {
             "title": "No Code Tools",
-            "link": "#"
+            "link": "#",
+            "disabled": true
           },
           {
             "title": "Security & Compliance",
-            "link": "#"
+            "link": "#",
+            "disabled": true
           },
           {
             "title": "Web3",
-            "link": "#"
+            "link": "#",
+            "disabled": true
           }
         ]
       },
       "pricing": {
         "title": "Pricing",
         "link": "/pricing",
-        "children": null
+        "children": null,
+        "disabled": true
       },
       "resources": {
         "title": "Resources",
         "children": [
           {
             "title": "Blog posts",
-            "link": "/blog"
+            "link": "/blog",
+            "disabled": true
           },
           {
             "title": "Case studies",
-            "link": "/case-studies"
+            "link": "/case-studies",
+            "disabled": true
           },
           {
             "title": "Documentation",
-            "link": "/documentation"
+            "link": "/documentation",
+            "disabled": true
           },
           {
             "title": "Help center",
-            "link": "/help-center"
+            "link": "/help-center",
+            "disabled": true
           }
         ]
       },
       "membership": {
         "title": "Membership",
-        "children": null
+        "children": null,
+        "link": "/membership",
+        "disabled": false
       },
       "migration": {
         "title": "Migration",
         "children": null,
+        "disabled": false,
         "link": "/dashboard/migration"
       },
       "roadmap": {
         "title": "Roadmap",
         "children": null,
+        "disabled": false,
         "link": "/roadmap"
       },
       "contact": {
         "title": "Contact",
         "children": null,
+        "disabled": false,
         "link": "/contact"
       }
     }
