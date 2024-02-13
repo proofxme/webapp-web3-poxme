@@ -4,35 +4,6 @@ import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import { HeroCustomers } from "@/components/widgets/hero-component";
 import { HeroPerformance } from "@/components/widgets/hero-performance";
-import type { Metadata } from "next";
-
-const metadata: Metadata = {
-  title: "Proof of X | Home",
-  description: "Proof of X | Home",
-  openGraph: {
-    title: "Proof of X | Home",
-    description: "Proof of X | Home",
-    url: "https://pox.me",
-    siteName: "Proof of X",
-    images: [
-      {
-        url: "/images/home-hero.jpg",
-        width: 1800,
-        height: 1600,
-        alt: "A cool fingerprint image",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Proof of X | Home",
-    description: "Proof of X | Home",
-    creator: "@proofxme",
-    images: ["/images/home-hero.jpg"],
-  },
-};
 
 export default function Component() {
   return (
@@ -232,8 +203,6 @@ export default function Component() {
     </main>
   );
 }
-
-Component.metadata = metadata;
 
 function CheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (

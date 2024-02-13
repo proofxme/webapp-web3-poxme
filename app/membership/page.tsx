@@ -1,7 +1,40 @@
 "use client";
 
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
-import { metadata } from "./metadata";
+
+const metadata: Metadata = {
+  title: "Proof of X | Membership",
+  description:
+    "Get unlimited access to all our premium features with a lifetime membership.",
+  openGraph: {
+    title: "Proof of X | Membership",
+    description:
+      "Get unlimited access to all our premium features with a lifetime membership.",
+
+    url: "https://pox.me/membership",
+    siteName: "Proof of X",
+    images: [
+      {
+        url: "https://assets.pox.me/memberships/membership.png",
+        width: 1800,
+        height: 1600,
+        alt: "Proof of X lifetime membership image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proof of X | Membership",
+    description:
+      "Get unlimited access to all our premium features with a lifetime membership.",
+
+    creator: "@proofxme",
+    images: ["https://assets.pox.me/memberships/membership.png"],
+  },
+};
 
 export default function Component() {
   return (
@@ -86,8 +119,6 @@ export default function Component() {
     </div>
   );
 }
-
-Component.metadata = metadata;
 
 function CheckIcon(props: any) {
   return (
