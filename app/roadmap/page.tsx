@@ -16,7 +16,7 @@ const metadata: Metadata = {
     siteName: "Proof of X",
     images: [
       {
-        url: "/public/images/home-hero.jpg",
+        url: "/images/home-hero.jpg",
         width: 1800,
         height: 1600,
         alt: "A cool fingerprint image",
@@ -32,7 +32,7 @@ const metadata: Metadata = {
       "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
 
     creator: "@proofxme",
-    images: ["/public/images/home-hero.jpg"],
+    images: ["/images/home-hero.jpg"],
   },
 };
 

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Proof of X",
     images: [
       {
-        url: "/public/images/home-hero.jpg",
+        url: "/images/home-hero.jpg",
         width: 1800,
         height: 1600,
         alt: "A cool fingerprint image",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Proof of X | Web3",
     description: "Proof of X | Home",
     creator: "@proofxme",
-    images: ["/public/images/home-hero.jpg"],
+    images: ["/images/home-hero.jpg"],
   },
 };
 

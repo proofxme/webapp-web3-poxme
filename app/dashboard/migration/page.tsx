@@ -16,11 +16,11 @@ const metadata: Metadata = {
     description:
       "During the migration period, you can deposit $EULER to get the new token and claim your membership NFTs.",
 
-    url: "https://pox.me/Migration center",
+    url: "https://pox.me/dashboard/migration",
     siteName: "Proof of X",
     images: [
       {
-        url: "/public/images/home-hero.jpg",
+        url: "/images/home-hero.jpg",
         width: 1800,
         height: 1600,
         alt: "A cool fingerprint image",
@@ -36,7 +36,7 @@ const metadata: Metadata = {
       "During the migration period, you can deposit $EULER to get the new token and claim your membership NFTs.",
 
     creator: "@proofxme",
-    images: ["/public/images/home-hero.jpg"],
+    images: ["/images/home-hero.jpg"],
   },
 };
 
