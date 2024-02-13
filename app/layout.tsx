@@ -8,10 +8,10 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Proof of X | Web3",
+  title: "Proof of X | Home",
   description: "Proof of X | Home",
   openGraph: {
-    title: "Proof of X | Web3",
+    title: "Proof of X | Home",
     description: "Proof of X | Home",
     url: "https://pox.me",
     siteName: "Proof of X",

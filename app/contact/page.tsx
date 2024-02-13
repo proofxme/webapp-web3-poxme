@@ -1,36 +1,46 @@
 "use client";
 
-import Head from "next/head";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import SocialIconsSection from "@/components/socialIconsSection";
 
+const metadata: Metadata = {
+  title: "Proof of X | Contact",
+  description:
+    "Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.",
+  openGraph: {
+    title: "Proof of X | Contact",
+    description:
+      "Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.",
+
+    url: "https://pox.me/contact",
+    siteName: "Proof of X",
+    images: [
+      {
+        url: "/images/home-hero.jpg",
+        width: 1800,
+        height: 1600,
+        alt: "A cool fingerprint image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proof of X | Contact",
+    description:
+      "Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.",
+
+    creator: "@proofxme",
+    images: ["/images/home-hero.jpg"],
+  },
+};
+
 const ContactPage = () => {
   return (
     <>
-      <Head>
-        <title>Proof of X | Contact</title>
-        <meta name="description" content="Proof of X | Contact" />
-
-        <meta property="og:url" content="https://pox.me/contact" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Proof of X | Contact" />
-        <meta
-          property="og:description"
-          content="Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know."
-        />
-        <meta property="og:image" content="/images/home-hero.jpg" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="pox.me" />
-        <meta property="twitter:url" content="https://pox.me/contact" />
-        <meta name="twitter:title" content="Proof of X | Contact" />
-        <meta
-          name="twitter:description"
-          content="Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know."
-        />
-        <meta name="twitter:image" content="/images/home-hero.jpg" />
-      </Head>
       <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
           Contact Us
@@ -95,5 +105,7 @@ const ContactPage = () => {
     </>
   );
 };
+
+ContactPage.metadata = metadata;
 
 export default ContactPage;
