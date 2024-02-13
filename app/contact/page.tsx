@@ -1,7 +1,42 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader } from "@/components/ui/card"
-import SocialIconsSection from "@/components/socialIconsSection"
+"use client";
+
+import type { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader } from "@/components/ui/card";
+import SocialIconsSection from "@/components/socialIconsSection";
+
+const metadata: Metadata = {
+  title: "Proof of X | Contact",
+  description:
+    "Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.",
+  openGraph: {
+    title: "Proof of X | Contact",
+    description:
+      "Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.",
+
+    url: "https://pox.me/contact",
+    siteName: "Proof of X",
+    images: [
+      {
+        url: "/public/images/home-hero.jpg",
+        width: 1800,
+        height: 1600,
+        alt: "A cool fingerprint image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proof of X | Contact",
+    description:
+      "Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.",
+
+    creator: "@proofxme",
+    images: ["/public/images/home-hero.jpg"],
+  },
+};
 
 const ContactPage = () => {
   return (
@@ -11,14 +46,17 @@ const ContactPage = () => {
           Contact Us
         </h2>
         <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
-          Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let
-          us know.
+          Got a technical issue? Want to send feedback about a beta feature?
+          Need details about our Business plan? Let us know.
         </p>
         <Card>
           <CardHeader>
             <form action="#" className="space-y-8">
               <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
                   Your email
                 </label>
                 <input
@@ -30,7 +68,10 @@ const ContactPage = () => {
                 />
               </div>
               <div>
-                <label htmlFor="subject" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                <label
+                  htmlFor="subject"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
                   Subject
                 </label>
                 <input
@@ -42,7 +83,10 @@ const ContactPage = () => {
                 />
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                <label
+                  htmlFor="message"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                >
                   Your message
                 </label>
                 <textarea
@@ -56,8 +100,8 @@ const ContactPage = () => {
             </form>
           </CardHeader>
         </Card>
-        </div>
-      <SocialIconsSection/>
+      </div>
+      <SocialIconsSection />
     </>
   );
 };

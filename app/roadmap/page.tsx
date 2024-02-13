@@ -1,9 +1,43 @@
-'use client';
+"use client";
 
 import { JSX, SVGProps } from "react";
+import type { Metadata } from "next";
+
+const metadata: Metadata = {
+  title: "Proof of X | Roadmap",
+  description:
+    "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
+  openGraph: {
+    title: "Proof of X | Roadmap",
+    description:
+      "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
+
+    url: "https://pox.me/roadmap",
+    siteName: "Proof of X",
+    images: [
+      {
+        url: "/public/images/home-hero.jpg",
+        width: 1800,
+        height: 1600,
+        alt: "A cool fingerprint image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proof of X | Roadmap",
+    description:
+      "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
+
+    creator: "@proofxme",
+    images: ["/public/images/home-hero.jpg"],
+  },
+};
 
 // Assuming the JSON data is imported like this
-import roadmapData from './roadmapData.json'; // replace './roadmapData.json' with the actual path to your JSON file
+import roadmapData from "./roadmapData.json"; // replace './roadmapData.json' with the actual path to your JSON file
 
 export default function Component() {
   return (
@@ -15,40 +49,56 @@ export default function Component() {
               <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
                 Product Roadmap
               </div>
-              <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl">Our Vision for the Future</h2>
-              <p
-                className="mx-auto max-w-3xl text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                We&apos;re excited to share what we&apos;re working on. Here are the features and improvements you can
-                expect in
-                the coming months.
+              <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl">
+                Our Vision for the Future
+              </h2>
+              <p className="mx-auto max-w-3xl text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                We&apos;re excited to share what we&apos;re working on. Here are
+                the features and improvements you can expect in the coming
+                months.
               </p>
             </div>
           </div>
-          {Object.entries(roadmapData).map(([quarter, months], quarterIndex, quarterArray) => (
-            Object.entries(months).map(([monthOrCategory, achievements], monthIndex, monthArray) => (
-              <div key={quarter + monthOrCategory}
-                   className={`grid max-w-full grid-cols-2 items-start justify-between gap-4 border-t ${quarterIndex === quarterArray.length - 1 && monthIndex === monthArray.length - 1 ? 'border-b' : ''} border-gray-200 py-4 md:grid-cols-2 md:gap-6 md:py-8 dark:border-gray-800`}>
-                <div className="flex items-center gap-4">
-                  <div className="text-center">
-                    <div className="font-bold">{monthOrCategory}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">{quarter}</div>
-                  </div>
-                </div>
-                <div className="grid gap-4 text-sm">
-                  {achievements.map((achievement, achievementIndex) => (
-                    <div key={achievement + achievementIndex} className="flex items-center gap-2">
-                      <CheckIcon className="w-4 h-4 text-gray-500"/>
-                      {achievement}
+          {Object.entries(roadmapData).map(
+            ([quarter, months], quarterIndex, quarterArray) =>
+              Object.entries(months).map(
+                ([monthOrCategory, achievements], monthIndex, monthArray) => (
+                  <div
+                    key={quarter + monthOrCategory}
+                    className={`grid max-w-full grid-cols-2 items-start justify-between gap-4 border-t ${
+                      quarterIndex === quarterArray.length - 1 &&
+                      monthIndex === monthArray.length - 1
+                        ? "border-b"
+                        : ""
+                    } border-gray-200 py-4 md:grid-cols-2 md:gap-6 md:py-8 dark:border-gray-800`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <div className="font-bold">{monthOrCategory}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {quarter}
+                        </div>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))
-          ))}
+                    <div className="grid gap-4 text-sm">
+                      {achievements.map((achievement, achievementIndex) => (
+                        <div
+                          key={achievement + achievementIndex}
+                          className="flex items-center gap-2"
+                        >
+                          <CheckIcon className="w-4 h-4 text-gray-500" />
+                          {achievement}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              )
+          )}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function CheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
@@ -65,7 +115,7 @@ function CheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <polyline points="20 6 9 17 4 12"/>
+      <polyline points="20 6 9 17 4 12" />
     </svg>
-  )
+  );
 }

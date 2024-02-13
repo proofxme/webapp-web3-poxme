@@ -19,6 +19,11 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Button } from "@/components/ui/button";
 import { JSX, SVGProps } from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import NavData from "./nav-data.json";
+
+NavData.links.map((link) => {
+  console.log(link);
+});
 
 function ProofOfXIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>

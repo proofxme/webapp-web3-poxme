@@ -1,7 +1,40 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import type { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+
+const metadata: Metadata = {
+  title: "Proof of X | Membership",
+  description:
+    "Get unlimited access to all our premium features with a lifetime membership.",
+  openGraph: {
+    title: "Proof of X | Membership",
+    description:
+      "Get unlimited access to all our premium features with a lifetime membership.",
+
+    url: "https://pox.me/membership",
+    siteName: "Proof of X",
+    images: [
+      {
+        url: "https://assets.pox.me/memberships/membership.png",
+        width: 1800,
+        height: 1600,
+        alt: "Proof of X lifetime membership image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proof of X | Membership",
+    description:
+      "Get unlimited access to all our premium features with a lifetime membership.",
+
+    creator: "@proofxme",
+    images: ["https://assets.pox.me/memberships/membership.png"],
+  },
+};
 
 export default function Component() {
   return (
@@ -23,20 +56,21 @@ export default function Component() {
                     Lifetime Membership
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                    Get unlimited access to all our premium features with a lifetime membership.
+                    Get unlimited access to all our premium features with a
+                    lifetime membership.
                   </p>
                 </div>
                 <ul className="grid gap-2 py-4">
                   <li>
-                    <CheckIcon className="mr-2 inline-block h-4 w-4"/>
+                    <CheckIcon className="mr-2 inline-block h-4 w-4" />
                     50% Discount in the premium features.
                   </li>
                   <li>
-                    <CheckIcon className="mr-2 inline-block h-4 w-4"/>
+                    <CheckIcon className="mr-2 inline-block h-4 w-4" />
                     Priority customer support
                   </li>
                   <li>
-                    <CheckIcon className="mr-2 inline-block h-4 w-4"/>
+                    <CheckIcon className="mr-2 inline-block h-4 w-4" />
                     Free access to all future updates
                   </li>
                 </ul>
@@ -59,23 +93,31 @@ export default function Component() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   Choose your preferred payment method
                 </h2>
-                <p
-                  className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  We offer multiple payment options including crypto, PayPal, credit card, and a rental option.
+                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                  We offer multiple payment options including crypto, PayPal,
+                  credit card, and a rental option.
                 </p>
               </div>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button disabled className="w-full sm:w-auto">Pay with Crypto</Button>
-                <Button disabled className="w-full sm:w-auto">Pay with PayPal</Button>
-                <Button disabled className="w-full sm:w-auto">Pay with Credit Card</Button>
-                <Button disabled className="w-full sm:w-auto">Rental Option</Button>
+                <Button disabled className="w-full sm:w-auto">
+                  Pay with Crypto
+                </Button>
+                <Button disabled className="w-full sm:w-auto">
+                  Pay with PayPal
+                </Button>
+                <Button disabled className="w-full sm:w-auto">
+                  Pay with Credit Card
+                </Button>
+                <Button disabled className="w-full sm:w-auto">
+                  Rental Option
+                </Button>
               </div>
             </div>
           </div>
         </section>
       </main>
     </div>
-  )
+  );
 }
 
 function CheckIcon(props: any) {
@@ -92,7 +134,7 @@ function CheckIcon(props: any) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <polyline points="20 6 9 17 4 12"/>
+      <polyline points="20 6 9 17 4 12" />
     </svg>
-  )
+  );
 }

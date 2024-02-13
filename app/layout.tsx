@@ -9,7 +9,30 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Proof of X | Web3",
-  description: "Proof of X | Web3 Center",
+  description: "Proof of X | Home",
+  openGraph: {
+    title: "Proof of X | Web3",
+    description: "Proof of X | Home",
+    url: "https://pox.me",
+    siteName: "Proof of X",
+    images: [
+      {
+        url: "/public/images/home-hero.jpg",
+        width: 1800,
+        height: 1600,
+        alt: "A cool fingerprint image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proof of X | Web3",
+    description: "Proof of X | Home",
+    creator: "@proofxme",
+    images: ["/public/images/home-hero.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -26,3 +49,4 @@ export default function RootLayout({
     </html>
   );
 }
+2;

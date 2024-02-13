@@ -1,0 +1,72 @@
+{
+  "links": [
+    {
+      "features": {
+        "title": "Features",
+        "children": [
+          {
+            "title": "Omnichannel",
+            "link": "#"
+          },
+          {
+            "title": "No Code Tools",
+            "link": "#"
+          },
+          {
+            "title": "Security & Compliance",
+            "link": "#"
+          },
+          {
+            "title": "Web3",
+            "link": "#"
+          }
+        ]
+      },
+      "pricing": {
+        "title": "Pricing",
+        "link": "/pricing",
+        "children": null
+      },
+      "resources": {
+        "title": "Resources",
+        "children": [
+          {
+            "title": "Blog posts",
+            "link": "/blog"
+          },
+          {
+            "title": "Case studies",
+            "link": "/case-studies"
+          },
+          {
+            "title": "Documentation",
+            "link": "/documentation"
+          },
+          {
+            "title": "Help center",
+            "link": "/help-center"
+          }
+        ]
+      },
+      "membership": {
+        "title": "Membership",
+        "children": null
+      },
+      "migration": {
+        "title": "Migration",
+        "children": null,
+        "link": "/dashboard/migration"
+      },
+      "roadmap": {
+        "title": "Roadmap",
+        "children": null,
+        "link": "/roadmap"
+      },
+      "contact": {
+        "title": "Contact",
+        "children": null,
+        "link": "/contact"
+      }
+    }
+  ]
+}
