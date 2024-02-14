@@ -101,10 +101,9 @@ export default function StakingDetails() {
       return (
         <CardContent>
           <hr className="my-2"/>
-          <div
-            className="text-center bg-red-500 border border-red-400 text-white px-4 py-3 rounded relative mt-6">Please
-            Connect your wallet to continue
-          </div>
+          <div className="text-red-700 bg-red-100  text-white px-4 py-3 rounded rounded-base relative mt-6">Please
+              Connect your wallet to continue
+            </div>
           <div className="flex justify-center mt-3">
             <ConnectButton/>
           </div>

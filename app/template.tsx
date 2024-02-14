@@ -11,7 +11,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
         <ConnectButton />
       </div>
       {children}
-      <div className="wave-container pt-5"></div>
       <Footer />
     </div>
   );
