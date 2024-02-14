@@ -1,37 +1,44 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import stakingAbi from "@/contracts/abi/staking.json"
-import { useAccount, useBalance, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite } from "wagmi";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import stakingAbi from "@/contracts/abi/staking.json";
+import {
+  useAccount,
+  useBalance,
+  useReadContract,
+  useWriteContract,
+  useSimulateContract,
+} from "wagmi";
 import { uint256ToBNBCurrency, uint256ToNumber } from "@/utils/bigNumber";
 import addresses from "@/contracts/addresses";
 import TestnetFaucet from "@/components/widgets/testnet-faucet";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function StakingDetails() {
-  const {address} = useAccount();
-  const {chain} = useNetwork();
+  const { address, chain } = useAccount();
+
+  const { data: eulerBalance } = useBalance({
+    address: address,
+    token: addresses(chain?.id)["OldToken"],
+  });
 
   const {
-    data: eulerBalance,
-  } = useBalance({
-    address: address,
-    token: addresses(chain?.id)['OldToken']
-  })
-
-  const {data: userInfo}: {
-    data: {
-      amount: { _hex: string; };
-      pendingRewards: { _hex: string; };
-    } | undefined;
-  } = useContractRead({
-    address: addresses(chain?.id)['Staking'],
+    data: userInfo,
+  }: {
+    data:
+      | {
+          amount: { _hex: string };
+          pendingRewards: { _hex: string };
+        }
+      | undefined;
+  } = useReadContract({
+    address: addresses(chain?.id)["Staking"],
     abi: stakingAbi.abi,
-    functionName: 'getUserInfo',
+    functionName: "getUserInfo",
     args: [address],
     chainId: chain?.id,
-  })
+  });
 
   const safeUnstakeAmount = () => {
     // Ensuring userInfo and userInfo?.amount are defined
@@ -50,65 +57,47 @@ export default function StakingDetails() {
     } else {
       return undefined;
     }
-  }
+  };
 
-  const {config: withdrawAllConfig} = usePrepareContractWrite({
-    address: addresses(chain?.id)['Staking'],
-    abi: stakingAbi.abi,
-    functionName: 'withdraw',
-    args: [safeUnstakeAmount()]
-  })
-  const {
-    data: withdrawed,
-    isLoading: isLoadingWithdraw,
-    isSuccess: isSuccessWithdraw,
-    write: withdrawAll,
-  } = useContractWrite(withdrawAllConfig)
+  const { writeContract } = useWriteContract();
 
-  const {config: claimAllConfig} = usePrepareContractWrite({
-    address: addresses(chain?.id)['Staking'],
+  const { data: withdrawAllConfig } = useSimulateContract({
+    address: addresses(chain?.id)["Staking"],
     abi: stakingAbi.abi,
-    functionName: 'claim',
-  })
-  const {
-    data: claimed,
-    isLoading: isLoadingClaim,
-    isSuccess: isSuccessClaim,
-    write: claimAll
-  } = useContractWrite(claimAllConfig)
+    functionName: "withdraw",
+    args: [safeUnstakeAmount()],
+  });
 
-  const {config: stakeTokensConfig} = usePrepareContractWrite({
-    address: addresses(chain?.id)['Staking'],
+  const { data: claimAllConfig } = useSimulateContract({
+    address: addresses(chain?.id)["Staking"],
     abi: stakingAbi.abi,
-    functionName: 'deposit',
+    functionName: "claim",
+  });
+
+  const { data: stakeTokensConfig } = useSimulateContract({
+    address: addresses(chain?.id)["Staking"],
+    abi: stakingAbi.abi,
+    functionName: "deposit",
     args: [eulerBalance ? eulerBalance?.value : undefined],
-  })
-  const {
-    data: stakedAmount,
-    isLoading: isLoadingStake,
-    isSuccess: isSuccessStake,
-    write: stakeTokens
-  } = useContractWrite(stakeTokensConfig)
+  });
 
   if (chain?.id === 97) {
-    return (
-      <TestnetFaucet/>
-    )
+    return <TestnetFaucet />;
   }
 
   const cardContent = () => {
     if (!address) {
       return (
         <CardContent>
-          <hr className="my-2"/>
-          <div className="text-red-700 bg-red-100  text-white px-4 py-3 rounded rounded-base relative mt-6">Please
-              Connect your wallet to continue
-            </div>
+          <hr className="my-2" />
+          <div className="text-red-700 bg-red-100  text-white px-4 py-3 rounded rounded-base relative mt-6">
+            Please Connect your wallet to continue
+          </div>
           <div className="flex justify-center mt-3">
-            <ConnectButton/>
+            <ConnectButton />
           </div>
         </CardContent>
-      )
+      );
     }
     if (address) {
       return (
@@ -117,43 +106,56 @@ export default function StakingDetails() {
           <>
             {[
               {
-                amount: uint256ToBNBCurrency(eulerBalance?.value as unknown as string),
-                name: 'Wallet Balance',
-                color: 'red',
-                button: 'Stake',
-                action: stakeTokens
+                amount: uint256ToBNBCurrency(
+                  eulerBalance?.value as unknown as string
+                ),
+                name: "Wallet Balance",
+                color: "red",
+                button: "Stake",
+                action: () => writeContract(stakeTokensConfig),
               },
               {
-                amount: uint256ToBNBCurrency(userInfo?.amount as unknown as string),
-                name: 'Staked Tokens',
-                color: 'green',
-                button: 'Withdraw',
-                action: withdrawAll
-              }, {
-                amount: uint256ToBNBCurrency(userInfo?.pendingRewards as unknown as string),
-                name: 'Claimable Rewards',
-                color: 'green',
-                button: 'Claim',
-                action: claimAll
-              }].map((currency) => {
+                amount: uint256ToBNBCurrency(
+                  userInfo?.amount as unknown as string
+                ),
+                name: "Staked Tokens",
+                color: "green",
+                button: "Withdraw",
+                action: () => writeContract(withdrawAllConfig),
+              },
+              {
+                amount: uint256ToBNBCurrency(
+                  userInfo?.pendingRewards as unknown as string
+                ),
+                name: "Claimable Rewards",
+                color: "green",
+                button: "Claim",
+                action: () => writeContract(claimAllConfig),
+              },
+            ].map((currency) => {
               return (
-                <div className="flex justify-between items-center mb-2" key={currency.name}>
-                  <span className="flex items-center">
-                    {currency.name}
-                  </span>
+                <div
+                  className="flex justify-between items-center mb-2"
+                  key={currency.name}
+                >
+                  <span className="flex items-center">{currency.name}</span>
                   <div className="flex items-center">
                     <span>{currency.amount}</span>
-                    <Button className="ml-4" onClick={() => currency.action?.()}>{currency.button}</Button>
+                    <Button
+                      className="ml-4"
+                      onClick={() => currency.action?.()}
+                    >
+                      {currency.button}
+                    </Button>
                   </div>
                 </div>
-              )
-            })
-            }
+              );
+            })}
           </>
         </CardContent>
-      )
+      );
     }
-  }
+  };
 
   return (
     <section key="1" className="w-full">
@@ -175,7 +177,8 @@ export default function StakingDetails() {
             />
             <div>
               <p className="text-gray-600">
-                If you staked tokens, you can claim rewards here and migrate to the new version of $POXME.
+                If you staked tokens, you can claim rewards here and migrate to
+                the new version of $POXME.
               </p>
             </div>
           </CardHeader>
@@ -183,6 +186,5 @@ export default function StakingDetails() {
         </Card>
       </div>
     </section>
-  )
+  );
 }
-
