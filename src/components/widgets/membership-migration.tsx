@@ -3,29 +3,24 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import BigNumber from "bignumber.js";
-import {
-  useAccount,
-  useReadContract,
-  useWriteContract,
-  useSimulateContract,
-} from "wagmi";
+import { useAccount, useReadContract, useSimulateContract, useWriteContract, } from "wagmi";
 import addresses from "@/contracts/addresses";
 import migrationAbi from "@/contracts/abi/migration.json";
 import { uint256ToNumber } from "@/utils/bigNumber";
 import Image from "next/image";
 
 export default function MembershipMigration() {
-  const { address, chain } = useAccount();
+  const {address, chain} = useAccount();
 
   const {
     data: userInfo,
   }: {
     data:
       | {
-          deposited: BigNumber;
-          minted: BigNumber;
-          mintedMemberships: BigNumber;
-        }
+      deposited: BigNumber;
+      minted: BigNumber;
+      mintedMemberships: BigNumber;
+    }
       | undefined;
   } = useReadContract({
     address: addresses(chain?.id)["PoXMigration"],
@@ -34,14 +29,14 @@ export default function MembershipMigration() {
     args: [address],
   });
 
-  const { data: claimMembershipsConfig } = useSimulateContract({
+  const {data: claimMembershipsConfig} = useSimulateContract({
     address: addresses(chain?.id)["PoXMigration"],
     abi: migrationAbi.abi,
     functionName: "claimMemberships",
     args: [],
   });
 
-  const { writeContract } = useWriteContract();
+  const {writeContract} = useWriteContract();
 
   const claimableMemberships = () => {
     if (userInfo) {
@@ -67,9 +62,9 @@ export default function MembershipMigration() {
           <Image
             alt="NFT Image"
             className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800 mb-4"
-            height="100"
+            height="300"
             src="https://assets.pox.me/memberships/membership.png"
-            width="100"
+            width="300"
           />
           <p className="text-gray-500 pb-6">
             <span className="font-bold text-gray-900 bg-yellow-200 px-1 rounded">

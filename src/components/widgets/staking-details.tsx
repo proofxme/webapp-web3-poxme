@@ -3,27 +3,17 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import stakingAbi from "@/contracts/abi/staking.json";
-import {
-  useAccount,
-  useBalance,
-  useReadContract,
-  useWriteContract,
-  useSimulateContract,
-} from "wagmi";
-import {
-  uint256ToBNBCurrency,
-  uint256ToNumber,
-  safeUnstakeAmount,
-} from "@/utils";
+import { useAccount, useBalance, useReadContract, useSimulateContract, useWriteContract, } from "wagmi";
+import { safeUnstakeAmount, uint256ToBNBCurrency, } from "@/utils";
 import addresses from "@/contracts/addresses";
 import TestnetFaucet from "@/components/widgets/testnet-faucet";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 
 export default function StakingDetails() {
-  const { address, chain } = useAccount();
+  const {address, chain} = useAccount();
 
-  const { data: eulerBalance } = useBalance({
+  const {data: eulerBalance} = useBalance({
     address: address,
     token: addresses(chain?.id)["OldToken"],
   });
@@ -33,9 +23,9 @@ export default function StakingDetails() {
   }: {
     data:
       | {
-          amount: { _hex: string };
-          pendingRewards: { _hex: string };
-        }
+      amount: { _hex: string };
+      pendingRewards: { _hex: string };
+    }
       | undefined;
   } = useReadContract({
     address: addresses(chain?.id)["Staking"],
@@ -45,22 +35,22 @@ export default function StakingDetails() {
     chainId: chain?.id,
   });
 
-  const { writeContract } = useWriteContract();
+  const {writeContract} = useWriteContract();
 
-  const { data: withdrawAllConfig } = useSimulateContract({
+  const {data: withdrawAllConfig} = useSimulateContract({
     address: addresses(chain?.id)["Staking"],
     abi: stakingAbi.abi,
     functionName: "withdraw",
     args: [safeUnstakeAmount(userInfo)],
   });
 
-  const { data: claimAllConfig } = useSimulateContract({
+  const {data: claimAllConfig} = useSimulateContract({
     address: addresses(chain?.id)["Staking"],
     abi: stakingAbi.abi,
     functionName: "claim",
   });
 
-  const { data: stakeTokensConfig } = useSimulateContract({
+  const {data: stakeTokensConfig} = useSimulateContract({
     address: addresses(chain?.id)["Staking"],
     abi: stakingAbi.abi,
     functionName: "deposit",
@@ -68,19 +58,19 @@ export default function StakingDetails() {
   });
 
   if (chain?.id === 97) {
-    return <TestnetFaucet />;
+    return <TestnetFaucet/>;
   }
 
   const cardContent = () => {
     if (!address) {
       return (
         <CardContent>
-          <hr className="my-2" />
+          <hr className="my-2"/>
           <div className="text-red-700 bg-red-100 px-4 py-3 rounded rounded-base relative mt-6">
             Please Connect your wallet to continue
           </div>
           <div className="flex justify-center mt-3">
-            <ConnectButton />
+            <ConnectButton/>
           </div>
         </CardContent>
       );
@@ -98,7 +88,7 @@ export default function StakingDetails() {
                 name: "Wallet Balance",
                 color: "red",
                 button: "Stake",
-                action: () => writeContract(stakeTokensConfig),
+                action: () => writeContract(stakeTokensConfig!.request),
               },
               {
                 amount: uint256ToBNBCurrency(
@@ -107,7 +97,7 @@ export default function StakingDetails() {
                 name: "Staked Tokens",
                 color: "green",
                 button: "Withdraw",
-                action: () => writeContract(withdrawAllConfig),
+                action: () => writeContract(withdrawAllConfig!.request),
               },
               {
                 amount: uint256ToBNBCurrency(
@@ -116,7 +106,7 @@ export default function StakingDetails() {
                 name: "Claimable Rewards",
                 color: "green",
                 button: "Claim",
-                action: () => writeContract(claimAllConfig),
+                action: () => writeContract(claimAllConfig!.request),
               },
             ].map((currency) => {
               return (

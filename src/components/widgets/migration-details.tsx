@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader } from "../ui/card";
 import Image from "next/image";
 
 export default function MigrationDetails() {
-  const { address } = useAccount();
+  const {address} = useAccount();
   return (
     <section key="2" className="w-full">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
@@ -43,7 +43,7 @@ export default function MigrationDetails() {
               >
                 <h2 className="font-bold text-center">
                   The minimum amount to migrate is 4000{" "}
-                  <strong style={{ color: "blue" }}>$EULER</strong> tokens{" "}
+                  <strong style={{color: "blue"}}>$EULER</strong> tokens{" "}
                 </h2>
                 <span className="block sm:inline">
                   The migration represents a procedure designed to benefit all
@@ -59,14 +59,18 @@ export default function MigrationDetails() {
                   Please Connect your wallet to continue
                 </div>
                 <div className="flex justify-center mt-3">
-                  <ConnectButton />
+                  <ConnectButton/>
                 </div>
               </>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {address && <TokenMigration />}
-              {address && <MembershipMigration />}
-              {address && <AffiliateMigration />}
+            <div className="grid grid-cols-1 gap-6">
+              {address && <TokenMigration/>}
+            </div>
+            <div className="grid grid-cols-1 gap-6">
+              {address && <MembershipMigration/>}
+            </div>
+            <div className="grid grid-cols-1 gap-6">
+              {address && <AffiliateMigration/>}
             </div>
           </CardContent>
         </Card>
