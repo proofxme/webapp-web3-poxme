@@ -13,7 +13,7 @@ export default function Migration() {
     <>
       <main className="flex min-h-screen flex-col lg:p-8 h-auto bg-gray-50">
         <div className="flex flex-col items-center justify-center w-full h-full py-14 px-12">
-          <div className="text-center w-full">
+          <div className=" text-center w-full">
             <h2 className="text-5xl text-center font-bold tracking-tighter mt-9 mb-4">
               Migration Center
             </h2>
@@ -50,7 +50,7 @@ export default function Migration() {
             </Button>
           </div>
           <div
-            className="bg-red-100 border-l-4 border-orange-500 text-orange-700 p-4 mt-8 mb-12"
+            className="bg-red-100 border-l-4 border-orange-500 text-orange-700 p-4 mt-8"
             role="alert"
           >
             <p className="font-bold">Irreversible Actions</p>
@@ -61,7 +61,7 @@ export default function Migration() {
               This is an <b>irreversible migration process.</b>
             </p>
           </div>
-          <div className="mt-12">
+          <div className="mt-12 lg:w-full">
             <ul
               className="relative m-0 w-full list-none p-0 transition-[height] duration-200 ease-in-out mr-10"
               data-te-stepper-init
@@ -73,7 +73,7 @@ export default function Migration() {
               >
                 <div
                   data-te-stepper-head-ref
-                  className="flex items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:after:bg-neutral-600"
+                  className="flex items-center p-6  leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:after:bg-neutral-600"
                 >
                   <span
                     data-te-stepper-head-icon-ref
@@ -88,7 +88,8 @@ export default function Migration() {
                     <strong>Withdraw the tokens from the staking</strong>
                   </span>
                 </div>
-                <div className="ml-6">
+                <div className="w-full">
+                  {" "}
                   <StakingDetails />
                 </div>
               </li>
@@ -113,7 +114,7 @@ export default function Migration() {
                     <strong> Migrate the tokens to the new Protocol</strong>
                   </span>
                 </div>
-                <div className="ml-6">
+                <div className="m-6">
                   <MigrationDetails />
                 </div>
               </li>

@@ -10,10 +10,15 @@ import {
   useWriteContract,
   useSimulateContract,
 } from "wagmi";
-import { uint256ToBNBCurrency, uint256ToNumber } from "@/utils/bigNumber";
+import {
+  uint256ToBNBCurrency,
+  uint256ToNumber,
+  safeUnstakeAmount,
+} from "@/utils";
 import addresses from "@/contracts/addresses";
 import TestnetFaucet from "@/components/widgets/testnet-faucet";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from "next/image";
 
 export default function StakingDetails() {
   const { address, chain } = useAccount();
@@ -40,32 +45,13 @@ export default function StakingDetails() {
     chainId: chain?.id,
   });
 
-  const safeUnstakeAmount = () => {
-    // Ensuring userInfo and userInfo?.amount are defined
-    if (userInfo !== undefined && userInfo?.amount !== undefined) {
-      // Assuming uint256ToBNBCurrency properly converts to a number or a format that can be used as a number
-      const rawBalance = uint256ToNumber(userInfo?.amount as unknown as number);
-      const balance = Number(rawBalance); // Convert to a number
-
-      // Check if balance is greater than 4000 to ensure a minimum threshold for unstaking
-      if (balance > 4000) {
-        const toUnstake = Math.floor(balance - 1) * 10 ** 18;
-        return BigInt(toUnstake); // Return the amount to unstake as a safe integer
-      } else {
-        return undefined; // or handle this case as per your application's needs
-      }
-    } else {
-      return undefined;
-    }
-  };
-
   const { writeContract } = useWriteContract();
 
   const { data: withdrawAllConfig } = useSimulateContract({
     address: addresses(chain?.id)["Staking"],
     abi: stakingAbi.abi,
     functionName: "withdraw",
-    args: [safeUnstakeAmount()],
+    args: [safeUnstakeAmount(userInfo)],
   });
 
   const { data: claimAllConfig } = useSimulateContract({
@@ -90,7 +76,7 @@ export default function StakingDetails() {
       return (
         <CardContent>
           <hr className="my-2" />
-          <div className="text-red-700 bg-red-100  text-white px-4 py-3 rounded rounded-base relative mt-6">
+          <div className="text-red-700 bg-red-100 px-4 py-3 rounded rounded-base relative mt-6">
             Please Connect your wallet to continue
           </div>
           <div className="flex justify-center mt-3">
@@ -159,10 +145,10 @@ export default function StakingDetails() {
 
   return (
     <section key="1" className="w-full">
-      <div className="container grid items-center justify-center gap-4 text-center md:px-6 lg:gap-10">
+      <div className="grid items-center justify-center gap-4 text-center md:px-6 lg:gap-10">
         <Card className="mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <CardHeader className="flex items-center space-x-3">
-            <img
+            <Image
               alt="Logo"
               className="h-12 w-12"
               height="50"
@@ -170,7 +156,6 @@ export default function StakingDetails() {
               style={{
                 aspectRatio: "50/50",
                 objectFit: "cover",
-                // make the image round
                 borderRadius: "9999px",
               }}
               width="50"

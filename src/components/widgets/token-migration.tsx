@@ -1,35 +1,39 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { createConfig, useAccount, useBalance, useReadContract, useSimulateContract, useWriteContract, } from "wagmi";
+import {
+  useAccount,
+  useBalance,
+  useConfig,
+  useReadContract,
+  useSimulateContract,
+  useWriteContract,
+} from "wagmi";
 import { bsc, bscTestnet } from "wagmi/chains";
 import { useCallback, useEffect, useState } from "react";
 import addresses from "@/contracts/addresses";
 import migrationAbi from "@/contracts/abi/migration.json";
 import poxmeToken from "@/contracts/abi/poxmeToken.json";
 import eulerToken from "@/contracts/abi/eulerToken.json";
-import { getBigNumberCurrencyLabel, uint256ToBNBCurrency, } from "@/utils/bigNumber";
+import {
+  getBigNumberCurrencyLabel,
+  uint256ToBNBCurrency,
+} from "@/utils/bigNumber";
 import BigNumber from "bignumber.js";
 import { watchBlockNumber } from "@wagmi/core";
-import { createWalletClient, custom, http } from "viem";
+import { createWalletClient, custom } from "viem";
 import { watchAsset } from "viem/actions";
 
-const config = createConfig({
-  chains: [bsc, bscTestnet],
-  transports: {
-    [bsc.id]: http(),
-    [bscTestnet.id]: http(),
-  },
-})
-
 export default function TokenMigration() {
-  const {address, chain} = useAccount();
+  const config = useConfig();
+
+  const { address, chain } = useAccount();
   const [visibleAmount, setVisibleAmount] = useState(BigInt(0));
   const [depositAmount, setDepositAmount] = useState(BigInt(0));
 
   const [blockNumber, setBlockNumber] = useState(0);
   const [penalty, setPenalty] = useState(0);
-  const {writeContract} = useWriteContract();
+  const { writeContract } = useWriteContract();
 
   useEffect(() => {
     const unwatch = watchBlockNumber(config, {
@@ -45,14 +49,14 @@ export default function TokenMigration() {
   }, []); // Empty dependency array means this effect runs once on mount */
 
   // calculate the current supply of POXME
-  const {data: poxmeSupply} = useReadContract({
+  const { data: poxmeSupply } = useReadContract({
     address: addresses(chain?.id)["PoxmeToken"],
     abi: poxmeToken.abi,
     functionName: "totalSupply",
     args: [],
   });
 
-  const {data: startBlock} = useReadContract({
+  const { data: startBlock } = useReadContract({
     address: addresses(chain?.id)["PoXMigration"],
     abi: migrationAbi.abi,
     functionName: "migrationStartedAt",
@@ -60,26 +64,26 @@ export default function TokenMigration() {
   });
 
   // Old Tokens
-  const {data: eulerBalance} = useBalance({
+  const { data: eulerBalance } = useBalance({
     address: address,
     token: addresses(chain?.id)["OldToken"],
   });
 
-  const {data: oldTokenAllowance} = useReadContract({
+  const { data: oldTokenAllowance } = useReadContract({
     address: addresses(chain?.id)["OldToken"],
     abi: eulerToken.abi,
     functionName: "allowance",
     args: [address, addresses(chain?.id)["PoXMigration"]],
   });
 
-  const {data: approveOldTokenConfig} = useSimulateContract({
+  const { data: approveOldTokenConfig } = useSimulateContract({
     address: addresses(chain?.id)["OldToken"],
     abi: eulerToken.abi,
     functionName: "approve",
     args: [addresses(chain?.id)["PoXMigration"], BigInt(2 * 10 ** 53 - 1)],
   });
 
-  const {data: poxmeAllowance} = useReadContract({
+  const { data: poxmeAllowance } = useReadContract({
     address: addresses(chain?.id)["PoxmeToken"],
     abi: poxmeToken.abi,
     functionName: "allowance",
@@ -87,14 +91,14 @@ export default function TokenMigration() {
   });
 
   // Migration Contract
-  const {data: isMigrationActive} = useReadContract({
+  const { data: isMigrationActive } = useReadContract({
     address: addresses(chain?.id)["PoXMigration"],
     abi: migrationAbi.abi,
     functionName: "isMigrationActive",
     args: [],
   });
 
-  const {data: isTokenMigrationActive} = useReadContract({
+  const { data: isTokenMigrationActive } = useReadContract({
     address: addresses(chain?.id)["PoXMigration"],
     abi: migrationAbi.abi,
     functionName: "isTokenMigrationActive",
@@ -106,10 +110,10 @@ export default function TokenMigration() {
   }: {
     data:
       | {
-      deposited: BigNumber;
-      minted: BigNumber;
-      lastDeposit: BigNumber;
-    }
+          deposited: BigNumber;
+          minted: BigNumber;
+          lastDeposit: BigNumber;
+        }
       | undefined;
   } = useReadContract({
     address: addresses(chain?.id)["PoXMigration"],
@@ -118,19 +122,19 @@ export default function TokenMigration() {
     args: [address],
     query: {
       enabled: true,
-      staleTime: 1_000
+      staleTime: 1_000,
     },
     scopeKey: "balanceOf",
   });
 
-  const {data: depositTokensConfig} = useSimulateContract({
+  const { data: depositTokensConfig } = useSimulateContract({
     address: addresses(chain?.id)["PoXMigration"],
     abi: migrationAbi.abi,
     functionName: "deposit",
     args: [depositAmount],
   });
 
-  const {data: claimTokensConfig} = useSimulateContract({
+  const { data: claimTokensConfig } = useSimulateContract({
     address: addresses(chain?.id)["PoXMigration"],
     abi: migrationAbi.abi,
     functionName: "claimTokens",
@@ -162,7 +166,14 @@ export default function TokenMigration() {
       pending,
       available,
     };
-  }, [blockNumber, eulerBalance?.formatted, oldTokenAllowance, userInfo?.deposited, userInfo?.lastDeposit, userInfo?.minted]);
+  }, [
+    blockNumber,
+    eulerBalance?.formatted,
+    oldTokenAllowance,
+    userInfo?.deposited,
+    userInfo?.lastDeposit,
+    userInfo?.minted,
+  ]);
 
   const client = createWalletClient({
     chain: bsc,
@@ -208,7 +219,7 @@ export default function TokenMigration() {
               <Button
                 className="bg-gradient-to-r from-purple-900 via-white-500 to-purple-500 hover:from-purple-400 hover:via-white-500 hover:to-purple-500"
                 onClick={() => {
-                  addAsset()
+                  addAsset();
                 }}
               >
                 Add Token to Wallet
@@ -229,7 +240,7 @@ export default function TokenMigration() {
       <Card className="mb-4 my-3">
         <CardHeader>
           <h4 className="font-bold text-white bg-red-600 px-6 rounded py-6">
-            Total Penalty Applied {penalty.toString()}%
+            Total Penalty Applied {penalty.toFixed(2).toString()}%
           </h4>
           <span className="text-sm text-gray-500">
             Penalty is applied to the token claim, and will slowly increase to
@@ -240,21 +251,21 @@ export default function TokenMigration() {
       <Card className="mb-4 my-3">
         <CardHeader>
           <h3 className="text-lg font-semibold">
-            Deposit <span style={{color: "blue"}}>$EULER</span>
+            Deposit <span style={{ color: "blue" }}>$EULER</span>
           </h3>
         </CardHeader>
         <CardContent>
           <div className="space-x-3 mb-6">
             <p className="text-gray-500 pb-6">
-              Deposit <span style={{color: "blue"}}>$EULER</span> to claim the
+              Deposit <span style={{ color: "blue" }}>$EULER</span> to claim the
               new token
             </p>
             <p className="text-gray-500">
               You have{" "}
-              <strong style={{color: "black"}}>
+              <strong style={{ color: "black" }}>
                 {calculateAmounts().available}
               </strong>{" "}
-              <span style={{color: "blue"}}>$EULER</span> to migrate
+              <span style={{ color: "blue" }}>$EULER</span> to migrate
             </p>
           </div>
           <div className="space-x-3 mb-6">
@@ -317,7 +328,7 @@ export default function TokenMigration() {
       <Card>
         <CardHeader>
           <h3 className="text-lg font-semibold">
-            Claim new <strong style={{color: "purple"}}>$POXME</strong> Tokens
+            Claim new <strong style={{ color: "purple" }}>$POXME</strong> Tokens
           </h3>
           <h4 className="font-bold text-gray-900 bg-indigo-300 px-6 rounded">
             Total tokens migrated:{" "}
@@ -372,7 +383,7 @@ export default function TokenMigration() {
                   calculateAmounts().blocksPending > 0 ||
                   !isMigrationActive
                 }
-                className="mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
+                className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
                 onClick={() => writeContract(claimTokensConfig!.request)}
               >
                 Claim Tokens
