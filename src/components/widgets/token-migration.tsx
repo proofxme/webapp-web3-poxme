@@ -29,7 +29,6 @@ export default function TokenMigration() {
 
   const [blockNumber, setBlockNumber] = useState(0);
   const [penalty, setPenalty] = useState(0);
-  const {writeContract} = useWriteContract();
 
   useEffect(() => {
     const unwatch = watchBlockNumber(config, {
@@ -43,6 +42,13 @@ export default function TokenMigration() {
       unwatch();
     };
   }, []); // Empty dependency array means this effect runs once on mount */
+
+  const {
+    data: hash,
+    error,
+    isPending,
+    writeContract
+  } = useWriteContract()
 
   // calculate the current supply of POXME
   const {data: poxmeSupply} = useReadContract({
@@ -123,19 +129,26 @@ export default function TokenMigration() {
     scopeKey: "balanceOf",
   });
 
-  const {data: depositTokensConfig} = useSimulateContract({
-    address: addresses(chain?.id)["PoXMigration"],
-    abi: migrationAbi.abi,
-    functionName: "deposit",
-    args: [depositAmount],
-  });
+  // New Tokens Interactions
+  // Deposit old tokens
+  const depositOldTokens = useCallback(async () => {
+    writeContract({
+      address: addresses(chain?.id)["PoXMigration"],
+      abi: migrationAbi.abi,
+      functionName: "deposit",
+      args: [depositAmount],
+    });
+  }, [chain?.id, depositAmount, writeContract])
 
-  const {data: claimTokensConfig} = useSimulateContract({
-    address: addresses(chain?.id)["PoXMigration"],
-    abi: migrationAbi.abi,
-    functionName: "claimTokens",
-    args: [],
-  });
+  // Claim new tokens
+  const claimNewTokens = useCallback(async () => {
+    writeContract({
+      address: addresses(chain?.id)["PoXMigration"],
+      abi: migrationAbi.abi,
+      functionName: "claimTokens",
+      args: [],
+    });
+  }, [chain?.id, writeContract])
 
   const calculateAmounts = useCallback(() => {
     const allowance = Number(
@@ -312,7 +325,7 @@ export default function TokenMigration() {
                 <Button
                   disabled={depositAmount === BigInt(0) || !isMigrationActive}
                   className="pt-3 mt-4inline-flex items-center rounded-md border border-transparent bg-gray-900 ml-2 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
-                  onClick={() => writeContract(depositTokensConfig!.request)}
+                  onClick={() => depositOldTokens()}
                 >
                   Deposit
                 </Button>
@@ -380,7 +393,7 @@ export default function TokenMigration() {
                   !isMigrationActive
                 }
                 className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
-                onClick={() => writeContract(claimTokensConfig!.request)}
+                onClick={() => claimNewTokens()}
               >
                 Claim Tokens
               </Button>

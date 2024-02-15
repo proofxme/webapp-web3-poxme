@@ -3,12 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import stakingAbi from "@/contracts/abi/staking.json";
-import { useAccount, useBalance, useReadContract, useSimulateContract, useWriteContract, } from "wagmi";
+import { useAccount, useBalance, useReadContract, useWriteContract, } from "wagmi";
 import { safeUnstakeAmount, uint256ToBNBCurrency, } from "@/utils";
 import addresses from "@/contracts/addresses";
 import TestnetFaucet from "@/components/widgets/testnet-faucet";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
+import { useCallback } from "react";
 
 export default function StakingDetails() {
   const {address, chain} = useAccount();
@@ -32,30 +33,36 @@ export default function StakingDetails() {
     abi: stakingAbi.abi,
     functionName: "getUserInfo",
     args: [address],
-    chainId: chain?.id,
   });
 
-  const {writeContract} = useWriteContract();
+  const {writeContract, isError} = useWriteContract();
 
-  const {data: withdrawAllConfig} = useSimulateContract({
-    address: addresses(chain?.id)["Staking"],
-    abi: stakingAbi.abi,
-    functionName: "withdraw",
-    args: [safeUnstakeAmount(userInfo)],
-  });
 
-  const {data: claimAllConfig} = useSimulateContract({
-    address: addresses(chain?.id)["Staking"],
-    abi: stakingAbi.abi,
-    functionName: "claim",
-  });
+  const stakeTokens = useCallback(async () => {
+    writeContract({
+      address: addresses(chain?.id)["Staking"],
+      abi: stakingAbi.abi,
+      functionName: "deposit",
+      args: [eulerBalance ? eulerBalance?.value : undefined],
+    });
+  }, [chain?.id, eulerBalance, writeContract])
 
-  const {data: stakeTokensConfig} = useSimulateContract({
-    address: addresses(chain?.id)["Staking"],
-    abi: stakingAbi.abi,
-    functionName: "deposit",
-    args: [eulerBalance ? eulerBalance?.value : undefined],
-  });
+  const withdrawAll = useCallback(async () => {
+    writeContract({
+      address: addresses(chain?.id)["Staking"],
+      abi: stakingAbi.abi,
+      functionName: "withdraw",
+      args: [safeUnstakeAmount(userInfo)],
+    });
+  }, [chain?.id, userInfo, writeContract])
+
+  const claimAll = useCallback(async () => {
+    writeContract({
+      address: addresses(chain?.id)["Staking"],
+      abi: stakingAbi.abi,
+      functionName: "claim",
+    });
+  }, [chain?.id, writeContract])
 
   if (chain?.id === 97) {
     return <TestnetFaucet/>;
@@ -88,7 +95,7 @@ export default function StakingDetails() {
                 name: "Wallet Balance",
                 color: "red",
                 button: "Stake",
-                action: () => writeContract(stakeTokensConfig!.request),
+                action: () => stakeTokens(),
               },
               {
                 amount: uint256ToBNBCurrency(
@@ -97,7 +104,7 @@ export default function StakingDetails() {
                 name: "Staked Tokens",
                 color: "green",
                 button: "Withdraw",
-                action: () => writeContract(withdrawAllConfig!.request),
+                action: () => withdrawAll(),
               },
               {
                 amount: uint256ToBNBCurrency(
@@ -106,7 +113,7 @@ export default function StakingDetails() {
                 name: "Claimable Rewards",
                 color: "green",
                 button: "Claim",
-                action: () => writeContract(claimAllConfig!.request),
+                action: () => claimAll(),
               },
             ].map((currency) => {
               return (

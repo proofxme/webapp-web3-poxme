@@ -5,7 +5,7 @@ import * as React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { getDefaultConfig, RainbowKitProvider, } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
-import { bsc, bscTestnet, mainnet, } from 'wagmi/chains';
+import { bsc, bscTestnet, } from 'wagmi/chains';
 import { http } from "viem";
 
 const config = getDefaultConfig({
@@ -13,7 +13,7 @@ const config = getDefaultConfig({
   projectId: '381f08b7876a5bfcf90ac02742447437',
   chains: [bsc, bscTestnet,],
   transports: {
-    [mainnet.id]: http(),
+    [bscTestnet.id]: http(),
     [bsc.id]: http(),
   },
 })
