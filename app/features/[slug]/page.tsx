@@ -26,7 +26,6 @@ export default function featurePage({ params: { slug } }: { params: { slug: stri
           showButton={false}
           slug={feature.slug}
           width={'w-full'}
-          height={''}
         />
       </div>
     </div>
