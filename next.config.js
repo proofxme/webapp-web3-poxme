@@ -26,7 +26,7 @@ module.exports = withSentryConfig(
 
     // Suppresses source map uploading logs during build
     silent: true,
-    org: "proofxme",
+    org: "proof-of-x",
     project: "web3-poxme",
   },
   {
