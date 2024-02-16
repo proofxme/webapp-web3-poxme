@@ -1,23 +1,25 @@
 "use client";
 
+import Link from 'next/link';
 import featuresJson from '../featuresData.json';
+import FeatureCard from '../components/Card';
 
 export default function List() {
     return (
-        <div className="container mx-auto px-4 py-8 bg-gray-50">
-            <h1 className="text-3xl font-bold text-center mb-8">Features</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mb-12">
                 {featuresJson.features.map((feature, index) => (
-                    <div key={index} className="w-full">
-                        <div className="bg-white shadow-lg rounded-lg overflow-hidden max-h-full m-8">
-                            <div className='flex items-center justify-center h-full'>
-                                <img src={feature.image} alt={feature.title} className="w-24 h-24 object-cover" />
-                            </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-bold mb-3">{feature.title}</h2>
-                                <p className="text-gray-600">{feature.description}</p>
-                            </div>
-                        </div>
+                    <div className=''>
+                        <FeatureCard
+                            key={index}
+                            title={feature.title}
+                            subtitle={feature.subtitle}
+                            image={feature.image}
+                            description={""}
+                            showButton
+                            slug={feature.slug}
+                            width={"w-10/12"}
+                            height={"80%"}/>
                     </div>
                 ))}
             </div>

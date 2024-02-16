@@ -17,11 +17,18 @@ export default function featurePage({ params: { slug } }: { params: { slug: stri
 
   return (
     <div className="flex justify-center items-center h-auto p-12 bg-gray-50">
-      <FeatureCard
-        title={feature.title}
-        description={feature.description}
-        image={feature.image}
-      />
+      <div className="w-full md:w-1/2 flex justify-center">
+        <FeatureCard
+          title={feature.title}
+          description={feature.description}
+          image={feature.image}
+          subtitle={feature.subtitle}
+          showButton={false}
+          slug={feature.slug}
+          width={'w-full'}
+          height={''}
+        />
+      </div>
     </div>
   );
 }

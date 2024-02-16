@@ -1,21 +1,31 @@
 "use client";
 
+import Link from 'next/link';
 import React from 'react';
 
 interface FeatureCardProps {
+  slug: string;
   title: string;
   description: string;
   image: string;
+  subtitle: string;
+  showButton: boolean;
+  width: string;
+  height: string;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, image }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ slug, title, description, image, subtitle, showButton = true, width, height }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden w-3/5 m-12">
-      <div className='m-5'>
-        <img src={image} alt={title} className="w-24 h-24" />
-        <div className="p-4">
-          <h2 className="text-2xl font-bold mb-7 mt-2">{title}</h2>
-          <p className="text-gray-600">{description}</p>
+    <div className={`bg-white shadow-lg rounded-lg overflow-hidden m-12 sm:mx-auto ${width}`} style={{ height: height }}>
+      <div className='ml-5 mr-3 flex justify-center items-center'>
+        <img src={image} alt={title} className="w-20 h-20" />
+        <div className="m-5">
+          <h2 className="text-2xl font-bold mb-7 mt-4">{title}</h2>
+          <div className='border-l-2 border-blue-300 pl-5'>
+            <p className='sm:text-base md:text-lg text-gray-700 leading-relaxed'>{subtitle}</p>
+            <p className="text-gray-500">{description}</p>   
+            {showButton && <Link className='inline-block text-blue-500 hover:text-blue-600 transition duration-300 ease-in-out m-5' href={'features/' + slug}>See more <ArrowIcon /></Link>}
+          </div>
         </div>
       </div>
     </div>
@@ -23,3 +33,15 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, image }) 
 }
 
 export default FeatureCard;
+
+
+const ArrowIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6 inline-block ml-2 text-blue-500"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+  </svg>
+);
