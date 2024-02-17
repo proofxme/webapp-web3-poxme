@@ -1,0 +1,32 @@
+{
+    "features": [
+      {
+        "slug" : "omni-channel",
+        "title": "OmniChannel",
+        "image": "https://www.svgrepo.com/show/530666/gene-sequence.svg",
+        "subtitle":"Connect all your communication protocols in a single place.",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+      },
+      {
+        "slug" : "no-code-tools",
+        "title": "No Code Tools",
+        "image": "https://www.svgrepo.com/show/530458/touch-click.svg",
+        "subtitle":"Automate your communications without writing a single line of code.",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+      },
+      {
+        "slug" : "security-and-compliance",
+        "title": "Security & Compliance",
+        "image": "https://www.svgrepo.com/show/530437/safe-and-stable.svg",
+        "subtitle":"Keep your data secure with our security features.",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+      },
+      {
+        "slug" : "web3",
+        "title": "Web3",
+        "image": "https://www.svgrepo.com/show/530454/system-settings.svg",
+        "subtitle":"Protect your communications using the best of blockchain.",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+      }
+    ]
+  }
