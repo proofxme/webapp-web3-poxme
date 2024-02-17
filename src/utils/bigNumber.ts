@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import BigNumber from 'bignumber.js';
+import BigNumber from "bignumber.js";
 import { currencyformatter } from "@/utils/currency-helpers";
 
 export const BN_PRECISION = 7;
