@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
@@ -6,7 +6,7 @@ import { HeroCustomers } from "@/components/widgets/hero-component";
 import { HeroPerformance } from "@/components/widgets/hero-performance";
 import Image from "next/image";
 
-export default function Component() {
+export default async function Home() {
   return (
     <main className="flex-1">
       <section className="w-full py-12 md:py-24 lg:py-32 border-y">
@@ -19,7 +19,8 @@ export default function Component() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Turn your email into your Digital Identity.
               </h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p
+                className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 We reinvented the email protocol, and we are building a new way
                 to communicate and interact within internet.
               </p>
@@ -36,16 +37,16 @@ export default function Component() {
             <div className="flex flex-col justify-center space-y-4">
               <ul className="grid gap-2 py-4">
                 <li>
-                  <CheckIcon className="mr-2 inline-block h-4 w-4" />
+                  <CheckIcon className="mr-2 inline-block h-4 w-4"/>
                   Aggregate your credentials and build your digital identity.
                 </li>
                 <li>
-                  <CheckIcon className="mr-2 inline-block h-4 w-4" />
+                  <CheckIcon className="mr-2 inline-block h-4 w-4"/>
                   Communicate safely with other Identities, either on chain or
                   off chain.
                 </li>
                 <li>
-                  <CheckIcon className="mr-2 inline-block h-4 w-4" />
+                  <CheckIcon className="mr-2 inline-block h-4 w-4"/>
                   Build around your emails.
                 </li>
               </ul>
@@ -67,7 +68,8 @@ export default function Component() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Super charge your email with Proof of X.
             </h2>
-            <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            <p
+              className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               Focus on building your digital identity, and let us handle the
               rest. We are building a new way to communicate and interact within
               internet.
@@ -99,14 +101,16 @@ export default function Component() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Innovation{" "}
               </h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p
+                className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 We built an identity system combining the best of blockchain and
                 email. As decentralized and secured as you want, as easy to use
                 as you need.
               </p>
             </div>
           </div>
-          <div className="mx-auto grid max-w-sm items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
+          <div
+            className="mx-auto grid max-w-sm items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
             <div className="grid gap-1">
               <h3 className="text-lg font-bold">
                 Infinite scalability, zero config.
@@ -178,7 +182,8 @@ export default function Component() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               We help you manage your Digital Identities.
             </h2>
-            <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            <p
+              className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               A Super Powered platform to create, manage, and verify your
               digital identities, for you, or your companies.
             </p>
@@ -199,8 +204,8 @@ export default function Component() {
           </div>
         </div>
       </section>
-      {false && <HeroCustomers />}
-      {false && <HeroPerformance />}
+      {false && <HeroCustomers/>}
+      {false && <HeroPerformance/>}
     </main>
   );
 }
@@ -219,7 +224,7 @@ function CheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <polyline points="20 6 9 17 4 12" />
+      <polyline points="20 6 9 17 4 12"/>
     </svg>
   );
 }
