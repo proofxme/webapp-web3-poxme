@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
-import { JSX, SVGProps } from "react";
+import React, { JSX, SVGProps } from "react";
+import Image from "next/image";
 
 export default function Component() {
   return (
@@ -124,16 +125,16 @@ export default function Component() {
                 size="icon"
                 variant="ghost"
               >
-                <img
-                  alt="Avatar"
+                <Image
                   className="rounded-full"
                   height="32"
                   src="/placeholder.svg"
+                  width="32"
                   style={{
                     aspectRatio: "32/32",
                     objectFit: "cover",
                   }}
-                  width="32"
+                  alt="Avatar"
                 />
                 <span className="sr-only">Toggle user menu</span>
               </Button>
@@ -174,7 +175,7 @@ export default function Component() {
                         Summer Sale is here!
                       </Link>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Don't miss out on our amazing deals. Limited time offer!
+                        Don&apos;t miss out on our amazing deals. Limited time offer!
                       </p>
                     </TableCell>
                     <TableCell className="text-right">
@@ -256,7 +257,7 @@ export default function Component() {
                         Exclusive Invitation: VIP Event
                       </Link>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        You're invited to an exclusive VIP event. RSVP now!
+                        You&apos;re invited to an exclusive VIP event. RSVP now!
                       </p>
                     </TableCell>
                     <TableCell className="text-right">

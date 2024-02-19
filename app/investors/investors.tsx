@@ -31,7 +31,7 @@ export default function Investors() {
   useEffect(() => {
     getTokenPrice()
       .then((price) => {
-        setData(price);
+        setData(price || 0);
         setLoading(false);
       });
   }, []);
@@ -226,7 +226,7 @@ export default function Investors() {
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   The NFT membership signifies affiliation with the Proof of X
-                  project. It is a unique token used to access the project's
+                  project. It is a unique token used to access the project&apos;s
                   features and benefits. Each account holder in the project
                   requires a membership as they are distinct. Given the nature
                   of memberships, an infinite number can exist, with each
