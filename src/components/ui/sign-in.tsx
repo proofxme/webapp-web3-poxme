@@ -18,6 +18,7 @@ const SignIn = () => {
     <Button
       className="w-full sm:w-auto"
       onClick={handleClick}
+      disabled
     >
       Sign in
     </Button>);

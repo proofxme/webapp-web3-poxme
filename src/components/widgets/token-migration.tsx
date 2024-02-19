@@ -85,6 +85,13 @@ export default function TokenMigration() {
     args: [addresses(chain?.id)["PoXMigration"], BigInt(2 * 10 ** 53 - 1)],
   });
 
+  const {data: increaseAllowanceConfig} = useSimulateContract({
+    address: addresses(chain?.id)["OldToken"],
+    abi: eulerToken.abi,
+    functionName: "increaseAllowance",
+    args: [addresses(chain?.id)["PoXMigration"], BigInt(2 * 10 ** 53 - 1)],
+  });
+
   const {data: poxmeAllowance} = useReadContract({
     address: addresses(chain?.id)["PoxmeToken"],
     abi: poxmeToken.abi,
@@ -162,11 +169,13 @@ export default function TokenMigration() {
     const pending = Number(deposited) - Number(claimed);
     const lastDeposited = Number(userInfo?.lastDeposit?.toString());
     const canDeposit = allowance > available;
+    const needsIncrease = allowance > 0 && allowance < available;
     const blocksPending =
       Number(blockNumber) - lastDeposited > 100
         ? 0
         : 100 - (Number(blockNumber) - lastDeposited);
     return {
+      needsIncrease,
       allowance,
       canDeposit,
       deposited,
@@ -248,17 +257,6 @@ export default function TokenMigration() {
     <div>
       <Card className="mb-4 my-3">
         <CardHeader>
-          <h4 className="font-bold text-white bg-red-600 px-6 rounded py-6">
-            Total Penalty Applied {penalty.toFixed(2).toString()}%
-          </h4>
-          <span className="text-sm text-gray-500">
-            Penalty is applied to the token claim, and will slowly increase to
-            50% over 180 days.
-          </span>
-        </CardHeader>
-      </Card>
-      <Card className="mb-4 my-3">
-        <CardHeader>
           <h3 className="text-lg font-semibold">
             Deposit <span style={{color: "blue"}}>$EULER</span>
           </h3>
@@ -278,7 +276,7 @@ export default function TokenMigration() {
             </p>
           </div>
           <div className="space-x-3 mb-6">
-            {!calculateAmounts().canDeposit && (
+            {(!calculateAmounts().canDeposit && !calculateAmounts().needsIncrease) && (
               <>
                 <p className="text-gray-500">
                   The migration center Allowance is{" "}
@@ -289,6 +287,21 @@ export default function TokenMigration() {
                   onClick={() => writeContract(approveOldTokenConfig!.request)}
                 >
                   Approve Contract
+                </Button>
+              </>
+            )}
+            {calculateAmounts().needsIncrease && (
+              <>
+                <p className="text-gray-500">
+                  The migration center Allowance is{" "}
+                  {calculateAmounts().allowance} and you need an allowance of{" "}
+                  {calculateAmounts().available}
+                </p>
+                <Button
+                  className="mt-4 inline-flex items-center rounded-md border border-transparent bg-gray-900 px-2.5 py-0.5 text-xs font-semibold text-gray-50 shadow transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:border-gray-800 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300"
+                  onClick={() => writeContract(increaseAllowanceConfig!.request)}
+                >
+                  Increase allowance
                 </Button>
               </>
             )}
@@ -333,6 +346,17 @@ export default function TokenMigration() {
             )}
           </div>
         </CardContent>
+      </Card>
+      <Card className="mb-4 my-3">
+        <CardHeader>
+          <h4 className="font-bold text-white bg-red-600 px-6 rounded py-6">
+            Total Penalty Applied {penalty.toFixed(2).toString()}%
+          </h4>
+          <span className="text-sm text-gray-500">
+            Penalty is applied to the token claim, and will slowly increase to
+            50% over 180 days.
+          </span>
+        </CardHeader>
       </Card>
       <Card>
         <CardHeader>

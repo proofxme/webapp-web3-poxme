@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useReadContract } from "wagmi";
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { getTokenPrice } from "@/utils";
 
 export default function Investors() {
-  const { data: poxmeSupply } = useReadContract({
+  const {data: poxmeSupply} = useReadContract({
     address: addresses(56)["PoxmeToken"],
     abi: poxmeToken.abi,
     functionName: "totalSupply",
@@ -29,10 +29,11 @@ export default function Investors() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    getTokenPrice().then((price) => {
-      setData(price);
-      setLoading(false);
-    });
+    getTokenPrice()
+      .then((price) => {
+        setData(price);
+        setLoading(false);
+      });
   }, []);
 
   const marketCap = "Currently unavailable";
@@ -48,7 +49,8 @@ export default function Investors() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                     Proof of X
                   </h1>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                  <p
+                    className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                     We built an identity system combining the best of blockchain
                     and email. As decentralized and secured as you want, as easy
                     to use as you need.
@@ -57,7 +59,7 @@ export default function Investors() {
               </div>
               <div className="grid gap-2">
                 <dl className="grid grid-cols-2 gap-1 text-sm font-medium">
-                  <dt>BNB Chain contract: </dt>
+                  <dt>BNB Chain contract:</dt>
                   <dd className="max-w-[600px] overflow-auto">
                     {addresses(56)["PoxmeToken"]}
                   </dd>
@@ -79,7 +81,8 @@ export default function Investors() {
           </div>
         </div>
         <section className="w-full border-t">
-          <div className="container grid max-w-5xl items-start gap-12 px-4 py-12 md:grid-cols-2 md:px-6 md:gap-24 lg:py-24">
+          <div
+            className="container grid max-w-5xl items-start gap-12 px-4 py-12 md:grid-cols-2 md:px-6 md:gap-24 lg:py-24">
             <div className="flex flex-col gap-4">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 About Proof of X

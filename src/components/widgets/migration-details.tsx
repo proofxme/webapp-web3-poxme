@@ -28,12 +28,6 @@ export default function MigrationDetails() {
               }}
               width="50"
             />
-            <p className="text-gray-600">
-              The migration process is a unique opportunity to continue
-              supporting @tebayoso during the Proof of X development, while
-              maintaining the value you deposited and have an opportunity to
-              claim back the investment.
-            </p>
           </CardHeader>
           <CardContent>
             {address && (
