@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { useReadContract } from "wagmi";
 import { getBigNumberCurrencyLabel } from "@/utils/bigNumber";
 import poxmeToken from "@/contracts/abi/poxmeToken.json";
@@ -11,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { getTokenPrice } from "@/utils";
 
 export default function Investors() {
-  const {data: poxmeSupply} = useReadContract({
+  const { data: poxmeSupply } = useReadContract({
     address: addresses(56)["PoxmeToken"],
     abi: poxmeToken.abi,
     functionName: "totalSupply",
@@ -29,11 +27,41 @@ export default function Investors() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    getTokenPrice()
-      .then((price) => {
-        setData(price || 0);
-        setLoading(false);
-      });
+    getTokenPrice().then((price) => {
+      setData(price || 0);
+      setLoading(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    var configuration = {
+      from: "BNB",
+      to: "0xb469783b6b3615180da05571beec716b639cbe85",
+      fromChain: "BSC",
+      toChain: "BSC",
+      amount: 1,
+      iframe: "flex",
+      hideSelectionFrom: false,
+      hideSelectionTo: true,
+      tokenSearch: true,
+      rubicLink: true,
+      theme: "light",
+      background: "#3ea366",
+      injectTokens: {
+        bsc: ["0xb469783b6b3615180da05571beec716b639cbe85"],
+      },
+      slippagePercent: {
+        instantTrades: 2,
+        crossChain: 5,
+      },
+    };
+
+    // prevent accidental changes to the object, for example, when re-creating a widget for another theme
+    Object.freeze(configuration);
+
+    // create widget
+    // @ts-ignore
+    rubicWidget.init(configuration);
   }, []);
 
   const marketCap = "Currently unavailable";
@@ -49,8 +77,7 @@ export default function Investors() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                     Proof of X
                   </h1>
-                  <p
-                    className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                  <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                     We built an identity system combining the best of blockchain
                     and email. As decentralized and secured as you want, as easy
                     to use as you need.
@@ -81,8 +108,7 @@ export default function Investors() {
           </div>
         </div>
         <section className="w-full border-t">
-          <div
-            className="container grid max-w-5xl items-start gap-12 px-4 py-12 md:grid-cols-2 md:px-6 md:gap-24 lg:py-24">
+          <div className="container grid max-w-5xl items-start gap-12 px-4 py-12 md:grid-cols-2 md:px-6 md:gap-24 lg:py-24">
             <div className="flex flex-col gap-4">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 About Proof of X
@@ -115,35 +141,8 @@ export default function Investors() {
                 Actually you can invest buying $POXME on our liquidity pools.
               </p>
             </div>
-            <div className="max-w-3xl mx-auto grid gap-8 my-12 lg:grid-cols-2">
-              <div className="space-y-2">
-                <Link
-                  href="https://app.1inch.io/#/56/simple/swap/USDT/POXME"
-                  target="_blank"
-                >
-                  <Image
-                    className="hover:scale-110"
-                    src="/images/1inch_color_black.png"
-                    width={500}
-                    height={500}
-                    alt="1INCH logo"
-                  />
-                </Link>
-              </div>
-              <div className="space-y-2 items-center flex">
-                <Link
-                  target="_blank"
-                  href="https://bscscan.com/token/0xb469783b6b3615180da05571beec716b639cbe85"
-                >
-                  <Image
-                    className="hover:scale-110"
-                    width={368}
-                    height={65}
-                    src="/images/bnb-chain-full-binance-smart-chain-logo.png"
-                    alt="BNB Chain logo"
-                  />
-                </Link>
-              </div>
+            <div className="max-w-3xl mx-auto grid gap-8 my-12 ">
+              <div id="rubic-widget-root" className="flex justify-center"></div>
             </div>
           </div>
         </section>
@@ -226,11 +225,11 @@ export default function Investors() {
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   The NFT membership signifies affiliation with the Proof of X
-                  project. It is a unique token used to access the project&apos;s
-                  features and benefits. Each account holder in the project
-                  requires a membership as they are distinct. Given the nature
-                  of memberships, an infinite number can exist, with each
-                  representing a different account name.
+                  project. It is a unique token used to access the
+                  project&apos;s features and benefits. Each account holder in
+                  the project requires a membership as they are distinct. Given
+                  the nature of memberships, an infinite number can exist, with
+                  each representing a different account name.
                 </p>
               </div>
               <div className="space-y-2">

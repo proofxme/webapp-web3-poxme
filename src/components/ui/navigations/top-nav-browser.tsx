@@ -60,7 +60,7 @@ function HamIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      style={{fill: "rgba(0, 0, 0, 1)", transform: "", msFilter: ""}}
+      style={{ fill: "rgba(0, 0, 0, 1)", transform: "", msFilter: "" }}
     >
       <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
     </svg>
@@ -71,7 +71,7 @@ export function TopNavBrowser() {
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 ">
       <Link className="mr-6 flex" href="/">
-        <ProofOfXIcon className="h-6 w-6"/>
+        <ProofOfXIcon className="h-6 w-6" />
         <span className="sr-only">Proof of X</span>
       </Link>
 
@@ -206,7 +206,14 @@ export function TopNavBrowser() {
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
-
+          <NavigationMenuLink asChild>
+            <Link
+              className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+              href="/web3/investors"
+            >
+              Invest
+            </Link>
+          </NavigationMenuLink>
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
@@ -247,7 +254,7 @@ export function TopNavBrowser() {
           <SheetTrigger className="flex justify-end " asChild>
             <div className="absolute top-5 right-4 lg:hidden">
               <Button variant="outline">
-                <HamIcon className="h-6 w-6"/>
+                <HamIcon className="h-6 w-6" />
               </Button>
               <span className="sr-only">Toggle navigation menu</span>
             </div>
@@ -267,7 +274,7 @@ export function TopNavBrowser() {
                     variant="link"
                   >
                     Features
-                    <ChevronDownIcon aria-hidden="true"/>
+                    <ChevronDownIcon aria-hidden="true" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -300,7 +307,7 @@ export function TopNavBrowser() {
                     variant="link"
                   >
                     Resources
-                    <ChevronDownIcon aria-hidden="true"/>
+                    <ChevronDownIcon aria-hidden="true" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -312,13 +319,19 @@ export function TopNavBrowser() {
               </DropdownMenu>
               <Link
                 className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-                href="/membership"
+                href="/web3/investors"
+              >
+                Invest
+              </Link>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="/web3/membership"
               >
                 Membership
               </Link>
               <Link
                 className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-                href="/dashboard/migration"
+                href="/web3/migration"
               >
                 Migration
               </Link>
@@ -339,7 +352,9 @@ export function TopNavBrowser() {
         </Sheet>
       </div>
       <div className="hidden lg:flex  ml-auto">
-        <div><SignIn/></div>
+        <div>
+          <SignIn />
+        </div>
       </div>
     </header>
   );
