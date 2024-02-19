@@ -7,18 +7,18 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-  DropdownMenuContent,
   DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import { Button } from "@/components/ui/button";
 import { JSX, SVGProps } from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import SignIn from "@/components/ui/sign-in";
 
 function ProofOfXIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -60,7 +60,7 @@ function HamIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      style={{ fill: "rgba(0, 0, 0, 1)", transform: "", msFilter: "" }}
+      style={{fill: "rgba(0, 0, 0, 1)", transform: "", msFilter: ""}}
     >
       <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
     </svg>
@@ -71,7 +71,7 @@ export function TopNavBrowser() {
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 ">
       <Link className="mr-6 flex" href="/">
-        <ProofOfXIcon className="h-6 w-6" />
+        <ProofOfXIcon className="h-6 w-6"/>
         <span className="sr-only">Proof of X</span>
       </Link>
 
@@ -247,7 +247,7 @@ export function TopNavBrowser() {
           <SheetTrigger className="flex justify-end " asChild>
             <div className="absolute top-5 right-4 lg:hidden">
               <Button variant="outline">
-                <HamIcon className="h-6 w-6" />
+                <HamIcon className="h-6 w-6"/>
               </Button>
               <span className="sr-only">Toggle navigation menu</span>
             </div>
@@ -267,7 +267,7 @@ export function TopNavBrowser() {
                     variant="link"
                   >
                     Features
-                    <ChevronDownIcon aria-hidden="true" />
+                    <ChevronDownIcon aria-hidden="true"/>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -300,7 +300,7 @@ export function TopNavBrowser() {
                     variant="link"
                   >
                     Resources
-                    <ChevronDownIcon aria-hidden="true" />
+                    <ChevronDownIcon aria-hidden="true"/>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -339,7 +339,7 @@ export function TopNavBrowser() {
         </Sheet>
       </div>
       <div className="hidden lg:flex  ml-auto">
-        <ConnectButton />
+        <div><SignIn/></div>
       </div>
     </header>
   );
