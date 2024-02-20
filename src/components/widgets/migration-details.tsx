@@ -13,7 +13,7 @@ export default function MigrationDetails() {
   return (
     <section key="2" className="w-full">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
-        <Card className="mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <Card className="mx-auto bg-white rounded-xl shadow-md overflow-hidden md:w-[60rem]">
           <CardHeader className="flex items-center space-x-3">
             <Image
               alt="Logo"
@@ -43,7 +43,7 @@ export default function MigrationDetails() {
                   The migration represents a procedure designed to benefit all
                   initial supporters of the protocol. Should you have been
                   present from the outset yet were unable to acquire the minimum
-                  requirement, please direct message @tebayoso on Telegram.
+                  requirement, please direct message <span className="font-bold">@tebayoso</span> on Telegram.
                 </span>
               </div>
             )}
