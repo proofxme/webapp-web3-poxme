@@ -2,17 +2,17 @@
     "features": [
       {
         "slug" : "omni-channel",
-        "title": "OmniChannel",
+        "title": "Unified Credential Management",
         "image": "https://www.svgrepo.com/show/530666/gene-sequence.svg",
         "subtitle":"Connect all your communication protocols in a single place.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+        "description": "Consolidate all your digital credentials in one secure place for streamlined verification"
       },
       {
         "slug" : "no-code-tools",
-        "title": "No Code Tools",
+        "title": "Enhanced Communication Security",
         "image": "https://www.svgrepo.com/show/530458/touch-click.svg",
         "subtitle":"Automate your communications without writing a single line of code.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+        "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications."
       },
       {
         "slug" : "security-and-compliance",

@@ -24,12 +24,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
                                                    width
                                                  }) => {
   return (
-    <div className={`bg-white shadow-lg rounded-lg overflow-hidden md:m-12 sm:h-3/5 md:h-3/4 mb-9 ${width}`}>
+    <div className={`bg-white shadow-lg rounded-lg overflow-hidden md:m-12 sm:h-3/5 md:h-3/6 mb-9 ${width}`}>
       <div className='ml-5 mr-3 flex justify-center items-center'>
         <Image
-          className="w-20 h-20"
+          className=""
           src={image}
           alt={title}
+          width={90}
+          height={90}
         />
         <div className="mt-5 ml-5 mr-3 mb-12">
           <h2 className="text-2xl font-bold mb-7 mt-4">{title}</h2>
