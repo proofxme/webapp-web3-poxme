@@ -10,7 +10,7 @@ export default function Migration() {
     <main className="flex min-h-screen flex-col h-auto bg-gray-50">
       <div className="flex flex-col items-center justify-center w-full h-full px-12">
         <div className=" text-center w-full">
-          <h2 className="text-5xl text-center font-bold tracking-tighter mt-9 mb-4">
+          <h2 className="text-5xl text-center font-bold tracking-tighter mt-9 mb-2">
             Migration Center
           </h2>
           <p
@@ -59,7 +59,7 @@ export default function Migration() {
             This is an <b>irreversible migration process.</b>
           </p>
         </div>
-        <div className="mt-12 lg:w-full">
+        <div className="mt-12 pt-5 lg:w-full">
           <ul
             className="relative m-0 w-full list-none p-0 transition-[height] duration-200 ease-in-out mr-10"
             data-te-stepper-init="true"
@@ -81,9 +81,9 @@ export default function Migration() {
                   </span>
                 <span
                   data-te-stepper-head-text-ref=""
-                  className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300"
+                  className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold"
                 >
-                    <strong>Withdraw the tokens from the staking</strong>
+                    Withdraw the tokens from the staking
                   </span>
               </div>
               <div className="w-full">
@@ -107,7 +107,7 @@ export default function Migration() {
                   </span>
                 <span
                   data-te-stepper-head-text-ref="true"
-                  className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300"
+                  className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold"
                 >
                     <strong> Migrate the tokens to the new Protocol</strong>
                   </span>
@@ -129,7 +129,7 @@ export default function Migration() {
                   </span>
                 <span
                   data-te-stepper-head-text-ref="true"
-                  className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300"
+                  className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold"
                 >
                     <strong>You are done!</strong>
                   </span>

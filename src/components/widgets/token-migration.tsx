@@ -254,7 +254,7 @@ export default function TokenMigration() {
   };
 
   return (
-    <div>
+    <div key="3">
       <Card className="mb-4 my-3">
         <CardHeader>
           <h3 className="text-lg font-semibold">
