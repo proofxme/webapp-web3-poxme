@@ -59,7 +59,7 @@ export default function Migration() {
             This is an <b>irreversible migration process.</b>
           </p>
         </div>
-        <div className="mt-12 pt-5 lg:w-full">
+        <div className="mt-12 pt-12 w-3/4">
           <ul
             className="relative m-0 w-full list-none p-0 transition-[height] duration-200 ease-in-out mr-10"
             data-te-stepper-init="true"
@@ -67,7 +67,7 @@ export default function Migration() {
           >
             <li
               data-te-stepper-step-ref="true"
-              className="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-neutral-600"
+              className="relative h-fit after:absolute after:left-[3.0rem] after:top-[3.5rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#4e77d4] after:content-[''] dark:after:bg-neutral-600"
             >
               <div
                 data-te-stepper-head-ref=""
@@ -75,7 +75,7 @@ export default function Migration() {
               >
                   <span
                     data-te-stepper-head-icon-ref="true"
-                    className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]"
+                    className="mr-6 flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full bg-[#4e77d4] text-lg font-medium text-[#ffffff]"
                   >
                     1
                   </span>
@@ -93,7 +93,7 @@ export default function Migration() {
             </li>
             <li
               data-te-stepper-step-ref="true"
-              className="relative h-fit after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#e0e0e0] after:content-[''] dark:after:bg-neutral-600"
+              className="relative h-fit after:absolute after:left-[3.0rem] after:top-[3.5rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#4e77d4] after:content-[''] dark:after:bg-neutral-600"
             >
               <div
                 data-te-stepper-head-ref="true"
@@ -101,7 +101,7 @@ export default function Migration() {
               >
                   <span
                     data-te-stepper-head-icon-ref="true"
-                    className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]"
+                    className="mr-6 flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full bg-[#4e77d4] text-lg font-medium text-[#ffffff]"
                   >
                     2
                   </span>
@@ -109,7 +109,7 @@ export default function Migration() {
                   data-te-stepper-head-text-ref="true"
                   className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold"
                 >
-                    <strong> Migrate the tokens to the new Protocol</strong>
+                    Migrate the tokens to the new Protocol
                   </span>
               </div>
               <div className="w-full">
@@ -123,7 +123,7 @@ export default function Migration() {
               >
                   <span
                     data-te-stepper-head-icon-ref="true"
-                    className="mr-3 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]"
+                    className="mr-6 flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full bg-[#ebedef] bg-[#4e77d4] text-lg font-medium text-[#ffffff]"
                   >
                     3
                   </span>
@@ -131,7 +131,7 @@ export default function Migration() {
                   data-te-stepper-head-text-ref="true"
                   className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold"
                 >
-                    <strong>You are done!</strong>
+                    You are done!
                   </span>
               </div>
             </li>
