@@ -7,7 +7,8 @@ import * as Sentry from "@sentry/nextjs";
 
 Sentry.init({
   dsn: "https://7abeb601ecc9eb04267583da31f014f4@o4506530285289472.ingest.sentry.io/4506530286141440",
-  enabled: process.env.NODE_ENV === 'production',
+  // disable in local
+  enabled: process.env.NODE_ENV === "production",
 
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1,

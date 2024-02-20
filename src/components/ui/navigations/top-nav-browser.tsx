@@ -7,18 +7,18 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-  DropdownMenuContent,
   DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import { Button } from "@/components/ui/button";
 import { JSX, SVGProps } from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import SignIn from "@/components/ui/sign-in";
 
 function ProofOfXIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -84,7 +84,7 @@ export function TopNavBrowser() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                    href="#"
+                    href="/features/omni-channel"
                   >
                     <div className="text-sm font-medium leading-none group-hover:underline">
                       OmniChannel
@@ -98,7 +98,7 @@ export function TopNavBrowser() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                    href="#"
+                    href="/features/no-code-tools"
                   >
                     <div className="text-sm font-medium leading-none group-hover:underline">
                       No Code Tools
@@ -112,7 +112,7 @@ export function TopNavBrowser() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                    href="#"
+                    href="/features/security-and-compliance"
                   >
                     <div className="text-sm font-medium leading-none group-hover:underline">
                       Security & Compliance
@@ -125,7 +125,7 @@ export function TopNavBrowser() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                    href="#"
+                    href="/features/web3"
                   >
                     <div className="text-sm font-medium leading-none group-hover:underline">
                       Web3
@@ -206,11 +206,18 @@ export function TopNavBrowser() {
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
-
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-              href="/membership"
+              href="/web3/investors"
+            >
+              Invest
+            </Link>
+          </NavigationMenuLink>
+          <NavigationMenuLink asChild>
+            <Link
+              className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+              href="/web3/membership"
             >
               Membership
             </Link>
@@ -218,7 +225,7 @@ export function TopNavBrowser() {
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-              href="/dashboard/migration"
+              href="/web3/migration"
             >
               Migration
             </Link>
@@ -323,13 +330,19 @@ export function TopNavBrowser() {
               </DropdownMenu>
               <Link
                 className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-                href="/membership"
+                href="/web3/investors"
+              >
+                Invest
+              </Link>
+              <Link
+                className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
+                href="/web3/membership"
               >
                 Membership
               </Link>
               <Link
                 className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
-                href="/dashboard/migration"
+                href="/web3/migration"
               >
                 Migration
               </Link>
@@ -350,7 +363,9 @@ export function TopNavBrowser() {
         </Sheet>
       </div>
       <div className="hidden lg:flex  ml-auto">
-        <ConnectButton />
+        <div>
+          <SignIn />
+        </div>
       </div>
     </header>
   );

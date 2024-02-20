@@ -58,16 +58,16 @@ export default function Questions() {
   return (
     <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-2xl font-semibold text-gray-900 text-center">Frequently Asked Questions</h1>
-      <div className="mt-6 space-y-6 w-full">
+      <div className="mt-6 space-y-6">
         {questions.map((question, index, array) => (
           <Collapsible className="border rounded-md shadow-sm" key={index}>
-            <CollapsibleTrigger className="flex items-center justify-between p-4">
+            <CollapsibleTrigger className="flex items-center justify-between p-4 max-w-full md:max-w-lg">
               <h2 className="text-lg font-medium text-gray-700">{question.question}</h2>
               <Button size="sm" variant="ghost">
                 <ArrowDownIcon className="w-4 h-4"/>
               </Button>
             </CollapsibleTrigger>
-            <CollapsibleContent className="p-4">
+            <CollapsibleContent className="p-4 max-w-full md:max-w-lg">
               <p className="text-sm text-gray-500">
                 {question.answer}
               </p>
