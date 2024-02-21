@@ -62,7 +62,7 @@ export default function featurePage({ params: { slug } }: { params: { slug: stri
       </div>
     </section>
       <div className="flex justify-center items-center h-auto p-12 bg-gray-50 mt-12">
-          <List/>     
+          <List features={feature.cards}/>     
       </div></>
   );
 }

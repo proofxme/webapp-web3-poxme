@@ -1,13 +1,13 @@
 "use client";
 
-import featuresJson from '../featuresData.json';
+import { FC } from 'react';
 import FeatureCard from '../components/Card';
 
-export default function List() {
+const List:FC<{features:any}> = ( { features } ) =>{
     return (
         <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 mb-12 pb-12">
-                {featuresJson.features.map((feature, index) => (
+                {features?.map((feature, index) => (
                     <div key={index} className="flex justify-center">
                         <FeatureCard
                             key={index}
@@ -27,3 +27,5 @@ export default function List() {
     );
 }
 
+
+export default List;

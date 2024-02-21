@@ -1,32 +1,47 @@
 {
-    "features": [
-      {
-        "slug" : "omni-channel",
-        "title": "Unified Credential Management",
-        "image": "https://www.svgrepo.com/show/530666/gene-sequence.svg",
-        "subtitle":"Connect all your communication protocols in a single place.",
-        "description": "Consolidate all your digital credentials in one secure place for streamlined verification"
-      },
-      {
-        "slug" : "no-code-tools",
-        "title": "Enhanced Communication Security",
-        "image": "https://www.svgrepo.com/show/530458/touch-click.svg",
-        "subtitle":"Automate your communications without writing a single line of code.",
-        "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications."
-      },
-      {
-        "slug" : "security-and-compliance",
-        "title": "Security & Compliance",
-        "image": "https://www.svgrepo.com/show/530437/safe-and-stable.svg",
-        "subtitle":"Keep your data secure with our security features.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
-      },
-      {
-        "slug" : "web3",
-        "title": "Web3",
-        "image": "https://www.svgrepo.com/show/530454/system-settings.svg",
-        "subtitle":"Protect your communications using the best of blockchain.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
-      }
-    ]
-  }
+  "features": [
+    {
+      "slug": "omni-channel",
+      "title": "Unified Credential Management",
+      "image": "https://www.svgrepo.com/show/530666/gene-sequence.svg",
+      "subtitle": "Connect all your communication protocols in a single place.",
+      "description": "Consolidate all your digital credentials in one secure place for streamlined verification",
+      "cards": [
+        {
+          "title": "Enhanced Communication Security 1",
+          "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
+          "icon": "An image depicting secure communication."
+        },{
+          "title": "Enhanced Communication Security 2",
+          "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
+          "icon": "An image depicting secure communication."
+        },{
+          "title": "Enhanced Communication Security 3",
+          "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
+          "icon": "An image depicting secure communication."
+        }
+      ]
+    },
+    {
+      "slug": "no-code-tools",
+      "title": "Enhanced Communication Security",
+      "image": "https://www.svgrepo.com/show/530458/touch-click.svg",
+      "subtitle": "Automate your communications without writing a single line of code.",
+      "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications."
+    },
+    {
+      "slug": "security-and-compliance",
+      "title": "Security & Compliance",
+      "image": "https://www.svgrepo.com/show/530437/safe-and-stable.svg",
+      "subtitle": "Keep your data secure with our security features.",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+    },
+    {
+      "slug": "web3",
+      "title": "Web3",
+      "image": "https://www.svgrepo.com/show/530454/system-settings.svg",
+      "subtitle": "Protect your communications using the best of blockchain.",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
+    }
+  ]
+}
