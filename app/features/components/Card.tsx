@@ -8,8 +8,7 @@ interface FeatureCardProps {
   slug: string;
   title: string;
   description: string;
-  image: string;
-  subtitle: string;
+  icon: string;
   showButton: boolean;
   width: string;
 }
@@ -18,9 +17,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
                                                    slug,
                                                    title,
                                                    description,
-                                                   image,
-                                                   subtitle,
-                                                   showButton = true,
+                                                   icon,
+                                                   showButton,
                                                    width
                                                  }) => {
   return (
@@ -28,7 +26,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       <div className='ml-5 mr-3 flex justify-center items-center'>
         <Image
           className=""
-          src={image}
+          src={icon}
           alt={title}
           width={90}
           height={90}
@@ -36,7 +34,6 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         <div className="mt-5 ml-5 mr-3 mb-12">
           <h2 className="text-2xl font-bold mb-7 mt-4">{title}</h2>
           <div className='border-l-2 border-blue-300 pl-5'>
-            <p className='sm:text-base md:text-lg text-gray-500 leading-relaxed'>{subtitle}</p>
             <p className="text-base text-gray-700 mb-6 mt-4">{description}</p>
             {showButton &&
               <Link className='inline-block text-blue-500 hover:text-blue-600 transition duration-300 ease-in-out m-5'

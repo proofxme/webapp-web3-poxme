@@ -2,23 +2,22 @@
   "features": [
     {
       "slug": "omni-channel",
-      "title": "Unified Credential Management",
-      "image": "https://www.svgrepo.com/show/530666/gene-sequence.svg",
-      "subtitle": "Connect all your communication protocols in a single place.",
-      "description": "Consolidate all your digital credentials in one secure place for streamlined verification",
+      "title": "Empower Your Digital Identity with POXME Omnichannel Solutions",
+      "subtitle": "Aggregate and Secure Your Credentials for Verified Online Interactions",
+      "buttonText": "Explore How It Works",
       "cards": [
         {
-          "title": "Enhanced Communication Security 1",
-          "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
-          "icon": "An image depicting secure communication."
+          "title": "Unified Credential Management",
+          "description": "Consolidate all your digital credentials in one secure place for streamlined verification.",
+          "icon": "/images/credential-management.svg"
         },{
-          "title": "Enhanced Communication Security 2",
+          "title": "Enhanced Communication Security",
           "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
-          "icon": "An image depicting secure communication."
+          "icon": "/images/security-connection.svg"
         },{
-          "title": "Enhanced Communication Security 3",
-          "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
-          "icon": "An image depicting secure communication."
+          "title": "Automated Verification Process",
+          "description": "Leverage advanced filtering and verification for efficient and trustworthy communication.",
+          "icon": "/images/verification-process.svg"
         }
       ]
     },
