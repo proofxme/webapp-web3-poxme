@@ -1,30 +1,28 @@
 "use client";
 
-import Link from 'next/link';
-import featuresJson from '../featuresData.json';
+import { FC } from 'react';
 import FeatureCard from '../components/Card';
 
-export default function List() {
+const List: FC<{ features: any[] }> = ({ features }) => {
     return (
-        <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 mb-12 pb-12">
-                {featuresJson.features.map((feature, index) => (
-                    <div key={index} className="flex justify-center"> {/* Agregar la clase flex y justify-center para centrar las cards */}
+        <div className="container mx-auto w-full p-5 mt-8 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 mb-11 mt-8 gap-8 sm:gap-10">
+                {features?.map((feature, index) => (
+                    <div key={index} className="flex justify-center">
                         <FeatureCard
                             key={index}
                             title={feature.title}
-                            subtitle={feature.subtitle}
-                            image={feature.image}
-                            description={""}
-                            showButton
+                            icon={feature.icon}
+                            description={feature.description}
                             slug={feature.slug}
-                            width={"w-10/12"}
+                            width={"w-11/12"}
                         />
                     </div>
                 ))}
             </div>
         </div>
-
     );
 }
 
+
+export default List;

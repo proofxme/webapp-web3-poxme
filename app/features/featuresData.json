@@ -1,32 +1,40 @@
 {
-    "features": [
-      {
-        "slug" : "omni-channel",
-        "title": "OmniChannel",
-        "image": "https://www.svgrepo.com/show/530666/gene-sequence.svg",
-        "subtitle":"Connect all your communication protocols in a single place.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
-      },
-      {
-        "slug" : "no-code-tools",
-        "title": "No Code Tools",
-        "image": "https://www.svgrepo.com/show/530458/touch-click.svg",
-        "subtitle":"Automate your communications without writing a single line of code.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
-      },
-      {
-        "slug" : "security-and-compliance",
-        "title": "Security & Compliance",
-        "image": "https://www.svgrepo.com/show/530437/safe-and-stable.svg",
-        "subtitle":"Keep your data secure with our security features.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
-      },
-      {
-        "slug" : "web3",
-        "title": "Web3",
-        "image": "https://www.svgrepo.com/show/530454/system-settings.svg",
-        "subtitle":"Protect your communications using the best of blockchain.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ea aperiam, quia vitae ad et ullam totam eum maiores voluptas beatae animi cupiditate facilis minus. Laboriosam reiciendis eaque fuga dolorem."
-      }
-    ]
-  }
+  "features": [
+    {
+      "slug": "omni-channel",
+      "title": "Empower Your Digital Identity with POXME Omnichannel Solutions",
+      "subtitle": "Aggregate and Secure Your Credentials for Verified Online Interactions",
+      "buttonText": "Explore How It Works",
+      "useCaseTitle" : "Seamless and Secure Business Communications",
+      "useCaseText" : "Discover how a multinational corporation streamlined its communication channels across various platforms using POXME, ensuring every message received and sent was authenticated and spam-free. This transformation led to a 50% reduction in time spent managing emails and a significant increase in trust and efficiency in business communications.",
+      "cards": [
+        {
+          "title": "Unified Credential Management",
+          "description": "Consolidate all your digital credentials in one secure place for streamlined verification.",
+          "icon": "/images/credential-management.svg"
+        },{
+          "title": "Enhanced Communication Security",
+          "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
+          "icon": "/images/security-connection.svg"
+        },{
+          "title": "Automated Verification Process",
+          "description": "Leverage advanced filtering and verification for efficient and trustworthy communication.",
+          "icon": "/images/verification-process.svg"
+        }
+      ],
+      "highlightsCards":[{
+        "title" : "Empower your digital presence",
+        "text" : "with a single, secure identity across all platforms."
+      },{
+        "title" : "Reduce unverified communications",
+        "text" : "by focusing only on authentic interactions."
+      },{
+        "title" : "Enhance email and messaging systems",
+        "text" : "with advanced filtering and spam detection."
+      },{
+        "title" : "Utilize the POXME Token system",
+        "text" : "for secure, private identity management."
+      }]
+    }
+  ]
+}
