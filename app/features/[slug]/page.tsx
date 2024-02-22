@@ -3,6 +3,7 @@ import featuresData from '../featuresData.json';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import List from '../components/List';
+import HighlightsSection from '../components/HighlightSection';
 
 export async function generateStaticParams() {
   return featuresData.features.map((feature) => ({
@@ -19,12 +20,12 @@ export default function featurePage({ params: { slug } }: { params: { slug: stri
 
   return (
     <><section className="bg-white mb-12">
-      <div className="grid max-w-screen-xl  mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12 mt-10">
-        <div className="mr-auto place-self-center lg:col-span-7 text-left mt-7 mb-5">
+      <div className="grid max-w-screen-xl mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12 mt-10 mb-5">
+        <div className="mr-auto place-self-center lg:col-span-7 text-left mt-7 mb-5 text-center sm:text-left">
           <span className="relative inline-block">
-          {renderSVG()}
+            {renderSVG()}
           </span>
-          <h1 className="relative max-w-2xl mb-4 text-5xl font-extrabold tracking-tight leading-none dark:text-white">{feature.title}</h1>
+          <h1 className="relative max-w-2xl mb-4 text-4xl lg:text-6xl font-extrabold tracking-tight leading-none dark:text-white">{feature.title}</h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">{feature.subtitle}</p>
           <Button>{feature.buttonText}</Button>
         </div>
@@ -39,9 +40,24 @@ export default function featurePage({ params: { slug } }: { params: { slug: stri
         </div>
       </div>
     </section>
-      <div className="flex justify-center items-center h-auto p-12 bg-gray-50 mt-12">
-          <List features={feature.cards}/>     
-      </div></>
+      <section className="flex justify-center items-center h-auto bg-gray-50">
+        <List features={feature.cards} />
+      </section>
+      <section className="flex mx-auto mt-12 mb-8 text-center justify-content-center align-items-center">
+        <div className="mt-12 mb-5 p-5">
+          <h1 className="relative max-w-2xl mb-4 text-4xl lg:text-5xl font-extrabold tracking-tight leading-none dark:text-white">{feature.useCaseTitle}</h1>
+          <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-12">{feature.useCaseText}</p>
+        </div>
+        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <span className="relative inline-block mt-6">
+            {renderSVG()}
+          </span>
+        </div>
+      </section>
+      <section className="py-16 bg-gray-100">
+      <HighlightsSection highlights={feature.highlightsCards} />
+      </section>
+    </>
   );
 }
 
