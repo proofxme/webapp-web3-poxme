@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import List from "./components/List";
 
 export const metadata: Metadata = {
   title: "Proof of X | Features",
@@ -43,7 +42,6 @@ export default function FeaturesPage() {
           </div>
         </div>
       </section>
-      <List />
     </main>
   );
 }

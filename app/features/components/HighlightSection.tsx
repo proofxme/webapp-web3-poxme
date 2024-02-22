@@ -1,4 +1,3 @@
-import { list } from 'postcss';
 import React, { FC } from 'react';
 
 
@@ -26,7 +25,7 @@ const listHighlightsCards: FC<{ highlights: any }> = ({ highlights }) => {
   );
 };
 
-const HighlightCard = ({ title, description }) => {
+const HighlightCard: FC<{ title: string; description: string }> = ({ title, description }) => {
   return (
     <div className="bg-white overflow-hidden shadow rounded-lg w-full text-center h-full sm:w-6/12">
       <div className="p-6">
