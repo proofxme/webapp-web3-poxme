@@ -1,11 +1,9 @@
 "use client";
 
-import Link from 'next/link';
 import React from 'react';
 import Image from "next/image";
 
 interface FeatureCardProps {
-  slug: string;
   title: string;
   description: string;
   icon: string;
@@ -13,7 +11,6 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({
-  slug,
   title,
   description,
   icon,
@@ -43,17 +40,3 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 }
 
 export default FeatureCard;
-
-
-const ArrowIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6 inline-block ml-2 text-blue-500"
-    fill="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-      clip-rule="evenodd"></path>
-  </svg>
-);
