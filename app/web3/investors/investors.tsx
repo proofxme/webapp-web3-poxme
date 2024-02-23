@@ -7,6 +7,9 @@ import poxmeToken from "@/contracts/abi/poxmeToken.json";
 import addresses from "@/contracts/addresses";
 import { Button } from "@/components/ui/button";
 import { getTokenPrice } from "@/utils";
+import Image from "next/image";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
 export default function Investors() {
   const { data: poxmeSupply } = useReadContract({
@@ -16,12 +19,11 @@ export default function Investors() {
     args: [],
   });
 
-  useEffect(() => {
-    const s = document.createElement("script");
-    s.setAttribute("src", "https://platform.twitter.com/widgets.js");
-    s.setAttribute("async", "true");
-    document.head.appendChild(s);
-  }, []);
+  const CC = dynamic(
+    () =>
+      import("@/components/copy-clipboard").then((mod) => mod.CopyClipboard),
+    { ssr: false }
+  );
 
   const [data, setData] = useState<number>(0);
   const [isLoading, setLoading] = useState(true);
@@ -33,37 +35,6 @@ export default function Investors() {
     });
   }, []);
 
-  useEffect(() => {
-    var configuration = {
-      from: "BNB",
-      to: "0xb469783b6b3615180da05571beec716b639cbe85",
-      fromChain: "BSC",
-      toChain: "BSC",
-      amount: 1,
-      iframe: "flex",
-      hideSelectionFrom: false,
-      hideSelectionTo: true,
-      tokenSearch: true,
-      rubicLink: true,
-      theme: "light",
-      background: "#3ea366",
-      injectTokens: {
-        bsc: ["0xb469783b6b3615180da05571beec716b639cbe85"],
-      },
-      slippagePercent: {
-        instantTrades: 2,
-        crossChain: 5,
-      },
-    };
-
-    // prevent accidental changes to the object, for example, when re-creating a widget for another theme
-    Object.freeze(configuration);
-
-    // create widget
-    // @ts-ignore
-    rubicWidget.init(configuration);
-  }, []);
-
   const marketCap = "Currently unavailable";
 
   return (
@@ -71,7 +42,7 @@ export default function Investors() {
       <>
         <div className="w-full py-12 lg:py-24 xl:py-32">
           <div className="container px-4 md:px-6">
-            <div className="grid items-start gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_700px]">
+            <div className="grid items-start gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 xl:grid-cols-[1fr_800px]">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -85,11 +56,13 @@ export default function Investors() {
                 </div>
               </div>
               <div className="grid gap-2">
-                <dl className="grid grid-cols-2 gap-1 text-sm font-medium">
+                <dl className="grid lg:grid-cols-2 gap-1 text-sm font-medium">
                   <dt>BNB Chain contract:</dt>
-                  <dd className="max-w-[600px] overflow-auto">
+                  <dd className="flex gap-2">
                     {addresses(56)["PoxmeToken"]}
+                    <CC content="0xb469783b6b3615180da05571beec716b639cbe85" />
                   </dd>
+
                   <dt>Current Supply</dt>
                   <dd>
                     {getBigNumberCurrencyLabel(
@@ -141,8 +114,35 @@ export default function Investors() {
                 Actually you can invest buying $POXME on our liquidity pools.
               </p>
             </div>
-            <div className="max-w-3xl mx-auto grid gap-8 my-12 ">
-              <div id="rubic-widget-root" className="flex justify-center"></div>
+          </div>
+          <div className="max-w-3xl mx-auto grid gap-8 my-12 lg:grid-cols-2">
+            <div className="space-y-2">
+              <Link
+                href="https://app.1inch.io/#/56/simple/swap/USDT/POXME"
+                target="_blank"
+              >
+                <Image
+                  className="hover:scale-110"
+                  src="/images/1inch_color_black.png"
+                  width={500}
+                  height={500}
+                  alt="1INCH logo"
+                />
+              </Link>
+            </div>
+            <div className="space-y-2 items-center justify-center flex">
+              <Link
+                target="_blank"
+                href="https://bscscan.com/token/0xb469783b6b3615180da05571beec716b639cbe85"
+              >
+                <Image
+                  className="hover:scale-110"
+                  width={368}
+                  height={65}
+                  src="/images/bnb-chain-full-binance-smart-chain-logo.png"
+                  alt="BNB Chain logo"
+                />
+              </Link>
             </div>
           </div>
         </section>
