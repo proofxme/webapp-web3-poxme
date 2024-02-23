@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
       "",
 
-    url: "https://pox.me/dashboard/omni-channel",
+    url: "https://pox.me/features/omni-channel",
     siteName: "Proof of X",
     images: [
       {
