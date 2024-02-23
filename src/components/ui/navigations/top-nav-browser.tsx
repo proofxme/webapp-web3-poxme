@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { JSX, SVGProps } from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import SignIn from "@/components/ui/sign-in";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 function ProofOfXIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -249,10 +250,13 @@ export function TopNavBrowser() {
           </NavigationMenuLink>
         </NavigationMenuList>
       </NavigationMenu>
+      <div className="flex mr-2 ml-auto lg:hidden">
+        <ConnectButton />
+      </div>
       <div className="flex lg:hidden">
         <Sheet>
-          <SheetTrigger className="flex justify-end " asChild>
-            <div className="absolute top-5 right-4 lg:hidden">
+          <SheetTrigger className="flex justify-end ml-auto " asChild>
+            <div className="lg:hidden">
               <Button variant="outline">
                 <HamIcon className="h-6 w-6" />
               </Button>
@@ -351,6 +355,7 @@ export function TopNavBrowser() {
           </SheetContent>
         </Sheet>
       </div>
+
       <div className="hidden lg:flex  ml-auto">
         <div>
           <SignIn />
