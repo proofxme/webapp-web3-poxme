@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pox.me/'),
   title: "Proof of X | Features",
   description:
     "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
@@ -34,7 +35,8 @@ export default function FeaturesPage() {
               <h2 className="text-3xl font-bold sm:text-5xl">
                 Features
               </h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p
+                className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 We built an identity system combining the best of blockchain and email.
                 As decentralized and secured as you want, as easy to use as you need.
               </p>

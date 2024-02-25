@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Investors from "./investors";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pox.me/'),
   title: "Proof of X | Investors",
   description:
     "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
 export default function InvestorsPage() {
   return (
     <>
-      <Investors />
+      <Investors/>
     </>
   );
 }

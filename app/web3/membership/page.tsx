@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Membership from "./membership";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pox.me/'),
   title: "Proof of X | Membership",
   description:
     "Get unlimited access to all our premium features with a lifetime membership.",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
 export default function MembershipPage() {
   return (
     <>
-      <Membership />
+      <Membership/>
     </>
   );
 }

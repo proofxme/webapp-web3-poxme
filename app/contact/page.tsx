@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Contact from "./contact";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pox.me/'),
   title: "Proof of X | Contact",
   description:
     "Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Contact />
+      <Contact/>
     </>
   );
 }
