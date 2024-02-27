@@ -84,15 +84,6 @@
   background-size: fixed;
   z-index: -999;
 }
-@media screen and (max-width: 650px){
-  .headline {
-    left: 20px;
-  } 
-  .clipped {
-    clip-path: none;
-    max-height: 300px !important;
-  }
-}
 
 .wave-container {
   position: relative;
