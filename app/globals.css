@@ -76,6 +76,24 @@
   }
 }
 
+.clipped {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 20% 100%);
+  background-image: url('https://i.imgur.com/KQuCkLE.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: fixed;
+  z-index: -999;
+}
+@media screen and (max-width: 650px){
+  .headline {
+    left: 20px;
+  } 
+  .clipped {
+    clip-path: none;
+    max-height: 300px !important;
+  }
+}
+
 .wave-container {
   position: relative;
   padding: -20px;
