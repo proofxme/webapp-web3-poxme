@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
       "During the migration period, you can deposit $EULER to get the new token and claim your membership NFTs.",
 
-    url: "https://pox.me/dashboard/migration",
+    url: "https://pox.me/investors/migration",
     siteName: "Proof of X",
     images: [
       {
