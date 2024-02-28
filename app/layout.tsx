@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -43,10 +42,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Script
-        src="https://widgets.rubic.exchange/iframe/bundle.min.js"
-        strategy="beforeInteractive"
-      />
       <body className={inter.className}>
         <Providers>{children}</Providers>
         <Analytics />
