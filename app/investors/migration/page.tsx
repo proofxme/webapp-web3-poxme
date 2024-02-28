@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Migration from "./migration";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pox.me/'),
   title: "Proof of X | Migration center",
   description:
     "During the migration period, you can deposit $EULER to get the new token and claim your membership NFTs.",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
 export default function MigrationPage() {
   return (
     <>
-      <Migration />
+      <Migration/>
     </>
   );
 }

@@ -16,6 +16,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import React, { JSX, SVGProps } from "react";
 import Image from "next/image";
+import IsoLogo from "@/components/ui/isologo";
+import SignOut from "@/components/ui/sign-out";
 
 export default function Component() {
   return (
@@ -24,8 +26,8 @@ export default function Component() {
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-[60px] items-center border-b px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
-              <Package2Icon className="h-6 w-6"/>
-              <span className="">Acme Inc</span>
+              <IsoLogo className="h-6 w-6"/>
+              <span className="">Proof of X</span>
             </Link>
             <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
               <BellIcon className="h-4 w-4"/>
@@ -145,7 +147,7 @@ export default function Component() {
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator/>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem><SignOut/></DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
