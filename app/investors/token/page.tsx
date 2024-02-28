@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   description:
     "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
   openGraph: {
-    title: "Proof of X | Investors",
+    title: "Proof of X | Token",
     description:
       "We're excited to share what we're working on. Here are the features and improvements you can expect in the coming months.",
 
-    url: "https://pox.me/investors",
+    url: "https://pox.me/investors/token",
     siteName: "Proof of X",
     images: [
       {

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
       "Get unlimited access to all our premium features with a lifetime membership.",
 
-    url: "https://pox.me/membership",
+    url: "https://pox.me/investors/membership",
     siteName: "Proof of X",
     images: [
       {
