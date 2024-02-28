@@ -137,9 +137,7 @@ export default function Migration() {
             </li>
           </ul>
         </div>
-        <div className="lg:flex pt-14 relative flex place-items-center m-5">
-          <Questions/>
-        </div>
+        <Questions/>
       </div>
     </main>
   );
