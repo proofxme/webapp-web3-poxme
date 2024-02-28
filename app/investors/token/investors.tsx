@@ -12,7 +12,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 export default function Investors() {
-  const { data: poxmeSupply } = useReadContract({
+  const {data: poxmeSupply} = useReadContract({
     address: addresses(56)["PoxmeToken"],
     abi: poxmeToken.abi,
     functionName: "totalSupply",
@@ -22,7 +22,7 @@ export default function Investors() {
   const CC = dynamic(
     () =>
       import("@/components/copy-clipboard").then((mod) => mod.CopyClipboard),
-    { ssr: false }
+    {ssr: false}
   );
 
   const [data, setData] = useState<number>(0);
@@ -40,7 +40,7 @@ export default function Investors() {
   return (
     <div>
       <>
-        <div className="w-full py-12 lg:py-24 xl:py-32">
+        <section className="w-full py-12 lg:py-24 xl:py-32">
           <div className="container px-4 md:px-6">
             <div className="grid items-start gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 xl:grid-cols-[1fr_800px]">
               <div className="flex flex-col justify-center space-y-4">
@@ -48,7 +48,8 @@ export default function Investors() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                     Proof of X
                   </h1>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                  <p
+                    className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                     We built an identity system combining the best of blockchain
                     and email. As decentralized and secured as you want, as easy
                     to use as you need.
@@ -60,7 +61,7 @@ export default function Investors() {
                   <dt>BNB Chain contract:</dt>
                   <dd className="flex gap-2">
                     {addresses(56)["PoxmeToken"]}
-                    <CC content="0xb469783b6b3615180da05571beec716b639cbe85" />
+                    <CC content="0xb469783b6b3615180da05571beec716b639cbe85"/>
                   </dd>
 
                   <dt>Current Supply</dt>
@@ -79,9 +80,10 @@ export default function Investors() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
         <section className="w-full border-t">
-          <div className="container grid max-w-5xl items-start gap-12 px-4 py-12 md:grid-cols-2 md:px-6 md:gap-24 lg:py-24">
+          <div
+            className="container grid max-w-5xl items-start gap-12 px-4 py-12 md:grid-cols-2 md:px-6 md:gap-24 lg:py-24">
             <div className="flex flex-col gap-4">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 About Proof of X
