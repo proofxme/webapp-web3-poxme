@@ -77,7 +77,7 @@
 }
 
 .clipped {
-  clip-path: polygon(100% 0, 100% 0, 100% 100%, 20% 100%);
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 35% 100%);
   background-image: url('https://i.imgur.com/KQuCkLE.jpeg');
   background-repeat: no-repeat;
   background-position: center;

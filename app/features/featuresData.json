@@ -35,6 +35,29 @@
         "title" : "Utilize the POXME Token system",
         "text" : "for secure, private identity management."
       }]
+    },
+    {
+      "slug": "security-and-compliance",
+      "title": "Empower Your Digital Identity with POXME Omnichannel Solutions",
+      "subtitle": "Aggregate and Secure Your Credentials for Verified Online Interactions",
+      "buttonText": "Explore How It Works",
+      "useCaseTitle" : "Seamless and Secure Business Communications",
+      "useCaseText" : "Discover how a multinational corporation streamlined its communication channels across various platforms using POXME, ensuring every message received and sent was authenticated and spam-free. This transformation led to a 50% reduction in time spent managing emails and a significant increase in trust and efficiency in business communications.",
+      "cards": [
+        {
+          "title": "Customizable Data Encryption",
+          "description": "Personalize your security. Encrypt your data according to your specific needs, ensuring maximum privacy and protection.",
+          "icon": "/images/data-encryption.svg"
+        },{
+          "title": "Diverse Storage Solutions",
+          "description": "Choose your preferred storage method. From personal devices to blockchain storages, our platform supports various options for you to securely store your data.",
+          "icon": "/images/storage-icon.svg"
+        },{
+          "title": "PGP: The Gold Standard",
+          "description": "Employ PGP technology for unmatched security in signing and encrypting your data and communications.",
+          "icon": "/images/shield-cross.svg"
+        }
+      ]
     }
   ]
 }
