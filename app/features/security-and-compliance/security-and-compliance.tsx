@@ -115,7 +115,7 @@ export default function SecurityComplianceFeature() {
                         </h2>
                         <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-6">Dive deeper into the world of PGP encryption. Discover how our cutting-edge technology ensures the integrity and confidentiality of your digital interactions.</p>
                     </div>
-                    <Image className="border-dashed border-2 border-indigo-200" src={"https://www.goanywhere.com/sites/default/files/goanywhere/ga-mft-open-pgp-diagram-2021.png"} alt={"Encryption process image"}></Image>
+                    <Image width="800" height="1000" className="border-dashed border-2 border-indigo-200" src="/images/encryption-process.png" alt={"Encryption process image"}></Image>
                 </div>
             </section>
 
