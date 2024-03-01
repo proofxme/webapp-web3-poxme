@@ -11,27 +11,27 @@ const feature = featuresData.features.find(feature => feature.slug === slug);
 export default function SecurityComplianceFeature() {
     return (
         <><section className="relative h-auto w-full mx-auto mt-8">
-            <div className="flex items-center text-center w-full mb-12">
-                <div className="pb-12 mb-10 ml-12 pl-12">
+            <div className="mb-12 text-left">
+                <div className="pb-12 mb-12 lg:ml-12 lg:pl-12">
                     <Image
                         alt="Image"
-                        className="mx-auto overflow-hidden"
+                        className=" overflow-hidden ml-5"
                         height="130"
                         src="/images/squaredecoration.svg"
                         width="160"
                     />
                     <div className="m-8">
-                        <h1 className="max-w-2xl mb-4 text-4xl lg:text-6xl font-extrabold tracking-tight leading-none dark:text-white mt-8">
+                        <h1 className="max-w-2xl mb-4 text-4xl lg:text-6xl font-extrabold tracking-tight leading-none dark:text-white mt-8 sm:bg-white">
                             Embrace the Future of Digital Identity Security
                         </h1>
-                        <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Join the revolution of secure, compliant, and user-centric digital identity management.</p>
-                        <Button className="">Explore the Future Now</Button>
+                        <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 sm:bg-white">Join the revolution of secure, compliant, and user-centric digital identity management.</p>
+                        <Button>Explore the Future Now</Button>
                     </div>
                 </div>
             </div>
-            <div className="clipped absolute inset-0"></div>
+            <div className="clipped absolute inset-0 hidden lg:block"></div>
         </section>
-            <section className="bg-gray-100 py-16" >
+            <section className="bg-gray-100 py-16">
                 <div className="container mx-auto m-9">
                     <div className="flex flex-col lg:flex-row items-center justify-center">
                         <div className="lg:w-1/2 mb-8 lg:mb-0">
@@ -123,10 +123,10 @@ export default function SecurityComplianceFeature() {
                 <div className="container mx-auto px-4 mt-12">
                     <div className="max-w-3xl mx-auto text-center">
                         
-                        <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+                        <h2 className="text-4xl lg:text-5xl font-bold mb-4 ">
                             Step into a Secure Digital Tomorrow
                         </h2>
-                        <p className="text-lg mb-8 text-blue-300">
+                        <p className="text-lg mb-8 text-blue-200">
                             Join our community of secure digital pioneers.
                         </p>
                         <Image
@@ -136,11 +136,11 @@ export default function SecurityComplianceFeature() {
                         src="/images/down-arrow.svg"
                         width="50"
                     />
-                        <Button className="px-8 py-6 text-white font-medium rounded-lg bg-blue-700 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Start Your Journey</Button>
+                        <Button className="px-8 py-6 text-white font-medium rounded-lg bg-blue-700 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">Start Your Journey</Button>
                     </div>
                 </div>
             </section>
         </>
     );
-
 }
+
