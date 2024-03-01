@@ -38,11 +38,6 @@
     },
     {
       "slug": "security-and-compliance",
-      "title": "Empower Your Digital Identity with POXME Omnichannel Solutions",
-      "subtitle": "Aggregate and Secure Your Credentials for Verified Online Interactions",
-      "buttonText": "Explore How It Works",
-      "useCaseTitle" : "Seamless and Secure Business Communications",
-      "useCaseText" : "Discover how a multinational corporation streamlined its communication channels across various platforms using POXME, ensuring every message received and sent was authenticated and spam-free. This transformation led to a 50% reduction in time spent managing emails and a significant increase in trust and efficiency in business communications.",
       "cards": [
         {
           "title": "Customizable Data Encryption",

@@ -55,7 +55,7 @@ export default function SecurityComplianceFeature() {
                     <div className="flex flex-col lg:flex-row items-center justify-center">
                         <div className="lg:w-1/2">
                             <h1 className="relative max-w-2xl mb-4 text-4xl lg:text-5xl font-extrabold tracking-tight leading-none dark:text-white">Your Credentials, Your Control</h1>
-                            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-6">Leverage your credentials for a fortified recovery and security system. Whether it's account recovery or preventing unauthorized access, your credentials are the key to safeguarding your digital presence.</p>
+                            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-6">Leverage your credentials for a fortified recovery and security system. Whether it&apos;s account recovery or preventing unauthorized access, your credentials are the key to safeguarding your digital presence.</p>
                         </div>
                         <div className="lg:w-1/2 mb-8 lg:mb-0">
                             <Image
@@ -82,7 +82,7 @@ export default function SecurityComplianceFeature() {
                             />
                         </div>
                         <div className="lg:w-1/2">
-                            <h1 className="relative max-w-2xl mb-4 text-4xl lg:text-5xl font-extrabold tracking-tight leading-none dark:text-white">Share, Don't Just Send</h1>
+                            <h1 className="relative max-w-2xl mb-4 text-4xl lg:text-5xl font-extrabold tracking-tight leading-none dark:text-white">Share, Don&apos;t Just Send</h1>
                             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-6">Transform your communication methods. Our platform allows you to share verified information seamlessly, moving beyond traditional email methods and reducing inbox clutter.</p>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ export default function SecurityComplianceFeature() {
                         </h2>
                         <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-6">Dive deeper into the world of PGP encryption. Discover how our cutting-edge technology ensures the integrity and confidentiality of your digital interactions.</p>
                     </div>
-                    <img className="border-dashed border-2 border-indigo-200" src="https://www.goanywhere.com/sites/default/files/goanywhere/ga-mft-open-pgp-diagram-2021.png" alt="" />
+                    <Image className="border-dashed border-2 border-indigo-200" src={"https://www.goanywhere.com/sites/default/files/goanywhere/ga-mft-open-pgp-diagram-2021.png"} alt={"Encryption process image"}></Image>
                 </div>
             </section>
 
