@@ -1,53 +1,13 @@
 'use server';
 
 import Link from "next/link"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import IsoLogo from "@/components/ui/isologo";
 
 export default async function Dashboard() {
   return (
-    <div className="flex flex-col w-full min-h-screen">
-      <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
-        <nav
-          className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-          <Link className="flex items-center gap-2 text-lg font-semibold md:text-base" href="#">
-            <IsoLogo className="w-8 h-8"/>
-            <span className="sr-only">Acme Inc</span>
-          </Link>
-          <Link className="font-bold" href="#">
-            Updates
-          </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="#">
-            Roadmap
-          </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="#">
-            Feedback
-          </Link>
-        </nav>
-        <div className="flex items-center w-full gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          <form className="flex-1 ml-auto sm:flex-initial">
-            <div className="relative">
-              <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400"/>
-              <Input
-                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-                placeholder="Search updates..."
-                type="search"
-              />
-            </div>
-          </form>
-          <Button className="rounded-full" size="icon" variant="ghost">
-            <BellIcon className="w-4 h-4"/>
-            <span className="sr-only">Toggle notifications</span>
-          </Button>
-          <Button className="rounded-full" size="icon" variant="ghost">
-            <UserIcon className="w-4 h-4"/>
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </div>
-      </header>
+    <div>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10">
         <div className="grid gap-4 md:grid-cols-4">
           <Card>
@@ -222,27 +182,6 @@ function ActivityIcon(props: any) {
 }
 
 
-function BellIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-    </svg>
-  )
-}
-
-
 function CheckIcon(props: any) {
   return (
     <svg
@@ -364,70 +303,6 @@ function Package2Icon(props: any) {
       <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/>
       <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"/>
       <path d="M12 3v6"/>
-    </svg>
-  )
-}
-
-
-function SearchIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="11" cy="11" r="8"/>
-      <path d="m21 21-4.3-4.3"/>
-    </svg>
-  )
-}
-
-
-function SettingsIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path
-        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-      <circle cx="12" cy="12" r="3"/>
-    </svg>
-  )
-}
-
-
-function UserIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-      <circle cx="12" cy="7" r="4"/>
     </svg>
   )
 }

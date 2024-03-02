@@ -56,7 +56,7 @@ const questions = [
 
 export default function Questions() {
   return (
-    <section className="w-max">
+    <section className="w-full pb-4">
       <h1 className="text-2xl font-semibold text-gray-900 text-center">Frequently Asked Questions</h1>
       <div className="mt-6 space-y-6">
         {questions.map((question, index, array) => (
