@@ -42,7 +42,7 @@ export default function Investors() {
   );
 
   const { tokenPrice, isLoading } = useTokenPrice();
-  let marketCap: bigint | undefined;
+  let marketCap: number | bigint | undefined;
 
   if (tokenPrice !== undefined) {
     marketCap = tokenPrice * Number(poxmeSupply);
