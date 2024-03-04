@@ -77,7 +77,7 @@ export default function Investors() {
               <CardContent>
                 <dl className="gap-1 text-xs font-medium">
                   <dt>BNB Chain contract:</dt>
-                  <dd className="flex items-center underline hover:text-blue-600 ">
+                  <dd className="flex items-center hover:text-blue-600 ">
                     <Link
                       href="https://bscscan.com/token/0xb469783b6b3615180da05571beec716b639cbe85"
                       target="_blank"
@@ -100,9 +100,7 @@ export default function Investors() {
                   <dt>Current Price</dt>
                   <dd>{isLoading ? "Loading..." : `${data} USDT`} </dd>
                   <dt>Market cap</dt>
-                  <dd>
-                    {isLoading ? "Loading..." : `${data * 57051482.48} USD`}{" "}
-                  </dd>
+                  <dd>Currently unavailable</dd>
                 </dl>
               </CardContent>
             </Card>
