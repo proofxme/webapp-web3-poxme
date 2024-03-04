@@ -13,8 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import { getTokenPrice } from "@/utils";
+import useTokenPrice from "@/hooks/useTokenPrice";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -42,18 +41,12 @@ export default function Investors() {
     { ssr: false }
   );
 
-  const [data, setData] = useState<number>(0);
-  const [isLoading, setLoading] = useState(true);
+  const { tokenPrice, isLoading } = useTokenPrice();
+  let marketCap: bigint | undefined;
 
-  useEffect(() => {
-    getTokenPrice().then((price) => {
-      setData(price || 0);
-
-      setLoading(false);
-    });
-  }, []);
-
-  const marketCap = "Currently unavailable";
+  if (tokenPrice !== undefined) {
+    marketCap = tokenPrice * Number(poxmeSupply);
+  }
 
   return (
     <div>
@@ -98,9 +91,18 @@ export default function Investors() {
                     POXME
                   </dd>
                   <dt>Current Price</dt>
-                  <dd>{isLoading ? "Loading..." : `${data} USDT`} </dd>
+                  <dd>{isLoading ? "Loading..." : `${tokenPrice} USDT`} </dd>
                   <dt>Market cap</dt>
-                  <dd>Currently unavailable</dd>
+                  <dd>
+                    ~{" "}
+                    {getBigNumberCurrencyLabel(
+                      marketCap as unknown as string,
+                      true,
+                      2,
+                      true
+                    )}
+                    {" USDT"}
+                  </dd>
                 </dl>
               </CardContent>
             </Card>
