@@ -10,7 +10,7 @@ import { http } from "viem";
 
 const config = getDefaultConfig({
   appName: "Proof of X",
-  projectId: "381f08b7876a5bfcf90ac02742447437",
+  projectId: "00517fd349f3e7338ab76db5782a714e",
   chains: [bsc, bscTestnet],
   ssr: true,
   transports: {
