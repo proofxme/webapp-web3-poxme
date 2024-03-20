@@ -10,7 +10,7 @@ import { http } from "viem";
 
 const config = getDefaultConfig({
   appName: "Proof of X",
-  projectId: "00517fd349f3e7338ab76db5782a714e",
+  projectId: "381f08b7876a5bfcf90ac02742447437",
   chains: [bsc, bscTestnet],
   ssr: true,
   transports: {
@@ -21,7 +21,7 @@ const config = getDefaultConfig({
 
 const queryClient = new QueryClient();
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({children}: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
   return (
