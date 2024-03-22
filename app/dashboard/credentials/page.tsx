@@ -3,19 +3,26 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import React from "react";
 
 export default async function Credentials() {
   return (
     <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
       <div className="container mx-auto px-4">
         <div className="grid gap-4">
-          <h1 className="text-2xl font-bold">Credential Providers</h1>
+          <div className="flex items-center gap-4">
+            <h1 className="font-semibold text-lg md:text-2xl">Credentials</h1>
+            <Button className="ml-auto" size="sm">
+              Add credential
+            </Button>
+          </div>
           <div className="border rounded-lg shadow-sm">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[200px]">Provider Name</TableHead>
-                  <TableHead>Connection Status</TableHead>
+                  <TableHead className="w-[300px]">Credential Name</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Flow</TableHead>
                   <TableHead className="w-[150px] text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -23,10 +30,14 @@ export default async function Credentials() {
                 <TableRow className="select-none">
                   <TableCell className="flex items-center gap-4">
                     <LogInIcon className="h-4 w-4"/>
-                    <span className="font-medium">NextAuth.js</span>
+                    <span className="font-medium">jorge@mail.pox.me</span>
                   </TableCell>
                   <TableCell>
                     <Badge variant="outline">Connected</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="outline">Redirects to:</Badge>
+                    {' '}jorge@pox.me
                   </TableCell>
                   <TableCell className="flex justify-end gap-2">
                     <Button className="h-8 w-8" size="icon" variant="outline">
@@ -38,98 +49,6 @@ export default async function Credentials() {
                       <span className="sr-only">Disconnect</span>
                     </Button>
                     <Button className="h-8 w-8" size="icon">
-                      <CheckIcon className="h-4 w-4"/>
-                      <span className="sr-only">Select</span>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="select-none">
-                  <TableCell className="flex items-center gap-4">
-                    <LogInIcon className="h-4 w-4"/>
-                    <span className="font-medium">Vercel</span>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">Connected</Badge>
-                  </TableCell>
-                  <TableCell className="flex justify-end gap-2">
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <LinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Connect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <UnlinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Disconnect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <CheckIcon className="h-4 w-4"/>
-                      <span className="sr-only">Select</span>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="select-none">
-                  <TableCell className="flex items-center gap-4">
-                    <LogInIcon className="h-4 w-4"/>
-                    <span className="font-medium">Auth0</span>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">Connected</Badge>
-                  </TableCell>
-                  <TableCell className="flex justify-end gap-2">
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <LinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Connect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <UnlinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Disconnect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <CheckIcon className="h-4 w-4"/>
-                      <span className="sr-only">Select</span>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="select-none">
-                  <TableCell className="flex items-center gap-4">
-                    <LogInIcon className="h-4 w-4"/>
-                    <span className="font-medium">Firebase</span>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">Connected</Badge>
-                  </TableCell>
-                  <TableCell className="flex justify-end gap-2">
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <LinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Connect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <UnlinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Disconnect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <CheckIcon className="h-4 w-4"/>
-                      <span className="sr-only">Select</span>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="select-none">
-                  <TableCell className="flex items-center gap-4">
-                    <CloudIcon className="h-4 w-4"/>
-                    <span className="font-medium">Azure</span>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">Connected</Badge>
-                  </TableCell>
-                  <TableCell className="flex justify-end gap-2">
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <LinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Connect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <UnlinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Disconnect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
                       <CheckIcon className="h-4 w-4"/>
                       <span className="sr-only">Select</span>
                     </Button>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import IsoLogo from "@/components/ui/isologo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Template({children}: { children: React.ReactNode }) {
   return (
@@ -39,14 +40,14 @@ export default function Template({children}: { children: React.ReactNode }) {
               />
             </div>
           </form>
+          <ConnectButton/>
           <Button className="rounded-full" size="icon" variant="ghost">
             <BellIcon className="w-4 h-4"/>
             <span className="sr-only">Toggle notifications</span>
           </Button>
-          <Button className="rounded-full" size="icon" variant="ghost">
+          <Link href="/dashboard/account" className="rounded-full">
             <UserIcon className="w-4 h-4"/>
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
+          </Link>
         </div>
       </header>
       <div className="flex flex-col min-h-screen text-[#000000]">

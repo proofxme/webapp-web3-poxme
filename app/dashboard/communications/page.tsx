@@ -2,296 +2,158 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import React, { JSX, SVGProps } from "react";
-import Image from "next/image";
-import IsoLogo from "@/components/ui/isologo";
-import SignOut from "@/components/ui/sign-out";
 
 export default function Component() {
   return (
-    <div className="grid h-screen w-full lg:grid-cols-[280px_1fr]">
-      <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
-        <div className="flex h-full max-h-screen flex-col gap-2">
-          <div className="flex h-[60px] items-center border-b px-6">
-            <Link className="flex items-center gap-2 font-semibold" href="#">
-              <IsoLogo className="h-6 w-6"/>
-              <span className="">Proof of X</span>
-            </Link>
-            <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
-              <BellIcon className="h-4 w-4"/>
-              <span className="sr-only">Toggle notifications</span>
-            </Button>
-          </div>
-          <div className="flex-1 overflow-auto py-2">
-            <div className="grid items-start px-4 text-sm font-medium">
-              <Link
-                className="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50"
-                href="#"
-              >
-                <InboxIcon className="h-4 w-4"/>
-                Inbox
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                href="#"
-              >
-                <FileIcon className="h-4 w-4"/>
-                Drafts
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                href="#"
-              >
-                <SendIcon className="h-4 w-4"/>
-                Sent
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                href="#"
-              >
-                <Trash2Icon className="h-4 w-4"/>
-                Trash
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                href="#"
-              >
-                <ArchiveIcon className="h-4 w-4"/>
-                Archived
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                href="#"
-              >
-                <ArchiveXIcon className="h-4 w-4"/>
-                Spam
-              </Link>
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                href="#"
-              >
-                <Users2Icon className="h-4 w-4"/>
-                Contacts
-              </Link>
-            </div>
-          </div>
-          <div className="mt-auto p-4">
-            <Card>
-              <CardHeader className="pb-4">
-                <CardTitle>Upgrade to Pro</CardTitle>
-                <CardDescription>Unlock all features and get unlimited access to our support team</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" size="sm">
-                  Upgrade
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+    <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+      <div className="grid gap-4">
+        <div className="flex items-center gap-4">
+          <h1 className="font-semibold text-lg md:text-2xl">Inbox</h1>
+          <Button className="ml-auto" size="sm">
+            Compose
+          </Button>
+        </div>
+        <div className="border shadow-sm rounded-lg">
+          <Table>
+            <TableBody>
+              <TableRow className="divide-y">
+                <TableCell className="w-12">
+                  <Checkbox id="email1"/>
+                </TableCell>
+                <TableCell className="w-12">
+                  <StarIcon className="h-4 w-4 text-yellow-400"/>
+                </TableCell>
+                <TableCell className="w-12">
+                  <FileIcon className="h-4 w-4"/>
+                </TableCell>
+                <TableCell className="text-sm font-medium">
+                  <Link className="underline hover:no-underline hover:font-semibold" href="#">
+                    Summer Sale is here!
+                  </Link>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Don&apos;t miss out on our amazing deals. Limited time offer!
+                  </p>
+                </TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-800"
+                        id="menu1"
+                        size="icon"
+                        variant="ghost"
+                      >
+                        <MoreHorizontalIcon className="h-4 w-4"/>
+                        <span className="sr-only">Toggle menu</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem id="menu1">Mark as read</DropdownMenuItem>
+                      <DropdownMenuItem>Star</DropdownMenuItem>
+                      <DropdownMenuItem>Archive</DropdownMenuItem>
+                      <DropdownMenuSeparator/>
+                      <DropdownMenuItem>Report spam</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+              <TableRow className="divide-y">
+                <TableCell className="w-12">
+                  <Checkbox id="email2"/>
+                </TableCell>
+                <TableCell className="w-12">
+                  <StarIcon className="h-4 w-4 text-yellow-400"/>
+                </TableCell>
+                <TableCell className="w-12">
+                  <FileIcon className="h-4 w-4"/>
+                </TableCell>
+                <TableCell className="text-sm font-medium">
+                  <Link className="underline hover:no-underline hover:font-semibold" href="#">
+                    Your order has been shipped
+                  </Link>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Track your package with the following link
+                  </p>
+                </TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-800"
+                        id="menu2"
+                        size="icon"
+                        variant="ghost"
+                      >
+                        <MoreHorizontalIcon className="h-4 w-4"/>
+                        <span className="sr-only">Toggle menu</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem id="menu2">Mark as read</DropdownMenuItem>
+                      <DropdownMenuItem>Star</DropdownMenuItem>
+                      <DropdownMenuItem>Archive</DropdownMenuItem>
+                      <DropdownMenuSeparator/>
+                      <DropdownMenuItem>Report spam</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+              <TableRow className="divide-y">
+                <TableCell className="w-12">
+                  <Checkbox id="email3"/>
+                </TableCell>
+                <TableCell className="w-12">
+                  <StarIcon className="h-4 w-4 text-yellow-400"/>
+                </TableCell>
+                <TableCell className="w-12">
+                  <FileIcon className="h-4 w-4"/>
+                </TableCell>
+                <TableCell className="text-sm font-medium">
+                  <Link className="underline hover:no-underline hover:font-semibold" href="#">
+                    Exclusive Invitation: VIP Event
+                  </Link>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    You&apos;re invited to an exclusive VIP event. RSVP now!
+                  </p>
+                </TableCell>
+                <TableCell className="text-right">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-800"
+                        id="menu3"
+                        size="icon"
+                        variant="ghost"
+                      >
+                        <MoreHorizontalIcon className="h-4 w-4"/>
+                        <span className="sr-only">Toggle menu</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem id="menu3">Mark as read</DropdownMenuItem>
+                      <DropdownMenuItem>Star</DropdownMenuItem>
+                      <DropdownMenuItem>Archive</DropdownMenuItem>
+                      <DropdownMenuSeparator/>
+                      <DropdownMenuItem>Report spam</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
       </div>
-      <div className="flex flex-col">
-        <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
-          <Link className="lg:hidden" href="#">
-            <Package2Icon className="h-6 w-6"/>
-            <span className="sr-only">Home</span>
-          </Link>
-          <div className="w-full flex-1">
-            <form>
-              <div className="relative">
-                <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400"/>
-                <Input
-                  className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3 dark:bg-gray-950"
-                  placeholder="Search messages..."
-                  type="search"
-                />
-              </div>
-            </form>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                className="rounded-full border border-gray-200 w-8 h-8 dark:border-gray-800"
-                size="icon"
-                variant="ghost"
-              >
-                <Image
-                  className="rounded-full"
-                  height="32"
-                  src="/placeholder.svg"
-                  width="32"
-                  style={{
-                    aspectRatio: "32/32",
-                    objectFit: "cover",
-                  }}
-                  alt="Avatar"
-                />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator/>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator/>
-              <DropdownMenuItem><SignOut/></DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
-          <div className="grid gap-4">
-            <div className="flex items-center gap-4">
-              <h1 className="font-semibold text-lg md:text-2xl">Inbox</h1>
-              <Button className="ml-auto" size="sm">
-                Compose
-              </Button>
-            </div>
-            <div className="border shadow-sm rounded-lg">
-              <Table>
-                <TableBody>
-                  <TableRow className="divide-y">
-                    <TableCell className="w-12">
-                      <Checkbox id="email1"/>
-                    </TableCell>
-                    <TableCell className="w-12">
-                      <StarIcon className="h-4 w-4 text-yellow-400"/>
-                    </TableCell>
-                    <TableCell className="w-12">
-                      <FileIcon className="h-4 w-4"/>
-                    </TableCell>
-                    <TableCell className="text-sm font-medium">
-                      <Link className="underline hover:no-underline hover:font-semibold" href="#">
-                        Summer Sale is here!
-                      </Link>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Don&apos;t miss out on our amazing deals. Limited time offer!
-                      </p>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button
-                            className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-800"
-                            id="menu1"
-                            size="icon"
-                            variant="ghost"
-                          >
-                            <MoreHorizontalIcon className="h-4 w-4"/>
-                            <span className="sr-only">Toggle menu</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          <DropdownMenuItem id="menu1">Mark as read</DropdownMenuItem>
-                          <DropdownMenuItem>Star</DropdownMenuItem>
-                          <DropdownMenuItem>Archive</DropdownMenuItem>
-                          <DropdownMenuSeparator/>
-                          <DropdownMenuItem>Report spam</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow className="divide-y">
-                    <TableCell className="w-12">
-                      <Checkbox id="email2"/>
-                    </TableCell>
-                    <TableCell className="w-12">
-                      <StarIcon className="h-4 w-4 text-yellow-400"/>
-                    </TableCell>
-                    <TableCell className="w-12">
-                      <FileIcon className="h-4 w-4"/>
-                    </TableCell>
-                    <TableCell className="text-sm font-medium">
-                      <Link className="underline hover:no-underline hover:font-semibold" href="#">
-                        Your order has been shipped
-                      </Link>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Track your package with the following link
-                      </p>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button
-                            className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-800"
-                            id="menu2"
-                            size="icon"
-                            variant="ghost"
-                          >
-                            <MoreHorizontalIcon className="h-4 w-4"/>
-                            <span className="sr-only">Toggle menu</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          <DropdownMenuItem id="menu2">Mark as read</DropdownMenuItem>
-                          <DropdownMenuItem>Star</DropdownMenuItem>
-                          <DropdownMenuItem>Archive</DropdownMenuItem>
-                          <DropdownMenuSeparator/>
-                          <DropdownMenuItem>Report spam</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow className="divide-y">
-                    <TableCell className="w-12">
-                      <Checkbox id="email3"/>
-                    </TableCell>
-                    <TableCell className="w-12">
-                      <StarIcon className="h-4 w-4 text-yellow-400"/>
-                    </TableCell>
-                    <TableCell className="w-12">
-                      <FileIcon className="h-4 w-4"/>
-                    </TableCell>
-                    <TableCell className="text-sm font-medium">
-                      <Link className="underline hover:no-underline hover:font-semibold" href="#">
-                        Exclusive Invitation: VIP Event
-                      </Link>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        You&apos;re invited to an exclusive VIP event. RSVP now!
-                      </p>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button
-                            className="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-800"
-                            id="menu3"
-                            size="icon"
-                            variant="ghost"
-                          >
-                            <MoreHorizontalIcon className="h-4 w-4"/>
-                            <span className="sr-only">Toggle menu</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          <DropdownMenuItem id="menu3">Mark as read</DropdownMenuItem>
-                          <DropdownMenuItem>Star</DropdownMenuItem>
-                          <DropdownMenuItem>Archive</DropdownMenuItem>
-                          <DropdownMenuSeparator/>
-                          <DropdownMenuItem>Report spam</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
+    </main>
   )
 }
 
