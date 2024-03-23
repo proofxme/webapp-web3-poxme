@@ -1,119 +1,63 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useReadContract } from "wagmi";
-import { getBigNumberCurrencyLabel } from "@/utils/bigNumber";
-import poxmeToken from "@/contracts/abi/poxmeToken.json";
-import addresses from "@/contracts/addresses";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import useTokenPrice from "@/hooks/useTokenPrice";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/button";
+import TokenContract from "@/components/tokenContract";
+import TokenPrice from "@/components/tokenPrice";
 
 export const LiFiWidgetNext = dynamic(
   () =>
     import("@/components/widgets/swap").then((module) => module.Swap) as any,
   {
-    ssr: false,
+    ssr: true,
     loading: () => <p>Loading...</p>,
   }
 );
 
 export default function Investors() {
-  const { data: poxmeSupply } = useReadContract({
-    address: addresses(56)["PoxmeToken"],
-    abi: poxmeToken.abi,
-    functionName: "totalSupply",
-    args: [],
-  });
+  const investSectionRef = useRef<HTMLHeadingElement>(null);
 
-  const CC = dynamic(
-    () =>
-      import("@/components/copy-clipboard").then((mod) => mod.CopyClipboard),
-    { ssr: false }
-  );
-
-  const { tokenPrice, isLoading } = useTokenPrice();
-  let marketCap: number | bigint | undefined;
-
-  if (tokenPrice !== undefined) {
-    marketCap = tokenPrice * Number(poxmeSupply);
-  }
-
+  const scrollToInvestSection = () => {
+    if (investSectionRef.current) {
+      investSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div>
-      <div className="w-full py-6 lg:py-24 xl:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="grid items-start gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-            <div className="flex flex-col justify-center space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                $POXME token
-              </h1>
-              <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                The Proof of X token represents investment in the project. Its
-                primary purpose is to provide liquidity to the project and serve
-                as a medium for lending and borrowing memberships.
-              </p>
-            </div>
-            <Card>
-              <CardHeader>
-                <CardTitle>Essential information</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <dl className="gap-1 text-xs font-medium">
-                  <dt>BNB Chain contract:</dt>
-                  <dd className="flex items-center hover:text-blue-600 ">
-                    <Link
-                      href="https://bscscan.com/token/0xb469783b6b3615180da05571beec716b639cbe85"
-                      target="_blank"
-                    >
-                      {addresses(56)["PoxmeToken"]}
-                    </Link>
-                    <CC content="0xb469783b6b3615180da05571beec716b639cbe85" />
-                  </dd>
-
-                  <dt>Current Supply</dt>
-                  <dd>
-                    {getBigNumberCurrencyLabel(
-                      poxmeSupply as unknown as string,
-                      true,
-                      2,
-                      true
-                    )}{" "}
-                    POXME
-                  </dd>
-                  <dt>Current Price</dt>
-                  <dd>{isLoading ? "Loading..." : `${tokenPrice} USDT`} </dd>
-                  <dt>Market cap</dt>
-                  <dd>
-                    ~{" "}
-                    {getBigNumberCurrencyLabel(
-                      marketCap as unknown as string,
-                      true,
-                      2,
-                      true
-                    )}
-                    {" USDT"}
-                  </dd>
-                </dl>
-              </CardContent>
-            </Card>
-          </div>
+      <div className="flex justify-center w-full lg:py-12 xl:py-16">
+        <div className="flex flex-col justify-center space-y-3">
+          <h1 className="flex items-center gap-2 text-3xl font-bold tracking-tighter sm:text-5xl">
+            <Image
+              src="/tokens/poxme.jpg"
+              alt="poxme token"
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+            POXME token
+          </h1>
+          <p className="max-w-[600px] justify-center text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 ">
+            The Proof of X token represents investment in the project. Its
+            primary purpose is to provide liquidity to the project and serve as
+            a medium for lending and borrowing memberships.
+          </p>
         </div>
       </div>
-
+      <div className="flex justify-center gap-3">
+        <TokenPrice scrollToInvestSection={scrollToInvestSection} />
+        <TokenContract />
+      </div>
       <section className="w-full py-12 lg:py-24">
         <div className="container px-4 md:px-6">
           <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            <h2
+              className="text-3xl font-bold tracking-tighter sm:text-5xl"
+              ref={investSectionRef}
+              id="invest"
+            >
               Invest in Proof of X
             </h2>
             <p className="max-w-[500px] mx-auto text-gray-500 md:text-base/relaxed dark:text-gray-400">
@@ -125,62 +69,6 @@ export default function Investors() {
         <div className=" mx-auto grid gap-4 my-6 ">
           <div className="justify-center p-4">
             <LiFiWidgetNext />
-          </div>
-          <div className=" mx-auto grid gap-4 my-6 lg:grid-cols-2">
-            <div className="space-y-2">
-              <Link
-                href="https://app.1inch.io/#/56/simple/swap/USDT/POXME"
-                target="_blank"
-              >
-                <Image
-                  className="hover:scale-110"
-                  src="/images/1inch_color_black.png"
-                  width={500}
-                  height={500}
-                  alt="1INCH logo"
-                />
-              </Link>
-            </div>
-            <div className="space-y-2 items-center justify-center flex">
-              <Link
-                target="_blank"
-                href="https://bscscan.com/token/0xb469783b6b3615180da05571beec716b639cbe85"
-              >
-                <Image
-                  className="hover:scale-110"
-                  width={368}
-                  height={65}
-                  src="/images/bnb-chain-full-binance-smart-chain-logo.png"
-                  alt="BNB Chain logo"
-                />
-              </Link>
-            </div>
-          </div>
-          <div className=" mx-auto grid gap-8 my-8 lg:grid-cols-2">
-            <div className="items-center justify-center flex">
-              <Image
-                className="hover:scale-110 grayscale"
-                width={368}
-                height={65}
-                src="/images/coinmarketcap-logo-292449647.png"
-                alt="CoinMarketCap logo"
-                onClick={() => {
-                  alert("Coming soon");
-                }}
-              />
-            </div>
-            <div className="items-center justify-center flex">
-              <Image
-                className="hover:scale-110 grayscale"
-                width={368}
-                height={65}
-                onClick={() => {
-                  alert("Coming soon");
-                }}
-                src="/images/CoinGecko.png"
-                alt="CoinGecko logo"
-              />
-            </div>
           </div>
         </div>
       </section>

@@ -1,19 +1,38 @@
-type CopyClipboardProps = {
-  content: string;
-};
+import React from "react";
+import copy from "clipboard-copy";
 
-export const CopyClipboard = ({ content }: CopyClipboardProps) => {
+interface CopyToClipboardButtonProps {
+  text: string;
+}
+
+const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({
+  text,
+}) => {
+  const handleCopy = () => {
+    copy(text)
+      .then(() => {
+        alert("Copied to clipboard!");
+      })
+      .catch((error) => {
+        console.error("Failed to copy:", error);
+        alert("Failed to copy to clipboard. Please try again.");
+      });
+  };
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      onClick={() => navigator.clipboard.writeText(content)}
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      className="hover:scale-110"
-      // style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"
-    >
-      <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"></path>
-    </svg>
+    <button onClick={handleCopy}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        className="hover:scale-110"
+        // style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"
+      >
+        <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"></path>
+      </svg>
+    </button>
   );
 };
+
+export default CopyToClipboardButton;
