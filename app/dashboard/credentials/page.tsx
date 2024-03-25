@@ -4,8 +4,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import React from "react";
+import { getCredentials } from "../../api/credentials/get-credentials";
 
 export default async function Credentials() {
+  const credentials = await getCredentials();
+  
   return (
     <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
       <div className="container mx-auto px-4">
