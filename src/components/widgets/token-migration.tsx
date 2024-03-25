@@ -207,7 +207,7 @@ export default function TokenMigration() {
         symbol: "POXME",
       },
     }).then(r => {
-      console.log(r);
+      console.log("Error in add asset to wallet", r);
     });
   }, [chain?.id, client]);
 

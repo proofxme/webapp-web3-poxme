@@ -5,6 +5,7 @@ import { JSX, SVGProps } from "react";
 import { HeroCustomers } from "@/components/widgets/hero-component";
 import { HeroPerformance } from "@/components/widgets/hero-performance";
 import Image from "next/image";
+import SignIn from "@/components/ui/sign-in";
 
 export default async function Home() {
   return (
@@ -16,8 +17,8 @@ export default async function Home() {
               <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
                 Proof of X
               </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Turn your email into your Digital Identity.
+              <h2 className="text-3xl tracking-tighter sm:text-5xl">
+                Turn your <strong>email</strong> into your <strong>Digital Identity</strong>.
               </h2>
               <p
                 className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -49,14 +50,13 @@ export default async function Home() {
                   <CheckIcon className="mr-2 inline-block h-4 w-4"/>
                   Build around your emails.
                 </li>
+                <li>
+                  <CheckIcon className="mr-2 inline-block h-4 w-4"/>
+                  Talk with your inbox using Generative AI.
+                </li>
               </ul>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Link
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-                  href="#"
-                >
-                  Coming soon
-                </Link>
+                <SignIn/>
               </div>
             </div>
           </div>
@@ -82,12 +82,7 @@ export default async function Home() {
             >
               Contact us
             </Link>
-            <Link
-              className="inline-flex h-10 items-center justify-center rounded-md border  bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800  dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-              href="#"
-            >
-              Coming soon
-            </Link>
+            <SignIn/>
           </div>
         </div>
       </section>
@@ -167,12 +162,7 @@ export default async function Home() {
             >
               Contact Us
             </Link>
-            <Link
-              className="inline-flex h-10 items-center justify-center rounded-md border  border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-              href="#"
-            >
-              Coming Soon
-            </Link>
+            <SignIn/>
           </div>
         </div>
       </section>
@@ -195,12 +185,7 @@ export default async function Home() {
             >
               Contact Us
             </Link>
-            <Link
-              className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200  bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-              href="#"
-            >
-              Coming soon
-            </Link>
+            <SignIn/>
           </div>
         </div>
       </section>

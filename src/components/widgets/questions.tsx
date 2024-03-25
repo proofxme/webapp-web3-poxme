@@ -56,7 +56,7 @@ const questions = [
 
 export default function Questions() {
   return (
-    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section className="w-full pb-4">
       <h1 className="text-2xl font-semibold text-gray-900 text-center">Frequently Asked Questions</h1>
       <div className="mt-6 space-y-6">
         {questions.map((question, index, array) => (
@@ -75,7 +75,7 @@ export default function Questions() {
           </Collapsible>
         ))}
       </div>
-    </main>
+    </section>
   )
 }
 

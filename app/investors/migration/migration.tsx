@@ -4,11 +4,12 @@ import Questions from "@/components/widgets/questions";
 import StakingDetails from "@/components/widgets/staking-details";
 import { Button } from "@/components/ui/button";
 import MigrationDetails from "@/components/widgets/migration-details";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Migration() {
   return (
-    <main className="flex min-h-screen flex-col h-auto bg-gray-50">
-      <div className="flex flex-col items-center justify-center w-full h-full px-12">
+    <main className="flex min-h-screen flex-col h-auto bg-gray-50 px-3">
+      <div className="flex flex-col items-center justify-center w-full h-full lg:px-12">
         <div className=" text-center w-full">
           <h2 className="text-5xl text-center font-bold tracking-tighter mt-9 mb-2">
             Migration Center
@@ -59,7 +60,10 @@ export default function Migration() {
             This is an <b>irreversible migration process.</b>
           </p>
         </div>
-        <div className="mt-12 pt-12 w-3/4">
+        <div className="flex items-center justify-center w-full h-full pt-12">
+          <ConnectButton/>
+        </div>
+        <div className="pt-12 px-2">
           <ul
             className="relative m-0 w-full list-none p-0 transition-[height] duration-200 ease-in-out mr-10"
             data-te-stepper-init="true"
@@ -71,23 +75,22 @@ export default function Migration() {
             >
               <div
                 data-te-stepper-head-ref=""
-                className="flex items-center p-6  leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:after:bg-neutral-600"
+                className="flex items-center p-6 leading-[1.3rem] no-underline after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:after:bg-neutral-600"
               >
                   <span
                     data-te-stepper-head-icon-ref="true"
-                    className="mr-6 flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full bg-[#4e77d4] text-lg font-medium text-[#ffffff]"
+                    className="mr-6 flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full bg-[#4e77d4] lg:text-lg font-medium text-[#ffffff]"
                   >
                     1
                   </span>
                 <span
                   data-te-stepper-head-text-ref=""
-                  className="text-3xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold md:text-3xl text-2xl"
+                  className="text-xl after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold md:text-3xl"
                 >
                     Withdraw the tokens from the staking
                   </span>
               </div>
               <div className="w-full">
-                {" "}
                 <StakingDetails/>
               </div>
             </li>
@@ -107,7 +110,7 @@ export default function Migration() {
                   </span>
                 <span
                   data-te-stepper-head-text-ref="true"
-                  className="after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold md:text-3xl text-2xl"
+                  className="after:absolute after:flex after:text-[0.8rem] after:content-[data-content] dark:text-neutral-300 font-semibold md:text-3xl text-xl"
                 >
                     Migrate the tokens to the new Protocol
                   </span>
@@ -137,7 +140,7 @@ export default function Migration() {
             </li>
           </ul>
         </div>
-        <div className="lg:flex pt-14 relative flex place-items-center m-5">
+        <div className="mt-12 pt-12 px-2 lg:w-3/4">
           <Questions/>
         </div>
       </div>
