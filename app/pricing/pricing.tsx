@@ -65,21 +65,21 @@ export default function Pricing() {
                 </li>
                 <li className="flex items-center">
                   <CheckIcon className="text-white text-xs bg-green-500 rounded-full mr-2 p-1" />
-                  Telegram manager
+                  50% Discount in the premium features.
                 </li>
                 <li className="flex items-center">
                   <CheckIcon className="text-white text-xs bg-green-500 rounded-full mr-2 p-1" />
-                  Lifetime membership
+                  Priority customer support
                 </li>
                 <li className="flex items-center">
                   <CheckIcon className="text-white text-xs bg-green-500 rounded-full mr-2 p-1" />
-                  Secondary market
+                  Free access to all future updates
                 </li>
               </ul>
             </div>
             <div className="mt-6">
               <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-500">
-                Get Started
+                Become a member
               </Button>
             </div>
           </div>
