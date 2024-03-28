@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../globals.css";
-import "@rainbow-me/rainbowkit/styles.css";
-
-const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pox.me/'),
-  title: "Proof of X | Home",
-  description: "Proof of X | Home",
+  title: "Proof of X | Dashboard",
+  description: "Proof of X | Dashboard",
   openGraph: {
-    title: "Proof of X | Home",
-    description: "Proof of X | Home",
+    title: "Proof of X | Dashboard",
+    description: "Proof of X | Dashboard",
     url: "https://pox.me",
     siteName: "Proof of X",
     images: [
@@ -40,6 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>{children}</>
+    <>
+      {children}
+    </>
   );
 }

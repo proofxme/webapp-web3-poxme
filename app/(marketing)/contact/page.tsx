@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Contact from "./contact";
+import Contact from "app/marketing/contact/contact";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pox.me/'),
