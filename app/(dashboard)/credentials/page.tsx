@@ -4,20 +4,27 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import React from "react";
-import { getCredentials } from "../../api/credentials/get-credentials";
+import { getCredentials, ICredential } from "app/api/credentials/get-credentials";
+import Link from "next/link";
 
 export default async function Credentials() {
   const credentials = await getCredentials();
-  
+
+  if (typeof credentials === 'string') {
+    return <div>{credentials}</div>;
+  }
+
   return (
     <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
       <div className="container mx-auto px-4">
         <div className="grid gap-4">
           <div className="flex items-center gap-4">
             <h1 className="font-semibold text-lg md:text-2xl">Credentials</h1>
-            <Button className="ml-auto" size="sm">
-              Add credential
-            </Button>
+            <Link href="/credentials/new" className="ml-auto">
+              <Button className="ml-auto" size="sm">
+                Add credential
+              </Button>
+            </Link>
           </div>
           <div className="border rounded-lg shadow-sm">
             <Table>
@@ -30,33 +37,35 @@ export default async function Credentials() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow className="select-none">
-                  <TableCell className="flex items-center gap-4">
-                    <LogInIcon className="h-4 w-4"/>
-                    <span className="font-medium">jorge@mail.pox.me</span>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">Connected</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">Redirects to:</Badge>
-                    {' '}jorge@pox.me
-                  </TableCell>
-                  <TableCell className="flex justify-end gap-2">
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <LinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Connect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon" variant="outline">
-                      <UnlinkIcon className="h-4 w-4"/>
-                      <span className="sr-only">Disconnect</span>
-                    </Button>
-                    <Button className="h-8 w-8" size="icon">
-                      <CheckIcon className="h-4 w-4"/>
-                      <span className="sr-only">Select</span>
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                {credentials.map((credential: ICredential) => (
+                  <TableRow className="select-none" key={credential.id}>
+                    <TableCell className="flex items-center gap-4">
+                      <LogInIcon className="h-4 w-4"/>
+                      <span className="font-medium">{credential.id}</span>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">{credential.status}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">Redirects to:</Badge>
+                      {' '}jorge@pox.me
+                    </TableCell>
+                    <TableCell className="flex justify-end gap-2">
+                      <Button className="h-8 w-8" size="icon" variant="outline">
+                        <LinkIcon className="h-4 w-4"/>
+                        <span className="sr-only">Connect</span>
+                      </Button>
+                      <Button className="h-8 w-8" size="icon" variant="outline">
+                        <UnlinkIcon className="h-4 w-4"/>
+                        <span className="sr-only">Disconnect</span>
+                      </Button>
+                      <Button className="h-8 w-8" size="icon">
+                        <CheckIcon className="h-4 w-4"/>
+                        <span className="sr-only">Select</span>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </div>
