@@ -1,12 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import IsoLogo from "@/components/ui/isologo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-export default function Template({children}: { children: React.ReactNode }) {
+export default function DashboardTemplate({children}: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
@@ -19,13 +17,13 @@ export default function Template({children}: { children: React.ReactNode }) {
           <Link className="font-bold" href="/dashboard">
             Home
           </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="/dashboard/credentials">
+          <Link className="text-gray-500 dark:text-gray-400" href="/credentials">
             Credentials
           </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="/dashboard/identities">
+          <Link className="text-gray-500 dark:text-gray-400" href="/identities">
             Identities
           </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="/dashboard/communications">
+          <Link className="text-gray-500 dark:text-gray-400" href="/communications">
             Communications
           </Link>
         </nav>
@@ -45,7 +43,7 @@ export default function Template({children}: { children: React.ReactNode }) {
             <BellIcon className="w-4 h-4"/>
             <span className="sr-only">Toggle notifications</span>
           </Button>
-          <Link href="/dashboard/account" className="rounded-full">
+          <Link href="/account" className="rounded-full">
             <UserIcon className="w-4 h-4"/>
           </Link>
         </div>

@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "src/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import SocialIconsSection from "@/components/socialIconsSection";
 
@@ -66,7 +66,7 @@ export default function Contact() {
           </CardHeader>
         </Card>
       </div>
-      <SocialIconsSection />
+      <SocialIconsSection/>
     </>
   );
 }
