@@ -1,6 +1,8 @@
-import { cookies } from 'next/headers';
-import 'server-only';
+'use server';
+
 import { config } from "@/lib/logto-config";
+import 'server-only';
+import { cookies } from "next/headers";
 
 export interface ICredential {
   id: string;
@@ -10,18 +12,19 @@ export interface ICredential {
 }
 
 
-export async function getCredentials() {
+export async function createCredential(data: any) {
   const response = await fetch(`${config.baseUrl}/api/credentials`, {
-    cache: 'no-store',
+    method: 'POST',
     headers: {
       cookie: cookies().toString(),
     },
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
     if (response.status === 403) {
       console.log(await response.json())
-      return 'Access denied to method, requires read:credential scope.';
+      return 'Access denied to method, requires write:credential scope.';
     }
     console.log(response.status)
     throw new Error('Something went wrong!');

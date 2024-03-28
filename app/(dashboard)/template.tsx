@@ -3,6 +3,7 @@ import IsoLogo from "@/components/ui/isologo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import SignOut from "app/sign-out";
 
 export default function DashboardTemplate({children}: { children: React.ReactNode }) {
   return (
@@ -46,6 +47,7 @@ export default function DashboardTemplate({children}: { children: React.ReactNod
           <Link href="/account" className="rounded-full">
             <UserIcon className="w-4 h-4"/>
           </Link>
+          <SignOut/>
         </div>
       </header>
       <div className="flex flex-col min-h-screen text-[#000000]">
