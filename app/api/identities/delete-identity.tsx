@@ -11,7 +11,7 @@ export interface ICredential {
 }
 
 
-export async function deleteCredentials(id: string) {
+export async function deleteIdentity(id: string) {
   const response = await fetch(`${config.baseUrl}/api/credentials?id=${id}`, {
     cache: 'no-store',
     headers: {

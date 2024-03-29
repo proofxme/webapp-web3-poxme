@@ -1,5 +1,3 @@
-'use server';
-
 import { cookies } from 'next/headers';
 import 'server-only';
 import { config } from "@/lib/logto-config";
@@ -11,13 +9,12 @@ export interface ICredential {
 }
 
 
-export async function deleteCredentials(id: string) {
-  const response = await fetch(`${config.baseUrl}/api/credentials?id=${id}`, {
+export async function getIdentity() {
+  const response = await fetch(`${config.baseUrl}/api/credentials`, {
     cache: 'no-store',
     headers: {
       cookie: cookies().toString(),
     },
-    method: 'DELETE'
   });
 
   if (!response.ok) {
