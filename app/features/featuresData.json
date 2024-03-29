@@ -5,36 +5,43 @@
       "title": "Empower Your Digital Identity with POXME Omnichannel Solutions",
       "subtitle": "Aggregate and Secure Your Credentials for Verified Online Interactions",
       "buttonText": "Explore How It Works",
-      "useCaseTitle" : "Seamless and Secure Business Communications",
-      "useCaseText" : "Discover how a multinational corporation streamlined its communication channels across various platforms using POXME, ensuring every message received and sent was authenticated and spam-free. This transformation led to a 50% reduction in time spent managing emails and a significant increase in trust and efficiency in business communications.",
+      "useCaseTitle": "Seamless and Secure Business Communications",
+      "useCaseText": "Discover how a multinational corporation streamlined its communication channels across various platforms using POXME, ensuring every message received and sent was authenticated and spam-free. This transformation led to a 50% reduction in time spent managing emails and a significant increase in trust and efficiency in business communications.",
       "cards": [
         {
           "title": "Unified Credential Management",
           "description": "Consolidate all your digital credentials in one secure place for streamlined verification.",
           "icon": "/images/credential-management.svg"
-        },{
+        },
+        {
           "title": "Enhanced Communication Security",
           "description": "Ensure every interaction is verified, reducing spam and enhancing trust in digital communications.",
           "icon": "/images/security-connection.svg"
-        },{
+        },
+        {
           "title": "Automated Verification Process",
           "description": "Leverage advanced filtering and verification for efficient and trustworthy communication.",
           "icon": "/images/verification-process.svg"
         }
       ],
-      "highlightsCards":[{
-        "title" : "Empower your digital presence",
-        "text" : "with a single, secure identity across all platforms."
-      },{
-        "title" : "Reduce unverified communications",
-        "text" : "by focusing only on authentic interactions."
-      },{
-        "title" : "Enhance email and messaging systems",
-        "text" : "with advanced filtering and spam detection."
-      },{
-        "title" : "Utilize the POXME Token system",
-        "text" : "for secure, private identity management."
-      }]
+      "highlightsCards": [
+        {
+          "title": "Empower your digital presence",
+          "text": "with a single, secure identity across all platforms."
+        },
+        {
+          "title": "Reduce unverified communications",
+          "text": "by focusing only on authentic interactions."
+        },
+        {
+          "title": "Enhance email and messaging systems",
+          "text": "with advanced filtering and spam detection."
+        },
+        {
+          "title": "Utilize the POXME Token system",
+          "text": "for secure, private identity management."
+        }
+      ]
     },
     {
       "slug": "security-and-compliance",
@@ -43,14 +50,102 @@
           "title": "Customizable Data Encryption",
           "description": "Personalize your security. Encrypt your data according to your specific needs, ensuring maximum privacy and protection.",
           "icon": "/images/data-encryption.svg"
-        },{
+        },
+        {
           "title": "Diverse Storage Solutions",
           "description": "Choose your preferred storage method. From personal devices to blockchain storages, our platform supports various options for you to securely store your data.",
           "icon": "/images/storage-icon.svg"
-        },{
+        },
+        {
           "title": "PGP: The Gold Standard",
           "description": "Employ PGP technology for unmatched security in signing and encrypting your data and communications.",
           "icon": "/images/shield-cross.svg"
+        }
+      ]
+    },
+    {
+      "slug": "no-code-tools",
+      "title": "Streamline Email Workflows with No Code Tools",
+      "subtitle": "Effortlessly Manage Email Communications Without Writing Code",
+      "buttonText": "Discover How It Works",
+      "useCaseTitle": "Simplify Email Management for Your Business",
+      "useCaseText": "Learn how companies of all sizes are simplifying their email workflows without the need for coding skills. With No Code Tools, you can automate email processes, personalize messages, and analyze performance—all without writing a single line of code.",
+      "cards": [
+        {
+          "title": "Automated Email Sequences",
+          "description": "Set up automated email sequences for onboarding, marketing campaigns, and customer interactions.",
+          "icon": "/images/automated-email.svg"
+        },
+        {
+          "title": "Personalized Email Campaigns",
+          "description": "Create personalized email campaigns based on user behavior and preferences to improve engagement.",
+          "icon": "/images/personalized-email.svg"
+        },
+        {
+          "title": "Performance Analytics",
+          "description": "Track email performance metrics such as open rates, click-through rates, and conversions for data-driven insights.",
+          "icon": "/images/performance-analytics.svg"
+        }
+      ],
+      "highlightsCards": [
+        {
+          "title": "Efficiency and Productivity",
+          "text": "Save time and resources by automating repetitive email tasks."
+        },
+        {
+          "title": "Personalized Customer Experience",
+          "text": "Deliver tailored messages that resonate with your audience for increased engagement."
+        },
+        {
+          "title": "Insights for Optimization",
+          "text": "Gain valuable insights into email campaign performance to optimize strategies."
+        },
+        {
+          "title": "No Coding Required",
+          "text": "Harness the power of email automation without the need for coding skills."
+        }
+      ]
+    },
+    {
+      "slug": "web3",
+      "title": "Unlock the Power of Web3 with Comprehensive Tools",
+      "subtitle": "Manage Your Web3 Life and Identity Seamlessly",
+      "buttonText": "Explore Web3 Solutions",
+      "useCaseTitle": "Empower Your Digital Identity in the Web3 Era",
+      "useCaseText": "Discover how Web3 tools are revolutionizing the way individuals manage their digital identities and interact with decentralized applications (dApps). With Web3, you can securely store and manage your assets, participate in decentralized governance, and engage in a trustless ecosystem.",
+      "cards": [
+        {
+          "title": "Secure Asset Management",
+          "description": "Store and manage cryptocurrencies, NFTs, and digital assets securely with decentralized wallets.",
+          "icon": "/images/asset-management.svg"
+        },
+        {
+          "title": "Decentralized Governance",
+          "description": "Participate in governance protocols and decision-making processes for decentralized organizations.",
+          "icon": "/images/governance.svg"
+        },
+        {
+          "title": "Identity Management",
+          "description": "Manage your digital identity and authentication across various Web3 platforms and applications.",
+          "icon": "/images/identity-management.svg"
+        }
+      ],
+      "highlightsCards": [
+        {
+          "title": "Ownership and Control",
+          "text": "Retain ownership and control of your digital assets without intermediaries."
+        },
+        {
+          "title": "Transparent and Trustless Transactions",
+          "text": "Engage in peer-to-peer transactions with transparency and trustlessness."
+        },
+        {
+          "title": "Decentralized Ecosystem Participation",
+          "text": "Contribute to and benefit from decentralized applications and communities."
+        },
+        {
+          "title": "Privacy and Security",
+          "text": "Ensure privacy and security of your data and interactions in the Web3 environment."
         }
       ]
     }

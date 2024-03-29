@@ -125,10 +125,10 @@ export function TopNavBrowser() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-                    href="/features/investors"
+                    href="/features/web3"
                   >
                     <div className="text-sm font-medium leading-none group-hover:underline">
-                      investors
+                      Web3 Tools
                     </div>
                     <div className="line-clamp-2 text-sm leading-snug text-gray-500 dark:text-gray-400">
                       Protect your communications using the best of blockchain.
@@ -141,7 +141,7 @@ export function TopNavBrowser() {
           <NavigationMenuLink asChild>
             <Link
               className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-              href="#"
+              href="/pricing"
             >
               Pricing
             </Link>
@@ -301,12 +301,20 @@ export function TopNavBrowser() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
-                  <DropdownMenuItem disabled>OmniChannel</DropdownMenuItem>
-                  <DropdownMenuItem disabled>No Code Tools</DropdownMenuItem>
-                  <DropdownMenuItem disabled>
-                    Security & Compliance
+                  <DropdownMenuItem asChild>
+                    <Link href="/features/omni-channel">OmniChannel</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem disabled>investors</DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/features/no-code-tools">No Code Tools</Link>
+                  </DropdownMenuItem>{" "}
+                  <DropdownMenuItem asChild>
+                    <Link href="/features/security-and-compliance">
+                      Security and Compliance
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/features/web3">Web3 Tools</Link>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
@@ -334,9 +342,8 @@ export function TopNavBrowser() {
               <Button
                 className="flex items-center justify-start text-lg font-semibold py-0 px-0 "
                 variant="link"
-                disabled
               >
-                Pricing
+                <Link href="/pricing">Pricing</Link>
               </Button>
               <Button
                 className="flex items-center justify-start text-lg font-semibold py-0 px-0 "
