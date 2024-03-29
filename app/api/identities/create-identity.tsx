@@ -1,29 +1,30 @@
 'use server';
 
-import { cookies } from 'next/headers';
-import 'server-only';
 import { config } from "@/lib/logto-config";
+import 'server-only';
+import { cookies } from "next/headers";
 
 export interface ICredential {
-  provider: string;
-  handler: string;
-  kind: string;
+  id: string;
+  name: string;
+  status: string;
+  flow: string;
 }
 
 
-export async function deleteCredentials(id: string) {
-  const response = await fetch(`${config.baseUrl}/api/credentials?id=${id}`, {
-    cache: 'no-store',
+export async function createCredential(data: any) {
+  const response = await fetch(`${config.baseUrl}/api/credentials`, {
+    method: 'POST',
     headers: {
       cookie: cookies().toString(),
     },
-    method: 'DELETE'
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
     if (response.status === 403) {
       console.log(await response.json())
-      return 'Access denied to method, requires read:credential scope.';
+      return 'Access denied to method, requires write:credential scope.';
     }
     console.log(response.status)
     throw new Error('Something went wrong!');
