@@ -96,3 +96,37 @@ export async function DELETE(request: NextRequest) {
     }), {status: 200}
   );
 }
+
+export async function PUT(request: NextRequest) {
+  const {isAuthenticated, scopes, accessToken} = await logtoClient.getLogtoContext(request, {
+    getAccessToken: true,
+    resource: 'https://api.pox.me'
+  });
+
+  if (!isAuthenticated) {
+    return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
+  }
+
+  if (!scopes?.includes('write:credential')) {
+    return new Response(JSON.stringify({message: 'Access denied to route, requires write:credential scope.'}), {
+      status: 403,
+    });
+  }
+
+  const json = await request.json();
+  const provider = request.nextUrl.searchParams.get('id')
+
+  const response = await fetch(`https://api.pox.me/credentials/${provider}`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    method: 'PUT',
+    body: JSON.stringify(json),
+  }).then((res) => res.json());
+  
+  return new Response(
+    JSON.stringify({
+      data: response,
+    }), {status: 200}
+  );
+}

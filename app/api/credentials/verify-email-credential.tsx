@@ -12,9 +12,9 @@ export interface ICredential {
 }
 
 
-export async function verifyEmailCredential(data: any) {
-  const response = await fetch(`${config.baseUrl}/api/credentials`, {
-    method: 'POST',
+export async function verifyEmailCredential(data: any): Promise<string> {
+  const response = await fetch(`${config.baseUrl}/api/credentials?id=${data.id}`, {
+    method: 'PUT',
     headers: {
       cookie: cookies().toString(),
     },
@@ -23,15 +23,17 @@ export async function verifyEmailCredential(data: any) {
 
   if (!response.ok) {
     if (response.status === 403) {
-      console.log(await response.json())
       return 'Access denied to method, requires write:credential scope.';
+    }
+    if (response.status === 423) {
+      return 'Verification failed, please try again.';
     }
     console.log(response.status)
     throw new Error('Something went wrong!');
   }
 
   // eslint-disable-next-line no-restricted-syntax
-  const body = (await response.json()) as { data: ICredential[] };
+  const body = await response.json();
 
   return body.data;
 }

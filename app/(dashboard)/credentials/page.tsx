@@ -10,6 +10,8 @@ import { deleteCredentials } from "app/api/credentials/delete-credentials";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import VerifyEmail from "@/components/ui/verify-email";
+import { verifyEmailCredential } from "app/api/credentials/verify-email-credential";
 
 export default async function Credentials() {
   const credentials = await getCredentials();
@@ -25,15 +27,20 @@ export default async function Credentials() {
     redirect('/credentials');
   }
 
-  const verifyCredential = async (id: string) => {
+  const verifyCredential = async ({id, code}: { id: string; code: string }) => {
     'use server';
     try {
-      await verifyCredentials(id);
+      const response = await verifyEmailCredential({id, code});
+      if (response === 'Invalid verification code') {
+        console.log("invalid")
+        return 'Invalid verification code';
+      } else {
+        revalidatePath('/credentials');
+        redirect('/credentials');
+      }
     } catch (error) {
       console.error(error);
     }
-    revalidatePath('/credentials');
-    redirect('/credentials');
   }
 
   if (typeof credentials === 'string') {
@@ -84,9 +91,7 @@ export default async function Credentials() {
                           <CheckIcon className="h-4 w-4"/>
                         </Badge>
                       ) : (
-                        <Button size="sm">
-                          Verify
-                        </Button>
+                        <VerifyEmail action={verifyCredential} id={credential.provider}/>
                       )}
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
