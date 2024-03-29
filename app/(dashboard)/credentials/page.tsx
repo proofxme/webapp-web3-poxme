@@ -1,7 +1,6 @@
 'use server';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import React from "react";
 import { getCredentials, ICredential } from "app/api/credentials/get-credentials";
@@ -31,24 +30,24 @@ export default async function Credentials() {
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[300px]">Credential Name</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Flow</TableHead>
+                  <TableHead>Kind</TableHead>
+                  <TableHead>Provider</TableHead>
                   <TableHead className="w-[150px] text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {credentials.map((credential: ICredential) => (
-                  <TableRow className="select-none" key={credential.id}>
+                  <TableRow className="select-none" key={credential.provider}>
                     <TableCell className="flex items-center gap-4">
                       <LogInIcon className="h-4 w-4"/>
-                      <span className="font-medium">{credential.id}</span>
+                      <span className="font-medium">{credential.handler}</span>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="outline">{credential.status}</Badge>
+                      <span className="font-medium">{credential.handler}</span>
                     </TableCell>
-                    <TableCell>
-                      <Badge variant="outline">Redirects to:</Badge>
-                      {' '}jorge@pox.me
+                    <TableCell className="content-center">
+                      <MailIcon className="h-4 w-4"/>
+                      <span className="font-medium">{credential.kind.toUpperCase()}</span>
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
                       <Button className="h-8 w-8" size="icon" variant="outline">
@@ -94,8 +93,7 @@ function CheckIcon(props: any) {
   )
 }
 
-
-function CloudIcon(props: any) {
+function MailIcon(props: any) {
   return (
     <svg
       {...props}
@@ -109,11 +107,11 @@ function CloudIcon(props: any) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+      <rect width="20" height="16" x="2" y="4" rx="2"/>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
     </svg>
   )
 }
-
 
 function LinkIcon(props: any) {
   return (

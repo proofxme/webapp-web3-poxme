@@ -9,12 +9,13 @@ export interface ICredential {
 }
 
 
-export async function getCredentials() {
+export async function deleteCredentials() {
   const response = await fetch(`${config.baseUrl}/api/credentials`, {
     cache: 'no-store',
     headers: {
       cookie: cookies().toString(),
     },
+    method: 'DELETE'
   });
 
   if (!response.ok) {
