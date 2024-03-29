@@ -5,9 +5,36 @@ import { Button } from "@/components/ui/button"
 import React from "react";
 import { getCredentials, ICredential } from "app/api/credentials/get-credentials";
 import Link from "next/link";
+import DeleteButton from "@/components/ui/delete-button";
+import { deleteCredentials } from "app/api/credentials/delete-credentials";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
 
 export default async function Credentials() {
   const credentials = await getCredentials();
+
+  const deleteCredential = async (id: string) => {
+    'use server';
+    try {
+      await deleteCredentials(id);
+    } catch (error) {
+      console.error(error);
+    }
+    revalidatePath('/credentials');
+    redirect('/credentials');
+  }
+
+  const verifyCredential = async (id: string) => {
+    'use server';
+    try {
+      await verifyCredentials(id);
+    } catch (error) {
+      console.error(error);
+    }
+    revalidatePath('/credentials');
+    redirect('/credentials');
+  }
 
   if (typeof credentials === 'string') {
     return <div>{credentials}</div>;
@@ -32,6 +59,7 @@ export default async function Credentials() {
                   <TableHead className="w-[300px]">Credential Name</TableHead>
                   <TableHead>Kind</TableHead>
                   <TableHead>Provider</TableHead>
+                  <TableHead>Verified</TableHead>
                   <TableHead className="w-[150px] text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -49,19 +77,20 @@ export default async function Credentials() {
                       <MailIcon className="h-4 w-4"/>
                       <span className="font-medium">{credential.kind.toUpperCase()}</span>
                     </TableCell>
+                    <TableCell className="content-center">
+                      {credential.verified ? (
+                        <Badge color="success"
+                               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                          <CheckIcon className="h-4 w-4"/>
+                        </Badge>
+                      ) : (
+                        <Button size="sm">
+                          Verify
+                        </Button>
+                      )}
+                    </TableCell>
                     <TableCell className="flex justify-end gap-2">
-                      <Button className="h-8 w-8" size="icon" variant="outline">
-                        <LinkIcon className="h-4 w-4"/>
-                        <span className="sr-only">Connect</span>
-                      </Button>
-                      <Button className="h-8 w-8" size="icon" variant="outline">
-                        <UnlinkIcon className="h-4 w-4"/>
-                        <span className="sr-only">Disconnect</span>
-                      </Button>
-                      <Button className="h-8 w-8" size="icon">
-                        <CheckIcon className="h-4 w-4"/>
-                        <span className="sr-only">Select</span>
-                      </Button>
+                      <DeleteButton action={deleteCredential} id={credential.provider}/>
                     </TableCell>
                   </TableRow>
                 ))}
