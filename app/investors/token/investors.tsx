@@ -46,10 +46,11 @@ export default function Investors() {
           </p>
         </div>
       </div>
-      <div className="flex justify-center gap-3">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 p-1">
         <TokenPrice scrollToInvestSection={scrollToInvestSection} />
         <TokenContract />
       </div>
+
       <section className="w-full py-12 lg:py-24">
         <div className="container px-4 md:px-6">
           <div className="space-y-4 text-center">

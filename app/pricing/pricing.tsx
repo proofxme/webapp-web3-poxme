@@ -3,24 +3,24 @@ import Image from "next/image";
 
 export default function Pricing() {
   return (
-    <section className="min-h-screen w-full py-12 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-zinc-900 dark:to-zinc-800 flex items-center justify-center">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-3">
-          <h1 className="flex items-center gap-2 text-3xl font-bold tracking-tighter sm:text-5xl">
-            <Image
-              src="/tokens/poxme.jpg"
-              alt="poxme token"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
-            Proof of X subscription
-          </h1>
-          <p className="max-w-[600px] justify-center text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 ">
-            We reinvented the email protocol, and we are building a new way to
-            communicate and interact within internet.
-          </p>
-        </div>
+    <section className="min-h-screen w-full py-12 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-zinc-900 dark:to-zinc-800 ">
+      <div className="flex flex-col items-center space-y-3">
+        <h1 className="flex items-center gap-2 text-3xl font-bold tracking-tighter sm:text-5xl">
+          <Image
+            src="/tokens/poxme.jpg"
+            alt="poxme token"
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
+          Proof of X subscription
+        </h1>
+        <p className="max-w-[600px] justify-center text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 ">
+          We reinvented the email protocol, and we are building a new way to
+          communicate and interact with the internet.
+        </p>
+      </div>
+      <div className="container px-4 mt-4 md:px-6">
         <div className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-3 md:gap-8">
           <div className="flex flex-col p-6 bg-white shadow-lg rounded-lg dark:bg-zinc-850 justify-between border border-gray-300">
             <div>
