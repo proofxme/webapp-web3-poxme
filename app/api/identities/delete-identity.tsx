@@ -3,13 +3,7 @@
 import { cookies } from 'next/headers';
 import 'server-only';
 import { config } from "@/lib/logto-config";
-
-export interface IIdentity {
-  id: string;
-  name: string;
-  status: string;
-  flow: string;
-}
+import { IIdentity } from "app/api/interfaces/identity";
 
 export async function deleteIdentity(id: string) {
   const response = await fetch(`${config.baseUrl}/api/identities?id=${id}`, {
@@ -22,10 +16,8 @@ export async function deleteIdentity(id: string) {
 
   if (!response.ok) {
     if (response.status === 403) {
-      console.log(await response.json())
       return 'Access denied to method, requires read:identity scope.';
     }
-    console.log(response.status)
     throw new Error('Something went wrong!');
   }
 

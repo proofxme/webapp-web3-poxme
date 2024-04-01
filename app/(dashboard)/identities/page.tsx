@@ -8,32 +8,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-type IIdentity = {
-  id: string;
-  name: string;
-  displayName: string;
-  visibility: string;
-  status: string;
-  privacy: string;
-}
+import { getIdentity } from "app/api/identities/get-identities";
+import { IIdentity } from "app/api/interfaces/identity";
 
 export default async function Identities() {
-  const identities: IIdentity[] = [{
-    id: "1",
-    name: "jhon_doe",
-    displayName: "John Doe",
-    visibility: "Public",
-    status: "Active",
-    privacy: "Public",
-  }, {
-    id: "2",
-    name: "jane_doe",
-    displayName: "Jane Doe",
-    visibility: "Public",
-    status: "Active",
-    privacy: "Public",
-  }];
+  const identities: string | IIdentity[] = await getIdentity()
 
   const deleteIdentity = async (id: string) => {
     'use server';
@@ -44,6 +23,14 @@ export default async function Identities() {
     }
     revalidatePath('/identities');
     redirect('/identities');
+  }
+
+  if (!identities) {
+    return <div>Loading...</div>
+  }
+
+  if (typeof identities === 'string') {
+    return <div>{identities}</div>
   }
 
   return (
@@ -73,28 +60,28 @@ export default async function Identities() {
               </TableHeader>
               <TableBody>
                 {identities.map((identity: IIdentity) => (
-                  <TableRow className="select-none" key={identity.name}>
+                  <TableRow className="select-none" key={identity.handler}>
                     <TableCell>
-                      {identity.name}
+                      {identity.handler}
                     </TableCell>
                     <TableCell>
-                      {identity.name}@mail.pox.me
+                      {identity.handler}@mail.pox.me
                     </TableCell>
                     <TableCell>
                       {identity.displayName}
                     </TableCell>
                     <TableCell>
-                      <Badge variant="default" className="bg-green-400">{identity.visibility}</Badge>
+                      <Badge variant="default" className="bg-green-400">{identity.visibility.toString()}</Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="default" className="bg-green-400">{identity.status}</Badge>
+                      <Badge variant="default" className="bg-green-400">{identity.active.toString()}</Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="default" className="bg-red-400">{identity.privacy}</Badge>
+                      <Badge variant="default" className="bg-red-400">{identity.privacy.toString()}</Badge>
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
                       <TableCell className="flex justify-end gap-2">
-                        <DeleteButton action={deleteIdentity} id={identity.name}/>
+                        <DeleteButton action={deleteIdentity} id={identity.handler}/>
                       </TableCell>
                     </TableCell>
                   </TableRow>
