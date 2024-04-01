@@ -13,13 +13,13 @@ export async function GET(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('read:credential')) {
-    return new Response(JSON.stringify({message: 'Access denied to route, requires read:credential scope.'}), {
+  if (!scopes?.includes('read:identity')) {
+    return new Response(JSON.stringify({message: 'Access denied to route, requires read:identity scope.'}), {
       status: 403,
     });
   }
 
-  const response = await fetch('https://api.pox.me/credentials', {
+  const response = await fetch('https://api.pox.me/identities', {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -42,15 +42,15 @@ export async function POST(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:credential')) {
-    return new Response(JSON.stringify({message: 'Access denied to route, requires write:credential scope.'}), {
+  if (!scopes?.includes('write:identity')) {
+    return new Response(JSON.stringify({message: 'Access denied to route, requires write:identity scope.'}), {
       status: 403,
     });
   }
 
   const json = await request.json();
 
-  const response = await fetch('https://api.pox.me/credentials', {
+  const response = await fetch('https://api.pox.me/identities', {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -75,15 +75,15 @@ export async function PUT(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:credential')) {
-    return new Response(JSON.stringify({message: 'Access denied to route, requires write:credential scope.'}), {
+  if (!scopes?.includes('write:identity')) {
+    return new Response(JSON.stringify({message: 'Access denied to route, requires write:identity scope.'}), {
       status: 403,
     });
   }
 
   const json = await request.json();
 
-  const response = await fetch('https://api.pox.me/credentials', {
+  const response = await fetch('https://api.pox.me/identities', {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -108,15 +108,15 @@ export async function DELETE(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:credential')) {
-    return new Response(JSON.stringify({message: 'Access denied to route, requires write:credential scope.'}), {
+  if (!scopes?.includes('write:identity')) {
+    return new Response(JSON.stringify({message: 'Access denied to route, requires write:identity scope.'}), {
       status: 403,
     });
   }
 
   const provider = request.nextUrl.searchParams.get('id')
 
-  const response = await fetch(`https://api.pox.me/credentials/${provider}`, {
+  const response = await fetch(`https://api.pox.me/identities/${provider}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
