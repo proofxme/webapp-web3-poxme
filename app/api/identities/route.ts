@@ -87,7 +87,7 @@ export async function PUT(request: NextRequest) {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify(json),
   }).then((res) => res.json());
 

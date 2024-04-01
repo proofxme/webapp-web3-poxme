@@ -14,7 +14,7 @@ import VerifyEmail from "@/components/ui/verify-email";
 import { verifyEmailCredential } from "app/api/credentials/verify-email-credential";
 
 export default async function Credentials() {
-  const credentials = await getCredentials();
+  const credentials: string | ICredential[] = await getCredentials();
 
   const deleteCredential = async (id: string) => {
     'use server';
