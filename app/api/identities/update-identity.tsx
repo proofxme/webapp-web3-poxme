@@ -3,13 +3,7 @@
 import { config } from "@/lib/logto-config";
 import 'server-only';
 import { cookies } from "next/headers";
-
-export interface IIdentity {
-  id: string;
-  name: string;
-  status: string;
-  flow: string;
-}
+import { IIdentity } from "app/api/interfaces/identity";
 
 export async function createCredential(data: any) {
   const response = await fetch(`${config.baseUrl}/api/credentials`, {
@@ -22,10 +16,8 @@ export async function createCredential(data: any) {
 
   if (!response.ok) {
     if (response.status === 403) {
-      console.log(await response.json())
       return 'Access denied to method, requires write:identity scope.';
     }
-    console.log(response.status)
     throw new Error('Something went wrong!');
   }
 
