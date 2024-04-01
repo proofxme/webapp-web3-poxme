@@ -2,15 +2,15 @@ import { cookies } from 'next/headers';
 import 'server-only';
 import { config } from "@/lib/logto-config";
 
-export interface ICredential {
-  provider: string;
-  handler: string;
-  kind: string;
+export interface IIdentity {
+  id: string;
+  name: string;
+  status: string;
+  flow: string;
 }
 
-
 export async function getIdentity() {
-  const response = await fetch(`${config.baseUrl}/api/credentials`, {
+  const response = await fetch(`${config.baseUrl}/api/identity`, {
     cache: 'no-store',
     headers: {
       cookie: cookies().toString(),
@@ -27,7 +27,7 @@ export async function getIdentity() {
   }
 
   // eslint-disable-next-line no-restricted-syntax
-  const body = (await response.json()) as { data: ICredential[] };
+  const body = (await response.json()) as { data: IIdentity[] };
 
   return body.data;
 }
