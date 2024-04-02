@@ -10,14 +10,15 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getIdentity } from "app/api/identities/get-identities";
 import { IIdentity } from "app/api/interfaces/identity";
+import { deleteIdentity } from "app/api/identities/delete-identity";
 
 export default async function Identities() {
   const identities: string | IIdentity[] = await getIdentity()
 
-  const deleteIdentity = async (id: string) => {
+  const deleteIdentityHandler = async (id: string) => {
     'use server';
     try {
-      //await deleteIdentity(id);
+      await deleteIdentity(id);
     } catch (error) {
       console.error(error);
     }
@@ -81,7 +82,7 @@ export default async function Identities() {
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
                       <TableCell className="flex justify-end gap-2">
-                        <DeleteButton action={deleteIdentity} id={identity.handler}/>
+                        <DeleteButton action={deleteIdentityHandler} id={identity.handler}/>
                       </TableCell>
                     </TableCell>
                   </TableRow>
