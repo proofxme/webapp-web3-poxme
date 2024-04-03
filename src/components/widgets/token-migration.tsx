@@ -200,24 +200,6 @@ export default function TokenMigration() {
     userInfo?.minted,
   ]);
 
-  const client = createWalletClient({
-    chain: bsc,
-    transport: custom(window.ethereum),
-  });
-
-  const addAssetToWallet = useCallback(() => {
-    watchAsset(client, {
-      type: "ERC20",
-      options: {
-        address: addresses(chain?.id)["PoxmeToken"],
-        decimals: 18,
-        symbol: "POXME",
-      },
-    }).then((r) => {
-      console.log("Error in add asset to wallet", r);
-    });
-  }, [chain?.id, client]);
-
   useEffect(() => {
     if (startBlock) {
       const maxFee = 5184000; // 180 days in blocks
@@ -235,30 +217,6 @@ export default function TokenMigration() {
       }
     }
   }, [blockNumber, startBlock]);
-
-  const addAsset = () => {
-    try {
-      if (address && window) {
-        // @ts-ignore
-        return (
-          <div className="space-x-3 mb-6">
-            {address && (
-              <Button
-                className="bg-gradient-to-r from-purple-900 via-white-500 to-purple-500 hover:from-purple-400 hover:via-white-500 hover:to-purple-500"
-                onClick={addAssetToWallet}
-              >
-                Add Token to Wallet
-              </Button>
-            )}
-          </div>
-        );
-      } else {
-        return null;
-      }
-    } catch (e) {
-      return null;
-    }
-  };
 
   return (
     <div key="3">
@@ -386,7 +344,6 @@ export default function TokenMigration() {
           </h4>
         </CardHeader>
         <CardContent>
-          {addAsset()}
           <div className="space-x-3 mb-6">
             <p className="text-gray-500">
               You have deposited:
