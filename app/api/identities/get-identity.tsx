@@ -3,8 +3,8 @@ import 'server-only';
 import { config } from "@/lib/logto-config";
 import { IIdentity } from "app/api/interfaces/identity";
 
-export async function getIdentity() {
-  const response = await fetch(`${config.baseUrl}/api/identities`, {
+export async function getIdentity(id: string | string[]) {
+  const response = await fetch(`${config.baseUrl}/api/identities?=id=${id}`, {
     cache: 'no-store',
     headers: {
       cookie: cookies().toString(),
@@ -19,7 +19,14 @@ export async function getIdentity() {
   }
 
   // eslint-disable-next-line no-restricted-syntax
-  const body = (await response.json()) as { data: IIdentity[] };
+  const body = (await response.json()) as { data: IIdentity };
 
-  return body.data;
+  // @ts-ignore
+  const identityResponse = body.data[0];
+
+  if (!identityResponse) {
+    throw new Error('Identity not found');
+  }
+
+  return identityResponse;
 }

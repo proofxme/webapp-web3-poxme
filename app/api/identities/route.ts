@@ -19,7 +19,10 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const response = await fetch('https://api.pox.me/identities', {
+  const id = request.nextUrl.searchParams.get('id');
+  const route = id ? `https://api.pox.me/identities/${id}` : 'https://api.pox.me/identities';
+
+  const response = await fetch(route, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

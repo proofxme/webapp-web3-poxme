@@ -3,7 +3,7 @@ import 'server-only';
 import { config } from "@/lib/logto-config";
 import { IIdentity } from "app/api/interfaces/identity";
 
-export async function getIdentity() {
+export async function getIdentities() {
   const response = await fetch(`${config.baseUrl}/api/identities`, {
     cache: 'no-store',
     headers: {

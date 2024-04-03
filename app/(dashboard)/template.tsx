@@ -1,32 +1,43 @@
+'use client';
+
 import Link from "next/link";
 import IsoLogo from "@/components/ui/isologo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SignOut from "app/sign-out";
+import { usePathname } from "next/navigation";
 
 export default function DashboardTemplate({children}: { children: React.ReactNode }) {
+  const pathname = usePathname()
+
   return (
     <div className="flex flex-col w-full min-h-screen">
       <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
         <nav
           className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-          <Link className="flex items-center gap-2 text-lg font-semibold md:text-base" href="/dashboard">
+          <Link className={`flex items-center gap-2 text-lg ${pathname === '/' ? 'font-bold' : ''} md:text-base`}
+                href="/dashboard">
             <IsoLogo className="w-8 h-8"/>
             <span className="sr-only">Proof of X</span>
           </Link>
-          <Link className="font-bold" href="/dashboard">
+          <Link className={`dark:text-gray-400 ${pathname === '/dashboard' ? 'font-bold underline' : ''}`}
+                href="/dashboard">
             Home
           </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="/credentials">
+          <Link className={`dark:text-gray-400 ${pathname === '/credentials' ? 'font-bold underline' : ''}`}
+                href="/credentials">
             Credentials
           </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="/identities">
+          <Link className={`dark:text-gray-400 ${pathname === '/identities' ? 'font-bold underline' : ''}`}
+                href="/identities">
             Identities
           </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="/communications">
+          {/*
+          \<Link className="text-gray-500 dark:text-gray-400" href="/communications">
             Communications
           </Link>
+          */}
         </nav>
         <div className="flex items-center w-full gap-4 md:ml-auto md:gap-2 lg:gap-4">
           <form className="flex-1 ml-auto sm:flex-initial">
