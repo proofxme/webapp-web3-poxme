@@ -78,7 +78,9 @@ const TokenPrice: React.FC<TokenPriceProps> = ({ scrollToInvestSection }) => {
         <div className="flex items-center gap-2">
           <div className="text-sm font-medium">Volume (24h)</div>
           <div className="font-medium">
-            {isLoading ? "Loading..." : `${Number(tokenData.volume)} USD`}
+            {isLoading
+              ? "Loading..."
+              : `${Number(tokenData.volume).toFixed(2)} USD`}
           </div>
         </div>
         <div className="flex items-center gap-2">
