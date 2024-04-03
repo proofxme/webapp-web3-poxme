@@ -8,12 +8,12 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { getIdentity } from "app/api/identities/get-identities";
+import { getIdentities } from "app/api/identities/get-identities";
 import { IIdentity } from "app/api/interfaces/identity";
 import { deleteIdentity } from "app/api/identities/delete-identity";
 
 export default async function Identities() {
-  const identities: string | IIdentity[] = await getIdentity()
+  const identities: string | IIdentity[] = await getIdentities()
 
   const deleteIdentityHandler = async (id: string) => {
     'use server';
@@ -35,11 +35,11 @@ export default async function Identities() {
   }
 
   return (
-    <div key="1" className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
+    <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
       <div className="container mx-auto px-4">
         <div className="grid gap-4">
           <div className="flex items-center gap-4">
-            <h1 className="font-semibold text-lg md:text-2xl">Credentials</h1>
+            <h1 className="font-semibold text-lg md:text-2xl">Identities</h1>
             <Link href="/identities/new" className="ml-auto">
               <Button className="ml-auto" size="sm">
                 Create identity
@@ -63,7 +63,9 @@ export default async function Identities() {
                 {identities.map((identity: IIdentity) => (
                   <TableRow className="select-none" key={identity.handler}>
                     <TableCell>
-                      {identity.handler}
+                      <Link href={`/identities/${identity.handler}`}>
+                        {identity.handler}
+                      </Link>
                     </TableCell>
                     <TableCell>
                       {identity.handler}@mail.pox.me
@@ -81,9 +83,7 @@ export default async function Identities() {
                       <Badge variant="default" className="bg-red-400">{identity.privacy.toString()}</Badge>
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
-                      <TableCell className="flex justify-end gap-2">
-                        <DeleteButton action={deleteIdentityHandler} id={identity.handler}/>
-                      </TableCell>
+                      <DeleteButton action={deleteIdentityHandler} id={identity.handler}/>
                     </TableCell>
                   </TableRow>
                 ))}

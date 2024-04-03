@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import { getIdentity } from "app/api/identities/get-identity";
 
-export default async function Component() {
+export default async function Identity({params}: { params: { id: string } }) {
+  const identity = await getIdentity(params.id);
+
   return (
     <div key="1" className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
       <header className="relative h-[300px] overflow-hidden">
@@ -22,8 +25,8 @@ export default async function Component() {
         <div className="relative h-full flex items-end justify-between px-4 py-6 md:px-6 lg:px-8">
           <div className="flex items-center gap-4">
             <div className="grid gap-1">
-              <h1 className="text-2xl font-bold">John Doe</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">@johndoe</p>
+              <h1 className="text-2xl font-bold">{identity.displayName}</h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400">@{identity.handler}</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -38,7 +41,7 @@ export default async function Component() {
             <div className="space-y-2">
               <h2 className="text-xl font-bold">Bio</h2>
               <p className="text-gray-500 dark:text-gray-400">
-                Full-stack developer with a passion for creating beautiful and functional user experiences.
+                {identity.bio}
               </p>
             </div>
             <div className="space-y-2">
