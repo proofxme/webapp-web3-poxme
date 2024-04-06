@@ -74,15 +74,31 @@ export default async function Identities() {
                       {identity.displayName}
                     </TableCell>
                     <TableCell>
-                      <Badge variant="default" className="bg-green-400">{identity.visibility.toString()}</Badge>
+                      {identity.visibility ? (
+                        <Badge variant="default" className="bg-blue-400">Public</Badge>
+                      ) : (
+                        <Badge variant="default" className="bg-yellow-400">Private</Badge>
+                      )}
                     </TableCell>
                     <TableCell>
-                      <Badge variant="default" className="bg-green-400">{identity.active.toString()}</Badge>
+                      {identity.active ? (
+                        <Badge variant="default" className="bg-green-400">Active</Badge>
+                      ) : (
+                        <Badge variant="default" className="bg-red-400">Disabled</Badge>
+                      )}
                     </TableCell>
                     <TableCell>
-                      <Badge variant="default" className="bg-red-400">{identity.privacy.toString()}</Badge>
+                      {identity.privacy ? (
+                        <Badge variant="default" className="bg-green-400">Private</Badge>
+                      ) : (
+                        <Badge variant="default" className="bg-blue-400">Public</Badge>
+                      )}
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
+                      <Link href={`/id/${identity.handler}`} className="text-blue-500" title="View" target={"_blank"}
+                            aria-label="View">
+                        <EyeIcon className="w-6 h-6 pt-1 text-blue-500"/>
+                      </Link>
                       <DeleteButton action={deleteIdentityHandler} id={identity.handler}/>
                     </TableCell>
                   </TableRow>
@@ -93,5 +109,25 @@ export default async function Identities() {
         </div>
       </div>
     </div>
+  )
+}
+
+function EyeIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
   )
 }
