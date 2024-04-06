@@ -84,9 +84,10 @@ export async function PUT(request: NextRequest) {
     });
   }
 
+  const id = request.nextUrl.searchParams.get('id');
   const json = await request.json();
 
-  const response = await fetch('https://api.pox.me/identities', {
+  const response = await fetch(`https://api.pox.me/identities/${id}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

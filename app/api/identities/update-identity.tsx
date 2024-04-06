@@ -5,9 +5,9 @@ import 'server-only';
 import { cookies } from "next/headers";
 import { IIdentity } from "app/api/interfaces/identity";
 
-export async function createCredential(data: any) {
-  const response = await fetch(`${config.baseUrl}/api/credentials`, {
-    method: 'POST',
+export async function updateIdentity(id: string, data: any) {
+  const response = await fetch(`${config.baseUrl}/api/identities?id=${id}`, {
+    method: 'PUT',
     headers: {
       cookie: cookies().toString(),
     },

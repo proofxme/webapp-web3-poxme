@@ -1,10 +1,16 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
-import React, { JSX, SVGProps } from "react";
+import React, { JSX, SVGProps, useCallback } from "react";
 
 export default function DeleteButton(props: { action: (id: string) => void, id: string }) {
-  return <Button className="h-8 w-8" size="icon" onClick={() => props.action(props.id)}>
+  const confirmDelete = useCallback(() => {
+    if (confirm('Are you sure you want to delete this item?')) {
+      props.action(props.id);
+    }
+  }, [])
+  
+  return <Button className="h-8 w-8" size="icon" onClick={confirmDelete}>
     <Trash2Icon className="h-4 w-4"/>
     <span className="sr-only">Delete</span>
   </Button>;
