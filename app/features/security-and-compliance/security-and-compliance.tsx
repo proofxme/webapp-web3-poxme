@@ -45,7 +45,7 @@ export default function SecurityComplianceFeature() {
                         </div>
                         <div className="lg:w-1/2">
                             <h1 className="relative max-w-2xl mb-4 text-4xl lg:text-5xl font-extrabold tracking-tight leading-none dark:text-white">Simplified Username Authentication</h1>
-                            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-6">Transition to a simpler, more secure login method. With our username-based authentication, experience both convenience and enhanced security, minimizing the reliance on emails.</p>
+                            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400 text-base/7 leading-loose mt-6">Transition to a simpler and more secure login method. With our username-based authentication, experience both convenience and enhanced security, minimizing the reliance on emails.</p>
                         </div>
                     </div>
                 </div>
