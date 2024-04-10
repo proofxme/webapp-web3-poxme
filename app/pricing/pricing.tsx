@@ -16,7 +16,7 @@ export default function Pricing() {
           Proof of X subscription
         </h1>
         <p className="max-w-[600px] justify-center text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 ">
-          We've reinvented the email protocol, and we are building a new way to
+          We’ve reinvented the email protocol, and we are building a new way to
           communicate and interact with the internet.
         </p>
       </div>
