@@ -3,13 +3,7 @@
 import { config } from "@/lib/logto-config";
 import 'server-only';
 import { cookies } from "next/headers";
-
-export interface ICredential {
-  id: string;
-  name: string;
-  status: string;
-  flow: string;
-}
+import { ICredential } from "app/api/interfaces/credential";
 
 
 export async function createCredential(data: any) {

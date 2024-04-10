@@ -3,12 +3,7 @@
 import { cookies } from 'next/headers';
 import 'server-only';
 import { config } from "@/lib/logto-config";
-
-export interface ICredential {
-  provider: string;
-  handler: string;
-  kind: string;
-}
+import { ICredential } from "app/api/interfaces/credential";
 
 
 export async function deleteCredentials(id: string) {

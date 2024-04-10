@@ -4,13 +4,6 @@ import { config } from "@/lib/logto-config";
 import 'server-only';
 import { cookies } from "next/headers";
 
-export interface ICredential {
-  id: string;
-  name: string;
-  status: string;
-  flow: string;
-}
-
 
 export async function verifyEmailCredential(data: any): Promise<string> {
   const response = await fetch(`${config.baseUrl}/api/credentials?id=${data.id}`, {

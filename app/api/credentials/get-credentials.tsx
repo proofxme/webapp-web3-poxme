@@ -1,14 +1,7 @@
 import { cookies } from 'next/headers';
 import 'server-only';
 import { config } from "@/lib/logto-config";
-
-export interface ICredential {
-  provider: string;
-  handler: string;
-  kind: string;
-  verified: boolean;
-}
-
+import { ICredential } from "app/api/interfaces/credential";
 
 export async function getCredentials() {
   const response = await fetch(`${config.baseUrl}/api/credentials`, {
