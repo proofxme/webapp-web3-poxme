@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 export default function CreateIdentity(props: {
   action: (data: any) => any;
 }) {
-  const [handler, setHander] = useState('');
+  const [handlerName, setHandlerName] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [bio, setBio] = useState('');
   const [visibility, setVisibility] = useState(false);
@@ -27,15 +27,14 @@ export default function CreateIdentity(props: {
   };
 
   const handleSubmit = async (e: any) => {
-    if (!validateHandler(handler)) {
+    if (!validateHandler(handlerName)) {
       setError('Please enter a valid email address.');
       return;
     }
 
     try {
-      await props.action({displayName, handler, bio, visibility, active, privacy});
+      await props.action({displayName, handlerName, bio, visibility, active, privacy});
     } catch (error) {
-      console.log(error)
       setError('Failed to add email. Please try again.');
     }
   };
@@ -54,7 +53,7 @@ export default function CreateIdentity(props: {
         <form className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="handler">Handler</Label>
-            <Input id="handler" placeholder="Enter a unique handler" onChange={(e) => setHander(e.target.value)}/>
+            <Input id="handler" placeholder="Enter a unique handler" onChange={(e) => setHandlerName(e.target.value)}/>
             <p className="text-xs text-gray-500 dark:text-gray-400">
               This will be your unique identifier. It should be email-friendly.
             </p>

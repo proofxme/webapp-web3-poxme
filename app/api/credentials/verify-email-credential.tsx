@@ -21,7 +21,6 @@ export async function verifyEmailCredential(data: any): Promise<string> {
     if (response.status === 423) {
       return 'Verification failed, please try again.';
     }
-    console.log(response.status)
     throw new Error('Something went wrong!');
   }
 

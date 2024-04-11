@@ -51,7 +51,7 @@ export default async function Identities() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>handler</TableHead>
+                  <TableHead>Identity Name</TableHead>
                   <TableHead>E-Mail</TableHead>
                   <TableHead>Display Name</TableHead>
                   <TableHead>Visibility</TableHead>
@@ -62,14 +62,14 @@ export default async function Identities() {
               </TableHeader>
               <TableBody>
                 {identities.map((identity: IIdentity) => (
-                  <TableRow className="select-none" key={identity.handler}>
+                  <TableRow className="select-none" key={identity.handlerName}>
                     <TableCell>
-                      <Link href={`/identities/${identity.handler}`}>
-                        {identity.handler}
+                      <Link href={`/identities/${identity.handlerName}`}>
+                        {identity.handlerName}
                       </Link>
                     </TableCell>
                     <TableCell>
-                      {identity.handler}@mail.pox.me
+                      {identity.handlerName}@mail.pox.me
                     </TableCell>
                     <TableCell>
                       {identity.displayName}
@@ -96,11 +96,12 @@ export default async function Identities() {
                       )}
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
-                      <Link href={`/id/${identity.handler}`} className="text-blue-500" title="View" target={"_blank"}
+                      <Link href={`/id/${identity.handlerName}`} className="text-blue-500" title="View"
+                            target={"_blank"}
                             aria-label="View">
                         <EyeIcon className="w-6 h-6 pt-1 text-blue-500"/>
                       </Link>
-                      <DeleteButton action={deleteIdentityHandler} id={identity.handler}/>
+                      <DeleteButton action={deleteIdentityHandler} id={identity.handlerName}/>
                     </TableCell>
                   </TableRow>
                 ))}

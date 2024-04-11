@@ -15,9 +15,7 @@ export async function getRbacProtectedResource() {
       cookie: cookies().toString(),
     },
   });
-
-
-  console.log("status", response.status)
+  
   if (!response.ok) {
     if (response.status === 403) {
       return 'Access denied to method, requires read:credential scope.';
