@@ -21,8 +21,9 @@ export async function GET(request: NextRequest) {
 
   const id = request.nextUrl.searchParams.get('id');
   const route = id ? `https://api.pox.me/identities/${id}` : 'https://api.pox.me/identities';
-
+  
   const response = await fetch(route, {
+    cache: 'no-store',
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

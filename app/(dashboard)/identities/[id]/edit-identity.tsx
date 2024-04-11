@@ -47,6 +47,10 @@ export default function EditIdentity(props: {
     }
   }
 
+  if (!identity) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Tabs defaultValue="account" className="max-w-screen-lg">
       <TabsList className="grid w-full grid-cols-2">

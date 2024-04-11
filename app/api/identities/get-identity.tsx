@@ -4,7 +4,7 @@ import { config } from "@/lib/logto-config";
 import { IIdentity } from "app/api/interfaces/identity";
 
 export async function getIdentity(id: string | string[]) {
-  const response = await fetch(`${config.baseUrl}/api/identities?=id=${id}`, {
+  const response = await fetch(`${config.baseUrl}/api/identities?id=${id}`, {
     cache: 'no-store',
     headers: {
       cookie: cookies().toString(),
@@ -22,11 +22,7 @@ export async function getIdentity(id: string | string[]) {
   const body = (await response.json()) as { data: IIdentity };
 
   // @ts-ignore
-  const identityResponse = body.data[0];
-
-  if (!identityResponse) {
-    throw new Error('Identity not found');
-  }
-
+  const identityResponse = body.data;
+  
   return identityResponse;
 }
