@@ -31,7 +31,6 @@ export default function AddEmailComponent(props: { handleCredential: any; }) {
     try {
       await handleCredential({provider: `email~${email}`, handler: email, kind: 'email'});
     } catch (error) {
-      console.log(error)
       setError('Failed to add email. Please try again.');
     }
   };

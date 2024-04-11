@@ -35,10 +35,17 @@ export default function EditIdentity(props: {
     try {
       await props.action({displayName, bio, visibility, active, privacy});
     } catch (error) {
-      console.log(error)
       setError('Failed to update identity.');
     }
   };
+
+  const handleCredentialLink = async (e: any) => {
+    try {
+      await props.action({});
+    } catch (error) {
+      setError('Failed to update identity.');
+    }
+  }
 
   return (
     <Tabs defaultValue="account" className="max-w-screen-lg">
@@ -62,7 +69,7 @@ export default function EditIdentity(props: {
               cannot be changed.</p>
             <div className="flex items-center gap-4">
               <Label htmlFor="handler">Handler</Label>
-              <Input id="handler" disabled value={identity.handler}/>
+              <Input id="handler" disabled value={identity.handlerName}/>
             </div>
             <h1 className="text-lg font-semibold mt-6">Identity Details</h1>
             <form className="space-y-6">

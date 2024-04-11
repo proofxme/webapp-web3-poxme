@@ -1,5 +1,5 @@
 export interface IIdentity {
-  handler: string;
+  handlerName: string;
   displayName: string;
   visibility: boolean;
   bio: string;

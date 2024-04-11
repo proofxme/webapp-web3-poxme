@@ -35,7 +35,6 @@ export default async function Credentials() {
     try {
       const response = await verifyEmailCredential({id, code});
       if (response === 'Invalid verification code') {
-        console.log("invalid")
         return 'Invalid verification code';
       } else {
         revalidatePath('/credentials');

@@ -17,15 +17,11 @@ export async function createCredential(data: any) {
 
   if (!response.ok) {
     if (response.status === 403) {
-      console.log(await response.json())
       return 'Access denied to method, requires write:credential scope.';
     }
     if (response.status === 423) {
-      console.log(response.status)
-      console.log(await response.json())
       return 'Verification failed, please try again.'
     }
-    console.log(response.status)
     throw new Error('Something went wrong!');
   }
 
