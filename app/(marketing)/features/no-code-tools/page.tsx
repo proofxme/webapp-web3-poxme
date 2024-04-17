@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Web3Feature from "./web3";
+import NoCodeToolsFeature from "app/(marketing)/features/no-code-tools/no-code-tools";
 
 export const metadata: Metadata = {
-  title: "Proof of X | Web3 Tools",
+  title: "Proof of X | No Code Tools",
   description: "",
   openGraph: {
-    title: "Proof of X | Web3 Tools",
+    title: "Proof of X | No Code Tools",
     description: "",
 
-    url: "https://pox.me/features/web3",
+    url: "https://pox.me/features/no-code-tools",
     siteName: "Proof of X",
     images: [
       {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Proof of X | Web3 Tools",
+    title: "Proof of X | No Code Tools",
     description: "",
 
     creator: "@proofxme",
@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SecuritySecurityFeaturePage() {
-  return <Web3Feature />;
+export default function NoCodeToolFeaturePage() {
+  return (
+    <>
+      <NoCodeToolsFeature/>
+    </>
+  );
 }

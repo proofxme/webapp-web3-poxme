@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Pricing from "./pricing";
+import Pricing from "app/(marketing)/pricing/pricing";
 
 export const metadata: Metadata = {
   title: "Proof of X | Pricing",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
-      <Pricing />
+      <Pricing/>
     </>
   );
 }
