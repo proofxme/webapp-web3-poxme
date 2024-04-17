@@ -5,8 +5,8 @@ import 'server-only';
 import { config } from "@/lib/logto-config";
 import { IIdentity } from "app/api/interfaces/identity";
 
-export async function deleteIdentity(id: string) {
-  const response = await fetch(`${config.baseUrl}/api/identities?id=${id}`, {
+export async function deleteIdentity(identity: IIdentity) {
+  const response = await fetch(`${config.baseUrl}/api/identities?id=${identity.handlerName}&content=${identity.content}`, {
     cache: 'no-store',
     headers: {
       cookie: cookies().toString(),

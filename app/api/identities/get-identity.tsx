@@ -19,10 +19,10 @@ export async function getIdentity(id: string | string[]) {
   }
 
   // eslint-disable-next-line no-restricted-syntax
-  const body = (await response.json()) as { data: IIdentity };
+  const body = (await response.json()) as { data: IIdentity[] };
 
   // @ts-ignore
   const identityResponse = body.data;
-  
+
   return identityResponse;
 }

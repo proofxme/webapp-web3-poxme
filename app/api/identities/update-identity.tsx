@@ -21,6 +21,7 @@ export async function updateIdentity(id: string, data: any) {
     throw new Error('Something went wrong!');
   }
 
+
   // eslint-disable-next-line no-restricted-syntax
   const body = (await response.json()) as { data: IIdentity[] };
 
