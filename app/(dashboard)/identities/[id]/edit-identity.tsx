@@ -16,39 +16,51 @@ import VerifyEmail from "@/components/ui/verify-email";
 import { CheckIcon, LogInIcon, MailIcon } from "app/(dashboard)/credentials/icons";
 import LinkEmailDialog from "app/(dashboard)/identities/[id]/link-email";
 import { ICredential } from "app/api/interfaces/credential";
+import DeleteButton from "@/components/ui/delete-button";
 
 export default function EditIdentity(props: {
-  action: (data: any) => any;
-  identity: IIdentity,
+  updateAction: (data: any, refresh: boolean) => any;
+  createAction: (data: any) => any;
+  deleteAction: (id: string, content: string) => any;
+  identity: IIdentity[],
   credentials: ICredential[]
 }) {
   const {identity, credentials} = props;
+  const id = identity.find((i: IIdentity) => i.content = 'core');
 
-  const [displayName, setDisplayName] = useState(identity.displayName);
-  const [bio, setBio] = useState(identity.bio);
-  const [visibility, setVisibility] = useState(identity.visibility);
-  const [active, setActive] = useState(identity.active);
-  const [privacy, setPrivacy] = useState(identity.privacy);
+  if (!identity || !id) {
+    return <div>Loading...</div>;
+  }
+
+  const [displayName, setDisplayName] = useState(id.displayName);
+  const [bio, setBio] = useState(id.bio);
+  const [visibility, setVisibility] = useState(id.visibility);
+  const [active, setActive] = useState(id.active);
+  const [privacy, setPrivacy] = useState(id.privacy);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: any) => {
+  const handleCoreUpdate = async (e: any) => {
     try {
-      await props.action({displayName, bio, visibility, active, privacy});
+      await props.updateAction({content: 'core', displayName, bio, visibility, active, privacy}, true);
     } catch (error) {
       setError('Failed to update identity.');
     }
   };
 
-  const handleCredentialLink = async (e: any) => {
+  const handleCredentialLink = async (data: any) => {
     try {
-      await props.action({});
+      await props.createAction({...data, handlerName: id.handlerName, content: 'credential~email'});
     } catch (error) {
       setError('Failed to update identity.');
     }
   }
 
-  if (!identity) {
-    return <div>Loading...</div>;
+  const handleUnlink = async (identity: IIdentity) => {
+    try {
+      await props.deleteAction(identity.handlerName, identity.content);
+    } catch (error) {
+      setError('Failed to update identity.');
+    }
   }
 
   return (
@@ -73,7 +85,7 @@ export default function EditIdentity(props: {
               cannot be changed.</p>
             <div className="flex items-center gap-4">
               <Label htmlFor="handler">Handler</Label>
-              <Input id="handler" disabled value={identity.handlerName}/>
+              <Input id="handler" disabled value={id.handlerName}/>
             </div>
             <h1 className="text-lg font-semibold mt-6">Identity Details</h1>
             <form className="space-y-6">
@@ -122,7 +134,7 @@ export default function EditIdentity(props: {
             <Link href="/identities" className="text-blue-500">
               <Button variant="ghost">Cancel</Button>
             </Link>
-            <Button className="ml-auto" onClick={handleSubmit}>Update Identity</Button>
+            <Button className="ml-auto" onClick={handleCoreUpdate}>Update Identity</Button>
           </CardFooter>
         </Card>
       </TabsContent>
@@ -162,7 +174,11 @@ export default function EditIdentity(props: {
                   )}
                 </TableCell>
                 <TableCell className="flex justify-end gap-2">
-                  <LinkEmailDialog key={credential.provider} credential={credential}/>
+                  {identity.find((i: IIdentity) => i.provider === credential.provider) ? (
+                    <DeleteButton action={handleUnlink} identity={id}/>
+                  ) : (
+                    <LinkEmailDialog key={credential.provider} credential={credential} action={handleCredentialLink}/>
+                  )}
                 </TableCell>
               </TableRow>
             ))}

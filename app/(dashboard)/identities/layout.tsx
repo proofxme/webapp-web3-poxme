@@ -9,7 +9,17 @@ import { IIdentity } from "app/api/interfaces/identity";
 
 
 export default async function IdentityLayout({children}: { children: React.ReactNode }) {
-  const identities = await getIdentities();
+  let identities = await getIdentities();
+
+  if (typeof identities === 'string') {
+    return <div>{identities}</div>
+  } else if (Array.isArray(identities)) {
+    identities.forEach((identity: IIdentity) => {
+      identity.credentials = identities.filter((cred: IIdentity) => cred.handlerName === identity.handlerName && cred.content.includes('credential'))
+    })
+    //delete all identities with the content 'credential' permanently from the array
+    identities = identities.filter((id) => id.content === 'core')
+  }
 
   return (
     <div className="grid h-screen w-full lg:grid-cols-[280px_1fr]">
@@ -25,9 +35,11 @@ export default async function IdentityLayout({children}: { children: React.React
                 <InboxIcon className="h-4 w-4"/>
                 All
               </Link>
-              {typeof identities === 'string' ? <div>{identities}</div> : identities.map((identity: IIdentity) =>
-                <LinkListElement key={identity.handlerName}
-                                 identity={identity}/>)}
+              {typeof identities === 'string' ?
+                <div>{identities}</div> :
+                identities.filter((id) => id.content === 'core').map((identity: IIdentity) =>
+                  <LinkListElement key={identity.handlerName}
+                                   identity={identity}/>)}
             </div>
           </div>
         </div>

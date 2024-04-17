@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
 
   const id = request.nextUrl.searchParams.get('id');
   const route = id ? `https://api.pox.me/identities/${id}` : 'https://api.pox.me/identities';
-  
+
   const response = await fetch(route, {
     cache: 'no-store',
     headers: {
@@ -120,11 +120,13 @@ export async function DELETE(request: NextRequest) {
   }
 
   const provider = request.nextUrl.searchParams.get('id')
-
+  const json = await request.json();
+  
   const response = await fetch(`https://api.pox.me/identities/${provider}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
+    body: JSON.stringify(json),
     method: 'DELETE',
   }).then((res) => res.json());
 

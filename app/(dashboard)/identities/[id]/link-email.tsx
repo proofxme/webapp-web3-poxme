@@ -12,50 +12,47 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { ICredential } from "app/api/interfaces/credential"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { MailIcon } from "app/(dashboard)/credentials/icons";
-
-const EmailDisplay = ({emailAddress, displayMode}: { emailAddress: string, displayMode: string }) => {
-  const getDisplayValue = () => {
-    const [username, domain] = emailAddress.split('@');
-    switch (displayMode) {
-      case 'display':
-        return emailAddress;
-      case 'hide':
-        return (
-          <span>
-            <MailIcon className="h-4 w-4"/>
-          </span>
-        );
-      case 'conceal-domain':
-        return (
-          <span>
-            <i className="fas fa-shield-alt"></i> {username}@****.***
-          </span>
-        );
-      case 'conceal-handler':
-        return (
-          <span>
-            <i className="fas fa-shield-alt"></i> *****@{domain}
-          </span>
-        );
-      default:
-        return emailAddress;
-    }
-  };
-
-  return <span>{getDisplayValue()}</span>;
-};
 
 export default function LinkEmailDialog(props: {
   credential: ICredential
+  action: (data: any) => any
 }) {
   const [displayMode, setDisplayMode] = useState('display');
-  const {credential} = props;
+  const {credential, action} = props;
+  const [value, setValue] = useState(credential.handler);
+  const [open, setOpen] = useState(false);
+
+  const linkCredential = async (data: any) => {
+    try {
+      await action({value, handler: credential.handler, provider: credential.provider});
+      setOpen(false);
+    } catch (error) {
+      console.error('Failed to update identity.');
+    }
+  }
+
+  useEffect(() => {
+    const [username, domain] = credential.handler.split('@');
+    switch (displayMode) {
+      case 'display':
+        setValue(credential.handler);
+        break;
+      case 'hide':
+        setValue('*****@*****.***');
+        break;
+      case 'conceal-domain':
+        setValue(`${username}@*****.***`);
+        break;
+      case 'conceal-handler':
+        setValue(`*****@${domain}`);
+        break;
+    }
+  }, [credential, displayMode]);
 
   return (
-    <Dialog key="1">
+    <Dialog key="1" open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Link Email</Button>
       </DialogTrigger>
@@ -67,7 +64,7 @@ export default function LinkEmailDialog(props: {
         <div className="flex justify-center items-center py-4">
           <span
             className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-            <EmailDisplay displayMode={displayMode} emailAddress={credential.handler}/>
+            {value}
           </span>
         </div>
         <div className="space-y-2">
@@ -101,7 +98,7 @@ export default function LinkEmailDialog(props: {
           </RadioGroup>
         </div>
         <DialogFooter>
-          <Button type="submit">Link Email</Button>
+          <Button type="submit" onClick={linkCredential}>Link Email</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -14,9 +14,9 @@ import { deleteIdentity } from "app/api/identities/delete-identity";
 import EyeIcon from "@/components/icons/eye";
 
 export default async function Identities() {
-  const identities: string | IIdentity[] = await getIdentities()
+  let identities: string | IIdentity[] = await getIdentities()
 
-  const deleteIdentityHandler = async (id: string) => {
+  const deleteIdentityHandler = async (id: IIdentity) => {
     'use server';
     try {
       await deleteIdentity(id);
@@ -33,6 +33,12 @@ export default async function Identities() {
 
   if (typeof identities === 'string') {
     return <div>{identities}</div>
+  } else if (Array.isArray(identities)) {
+    identities.forEach((identity: IIdentity) => {
+      identity.credentials = identities.filter((cred: IIdentity) => cred.handlerName === identity.handlerName && cred.content.includes('credential'))
+    })
+    //delete all identities with the content 'credential' permanently from the array
+    identities = identities.filter((id) => id.content === 'core')
   }
 
   return (
@@ -61,7 +67,7 @@ export default async function Identities() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {identities.map((identity: IIdentity) => (
+                {identities.filter((id: IIdentity) => id.content === 'core').map((identity: IIdentity) => (
                   <TableRow className="select-none" key={identity.handlerName}>
                     <TableCell>
                       <Link href={`/identities/${identity.handlerName}`}>
@@ -101,7 +107,7 @@ export default async function Identities() {
                             aria-label="View">
                         <EyeIcon className="w-6 h-6 pt-1 text-blue-500"/>
                       </Link>
-                      <DeleteButton action={deleteIdentityHandler} id={identity.handlerName}/>
+                      <DeleteButton action={deleteIdentityHandler} identity={identity}/>
                     </TableCell>
                   </TableRow>
                 ))}
