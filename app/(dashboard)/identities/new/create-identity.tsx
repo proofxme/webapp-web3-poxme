@@ -33,7 +33,7 @@ export default function CreateIdentity(props: {
     }
 
     try {
-      await props.action({displayName, handlerName, bio, visibility, active, privacy});
+      await props.action({content: 'core', displayName, handlerName, bio, visibility, active, privacy});
     } catch (error) {
       setError('Failed to add email. Please try again.');
     }
