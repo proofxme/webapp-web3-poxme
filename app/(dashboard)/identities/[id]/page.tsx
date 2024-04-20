@@ -36,11 +36,10 @@ export default async function Identity({params}: { params: { id: string } }) {
     }
   }
 
-  const deleteIdentityHandler = async (id: string, content: string) => {
+  const deleteIdentityHandler = async (id: IIdentity) => {
     'use server';
     try {
-      console.log("delete params", id, content)
-      await deleteIdentity(id, content);
+      await deleteIdentity(id);
     } catch (error) {
       console.error(error);
     }

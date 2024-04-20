@@ -4,9 +4,31 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { getIdentity } from "app/api/identities/get-identity";
+import { IIdentity } from "app/api/interfaces/identity";
 
 export default async function Identity({params}: { params: { id: string } }) {
   const identity = await getIdentity(params.id);
+  if (typeof identity === 'string') {
+    return <div>{identity}</div>
+  }
+
+  const id = identity.find((i: IIdentity) => i.content = 'core');
+
+  if (!id) {
+    return (
+      <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
+        <div className="container mx-auto px-4">
+          <div className="grid gap-4">
+            <div className="border rounded-lg shadow-sm p-4">
+              <h1 className="font-semibold text-lg md:text-2xl">Identity Not Found</h1>
+              <p>The identity you are looking for does not exist or has been deleted.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const notes = [
     {
       id: "1",
@@ -68,8 +90,8 @@ export default async function Identity({params}: { params: { id: string } }) {
         <div className="relative h-full flex items-end justify-between px-4 py-6 md:px-6 lg:px-8">
           <div className="flex items-center gap-4">
             <div className="grid gap-1">
-              <h1 className="text-2xl font-bold">{identity.displayName}</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">@{identity.handler}</p>
+              <h1 className="text-2xl font-bold">{id.displayName}</h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400">@{id.handlerName}</p>
             </div>
           </div>
           <div className="flex gap-2">
@@ -84,7 +106,7 @@ export default async function Identity({params}: { params: { id: string } }) {
             <div className="space-y-2">
               <h2 className="text-xl font-bold">Bio</h2>
               <p className="text-gray-500 dark:text-gray-400">
-                {identity.bio}
+                {id.bio}
               </p>
             </div>
             <div className="space-y-2">
