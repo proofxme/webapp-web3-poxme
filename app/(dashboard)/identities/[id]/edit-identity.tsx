@@ -198,8 +198,9 @@ export default function EditIdentity(props: {
                   )}
                 </TableCell>
                 <TableCell className="flex justify-end gap-2">
-                  {identity.find((i: IIdentity) => i.provider === credential.provider) ? (
-                    <DeleteButton action={handleUnlink} entity={id}/>
+                  {identity.find((identity: IIdentity) => identity.provider === credential.provider) ? (
+                    <DeleteButton action={handleUnlink}
+                                  entity={identity.find((identity: IIdentity) => identity.provider === credential.provider)}/>
                   ) : (
                     <LinkEmailDialog key={credential.provider} credential={credential} action={handleCredentialLink}/>
                   )}

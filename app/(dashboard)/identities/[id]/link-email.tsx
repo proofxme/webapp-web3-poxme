@@ -59,7 +59,7 @@ export default function LinkEmailDialog(props: {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Link Verified Email</DialogTitle>
-          <DialogDescription>Select an email from the dropdown list to link to your profile.</DialogDescription>
+          <DialogDescription>How do you want to display this email?</DialogDescription>
         </DialogHeader>
         <div className="flex justify-center items-center py-4">
           <span

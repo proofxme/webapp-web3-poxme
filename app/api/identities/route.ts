@@ -119,14 +119,13 @@ export async function DELETE(request: NextRequest) {
     });
   }
 
-  const provider = request.nextUrl.searchParams.get('id')
-  const json = await request.json();
+  const handlerName = request.nextUrl.searchParams.get('id')
+  const content = request.nextUrl.searchParams.get('content')
   
-  const response = await fetch(`https://api.pox.me/identities/${provider}`, {
+  const response = await fetch(`https://api.pox.me/identities/${handlerName}?content=${content}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify(json),
     method: 'DELETE',
   }).then((res) => res.json());
 
