@@ -2,12 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import React, { JSX, SVGProps, useCallback } from "react";
-import { IIdentity } from "app/api/interfaces/identity";
 
-export default function DeleteButton(props: { action: (identity: IIdentity) => void, identity: IIdentity }) {
+export default function DeleteButton(props: { action: (entity: any) => void, entity: any }) {
   const confirmDelete = useCallback(() => {
     if (confirm('Are you sure you want to delete this item?')) {
-      props.action(props.identity);
+      props.action(props.entity);
     }
   }, [])
 

@@ -97,7 +97,7 @@ export default async function Credentials() {
                       )}
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
-                      <DeleteButton action={deleteCredential} id={credential.provider}/>
+                      <DeleteButton action={deleteCredential} entity={credential.provider}/>
                     </TableCell>
                   </TableRow>
                 ))}

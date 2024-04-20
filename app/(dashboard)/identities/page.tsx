@@ -34,8 +34,8 @@ export default async function Identities() {
   if (typeof identities === 'string') {
     return <div>{identities}</div>
   } else if (Array.isArray(identities)) {
-    identities.forEach((identity: IIdentity) => {
-      identity.credentials = identities.filter((cred: IIdentity) => cred.handlerName === identity.handlerName && cred.content.includes('credential'))
+    identities.forEach((identity: IIdentity, index, array) => {
+      identity.credentials = array.filter((cred: IIdentity) => cred.handlerName === identity.handlerName && cred.content.includes('credential'))
     })
     //delete all identities with the content 'credential' permanently from the array
     identities = identities.filter((id) => id.content === 'core')
@@ -107,7 +107,7 @@ export default async function Identities() {
                             aria-label="View">
                         <EyeIcon className="w-6 h-6 pt-1 text-blue-500"/>
                       </Link>
-                      <DeleteButton action={deleteIdentityHandler} identity={identity}/>
+                      <DeleteButton action={deleteIdentityHandler} entity={identity}/>
                     </TableCell>
                   </TableRow>
                 ))}

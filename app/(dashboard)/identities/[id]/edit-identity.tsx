@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -21,23 +21,47 @@ import DeleteButton from "@/components/ui/delete-button";
 export default function EditIdentity(props: {
   updateAction: (data: any, refresh: boolean) => any;
   createAction: (data: any) => any;
-  deleteAction: (id: string, content: string) => any;
+  deleteAction: (identity: IIdentity) => any;
   identity: IIdentity[],
   credentials: ICredential[]
 }) {
   const {identity, credentials} = props;
   const id = identity.find((i: IIdentity) => i.content = 'core');
 
-  if (!identity || !id) {
-    return <div>Loading...</div>;
-  }
-
-  const [displayName, setDisplayName] = useState(id.displayName);
-  const [bio, setBio] = useState(id.bio);
-  const [visibility, setVisibility] = useState(id.visibility);
-  const [active, setActive] = useState(id.active);
-  const [privacy, setPrivacy] = useState(id.privacy);
+  const [displayName, setDisplayName] = useState('');
+  const [bio, setBio] = useState('');
+  const [visibility, setVisibility] = useState(false);
+  const [active, setActive] = useState(false);
+  const [privacy, setPrivacy] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (identity && id) {
+      setDisplayName(id.displayName);
+      setBio(id.bio);
+      setVisibility(id.visibility);
+      setActive(id.active);
+      setPrivacy(id.privacy);
+    }
+  }, [id])
+
+  if (!id) {
+    return (
+      <Card className="w-full">
+        <CardHeader className="flex flex-row items-start">
+          <div className="space-y-1.5">
+            <CardTitle>Identity Not Found</CardTitle>
+            <CardDescription>The identity you are looking for does not exist or has been deleted.</CardDescription>
+          </div>
+        </CardHeader>
+        <CardFooter>
+          <Link href="/identities" className="text-blue-500">
+            <Button variant="ghost">Back to Identities</Button>
+          </Link>
+        </CardFooter>
+      </Card>
+    )
+  }
 
   const handleCoreUpdate = async (e: any) => {
     try {
@@ -57,7 +81,7 @@ export default function EditIdentity(props: {
 
   const handleUnlink = async (identity: IIdentity) => {
     try {
-      await props.deleteAction(identity.handlerName, identity.content);
+      await props.deleteAction(identity);
     } catch (error) {
       setError('Failed to update identity.');
     }
@@ -175,7 +199,7 @@ export default function EditIdentity(props: {
                 </TableCell>
                 <TableCell className="flex justify-end gap-2">
                   {identity.find((i: IIdentity) => i.provider === credential.provider) ? (
-                    <DeleteButton action={handleUnlink} identity={id}/>
+                    <DeleteButton action={handleUnlink} entity={id}/>
                   ) : (
                     <LinkEmailDialog key={credential.provider} credential={credential} action={handleCredentialLink}/>
                   )}
