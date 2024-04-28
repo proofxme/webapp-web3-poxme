@@ -73,7 +73,7 @@ export default function EditIdentity(props: {
 
   const handleCredentialLink = async (data: any) => {
     try {
-      await props.createAction({...data, handlerName: id.handlerName, content: 'credential~email'});
+      await props.createAction({...data, handlerName: id.handlerName, content: data.provider});
     } catch (error) {
       setError('Failed to update identity.');
     }
