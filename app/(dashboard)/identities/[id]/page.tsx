@@ -36,18 +36,26 @@ export default async function Identity({params}: { params: { id: string } }) {
     }
   }
 
-  const deleteIdentityHandler = async (id: IIdentity) => {
+  const deleteIdentityHandler = async (id: IIdentity, refresh: boolean = true) => {
     'use server';
     try {
       await deleteIdentity(id);
+      if (refresh) {
+        revalidatePath('/identities');
+        redirect('/identities');
+      }
     } catch (error) {
       console.error(error);
     }
   }
 
-  const handleCredentialLink = async (data: IIdentity) => {
+  const handleCredentialLink = async (data: IIdentity, refresh: boolean = true) => {
     'use server';
     await createIdentity(data);
+    if (refresh) {
+      revalidatePath('/identities');
+      redirect('/identities');
+    }
   }
 
   return (

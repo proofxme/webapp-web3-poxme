@@ -23,10 +23,11 @@ export default function LinkEmailDialog(props: {
   const {credential, action} = props;
   const [value, setValue] = useState(credential.handler);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(false);
 
   const linkCredential = async (data: any) => {
     try {
-      await action({value, handler: credential.handler, provider: credential.provider});
+      await action({value, handler: credential.handler, provider: credential.provider, active});
       setOpen(false);
     } catch (error) {
       console.error('Failed to update identity.');

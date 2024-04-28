@@ -17,6 +17,7 @@ import { CheckIcon, LogInIcon, MailIcon } from "app/(dashboard)/credentials/icon
 import LinkEmailDialog from "app/(dashboard)/identities/[id]/link-email";
 import { ICredential } from "app/api/interfaces/credential";
 import DeleteButton from "@/components/ui/delete-button";
+import ReceiveMessages from "app/(dashboard)/identities/[id]/receice-messages-button";
 
 export default function EditIdentity(props: {
   updateAction: (data: any, refresh: boolean) => any;
@@ -43,7 +44,7 @@ export default function EditIdentity(props: {
       setActive(id.active);
       setPrivacy(id.privacy);
     }
-  }, [id])
+  }, [id, identity])
 
   if (!id) {
     return (
@@ -82,6 +83,14 @@ export default function EditIdentity(props: {
   const handleUnlink = async (identity: IIdentity) => {
     try {
       await props.deleteAction(identity);
+    } catch (error) {
+      setError('Failed to update identity.');
+    }
+  }
+
+  const handleCredentialSwitch = async (identity: IIdentity, value: boolean) => {
+    try {
+      await props.updateAction({...identity, active: value}, true);
     } catch (error) {
       setError('Failed to update identity.');
     }
@@ -170,43 +179,57 @@ export default function EditIdentity(props: {
               <TableHead>Kind</TableHead>
               <TableHead>Provider</TableHead>
               <TableHead>Verified</TableHead>
+              <TableHead>Receive Messages</TableHead>
               <TableHead className="w-[150px] text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {credentials.map((credential: ICredential) => (
-              <TableRow className="select-none" key={credential.provider}>
-                <TableCell className="flex items-center gap-4">
-                  <LogInIcon className="h-4 w-4"/>
-                  <span className="font-medium">{credential.handler}</span>
-                </TableCell>
-                <TableCell>
-                  <span className="font-medium">{credential.handler}</span>
-                </TableCell>
-                <TableCell className="content-center">
-                  <MailIcon className="h-4 w-4"/>
-                  <span className="font-medium">{credential.kind.toUpperCase()}</span>
-                </TableCell>
-                <TableCell className="content-center">
-                  {credential.verified ? (
-                    <Badge color="success"
-                           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                      <CheckIcon className="h-4 w-4"/>
-                    </Badge>
-                  ) : (
-                    <VerifyEmail action={() => null} id={credential.provider}/>
-                  )}
-                </TableCell>
-                <TableCell className="flex justify-end gap-2">
-                  {identity.find((identity: IIdentity) => identity.provider === credential.provider) ? (
-                    <DeleteButton action={handleUnlink}
-                                  entity={identity.find((identity: IIdentity) => identity.provider === credential.provider)}/>
-                  ) : (
-                    <LinkEmailDialog key={credential.provider} credential={credential} action={handleCredentialLink}/>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
+            {credentials
+              .map((credential: ICredential) => ({
+                credential,
+                identity: identity.find((identity: IIdentity) => identity.provider === credential.provider)
+              }))
+              .map(({credential, identity}) => (
+                <TableRow className="select-none" key={credential.provider}>
+                  <TableCell className="flex items-center gap-4">
+                    <LogInIcon className="h-4 w-4"/>
+                    <span className="font-medium">{credential.handler}</span>
+                  </TableCell>
+                  <TableCell>
+                    <span className="font-medium">{credential.handler}</span>
+                  </TableCell>
+                  <TableCell className="content-center">
+                    <MailIcon className="h-4 w-4"/>
+                    <span className="font-medium">{credential.kind.toUpperCase()}</span>
+                  </TableCell>
+                  <TableCell className="content-center">
+                    {credential.verified ? (
+                      <Badge color="success"
+                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <CheckIcon className="h-4 w-4"/>
+                      </Badge>
+                    ) : (
+                      <VerifyEmail action={() => null} id={credential.provider}/>
+                    )}
+                  </TableCell>
+                  <TableCell className="content-center">
+                    {identity && credential.verified ? (
+                      <ReceiveMessages action={handleCredentialSwitch}
+                                       entity={identity!}/>
+                    ) : (
+                      <span>{credential.verified ? 'Not Linked' : 'Not verified'}</span>
+                    )}
+                  </TableCell>
+                  <TableCell className="flex justify-end gap-2">
+                    {identity ? (
+                      <DeleteButton action={handleUnlink}
+                                    entity={identity}/>
+                    ) : (
+                      <LinkEmailDialog key={credential.provider} credential={credential} action={handleCredentialLink}/>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TabsContent>
