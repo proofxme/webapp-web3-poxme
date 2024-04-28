@@ -54,7 +54,7 @@ export default function LinkEmailDialog(props: {
   return (
     <Dialog key="1" open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Link Email</Button>
+        <Button variant="outline" disabled={!credential.verified}>Link Email</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -98,7 +98,7 @@ export default function LinkEmailDialog(props: {
           </RadioGroup>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={linkCredential}>Link Email</Button>
+          <Button type="submit" onClick={linkCredential} disabled={!credential.verified}>Link Email</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
