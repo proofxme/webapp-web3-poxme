@@ -3,4 +3,5 @@ export interface ICredential {
   handler: string;
   kind: string;
   verified: boolean;
+  active: boolean;
 }

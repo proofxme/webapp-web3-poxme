@@ -33,7 +33,7 @@ export default function VerifyEmail(props: { action: (data: any) => any, id: str
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Validate Email</Button>
+        <Button variant="outline">Verify Email</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
