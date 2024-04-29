@@ -8,7 +8,7 @@ export default function DeleteButton(props: { action: (entity: any) => void, ent
     if (confirm('Are you sure you want to delete this item?')) {
       props.action(props.entity);
     }
-  }, [])
+  }, [props])
 
   return <Button className="h-8 w-8" size="icon" onClick={confirmDelete}>
     <Trash2Icon className="h-4 w-4"/>
