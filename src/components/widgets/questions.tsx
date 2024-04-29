@@ -60,15 +60,15 @@ export default function Questions() {
       <h1 className="text-2xl font-semibold text-gray-900 text-center">Frequently Asked Questions</h1>
       <div className="mt-6 space-y-6">
         {questions.map((question, index, array) => (
-          <Collapsible className="border rounded-md shadow-sm" key={index}>
+          <Collapsible className="border rounded-md shadow-sm transition ease-in-out delay-70 hover:bg-blue-400 hover:text-white" key={index}>
             <CollapsibleTrigger className="flex items-center justify-between p-4 max-w-full md:max-w-lg">
-              <h2 className="text-lg font-medium text-gray-700">{question.question}</h2>
+              <h2 className="text-lg font-medium">{question.question}</h2>
               <Button size="sm" variant="ghost">
                 <ArrowDownIcon className="w-4 h-4"/>
               </Button>
             </CollapsibleTrigger>
             <CollapsibleContent className="p-4 max-w-full md:max-w-lg">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm">
                 {question.answer}
               </p>
             </CollapsibleContent>
