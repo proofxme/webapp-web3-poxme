@@ -3,11 +3,12 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { getIdentity } from "app/api/identities/get-identity";
 import { IIdentity } from "app/api/interfaces/identity";
+import { getProfile } from "app/api/profiles/get-profile";
 
 export default async function Identity({params}: { params: { id: string } }) {
-  const identity = await getIdentity(params.id);
+  const identity = await getProfile(params.id);
+
   if (typeof identity === 'string') {
     return <div>{identity}</div>
   }
