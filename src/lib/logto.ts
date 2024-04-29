@@ -32,7 +32,7 @@ export const signIn = async () => {
   return url;
 };
 
-export const handleSignIn = async (searchParams: Record<string, string>) => {
+export const handleSignIn = async (searchParams: any) => {
   // Convert searchParams object into a query string.
   const search = new URLSearchParams(searchParams).toString();
 

@@ -1,24 +1,20 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { handleSignIn } from '@/lib/logto';
 import React, { useEffect } from 'react';
 import LogoPoxme from "@/logo-poxme";
 
-type Props = {
-  searchParams: Record<string, string>;
-};
-
-export default function Callback({searchParams}: Props) {
+export default function Callback() {
   const router = useRouter();
   const redirectinRef = React.useRef(false);
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     if (redirectinRef.current) {
       return;
     }
     redirectinRef.current = true;
-    console.log("search params", searchParams)
     handleSignIn(searchParams).then(() => {
       router.push('/dashboard');
     });
