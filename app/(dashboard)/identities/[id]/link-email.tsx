@@ -17,7 +17,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function LinkEmailDialog(props: {
   credential: ICredential
-  action: (data: any) => any
+  action: (data: any, refresh: boolean) => any
 }) {
   const [displayMode, setDisplayMode] = useState('display');
   const {credential, action} = props;
@@ -27,7 +27,7 @@ export default function LinkEmailDialog(props: {
 
   const linkCredential = async (data: any) => {
     try {
-      await action({value, handler: credential.handler, provider: credential.provider, active});
+      await action({value, handler: credential.handler, provider: credential.provider, active}, true);
       setOpen(false);
     } catch (error) {
       console.error('Failed to update identity.');
