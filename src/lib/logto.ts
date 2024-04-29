@@ -45,7 +45,7 @@ export const handleSignIn = async (searchParams: Record<string, string>) => {
 };
 
 export const signOut = async () => {
-  const url = await logtoClient.handleSignOut(getCookie(), `${config.baseUrl}/`);
+  const url = await logtoClient.handleSignOut(getCookie(), `${config.baseUrl}`);
 
   setCookies('');
 

@@ -18,10 +18,11 @@ export default function Callback({searchParams}: Props) {
       return;
     }
     redirectinRef.current = true;
+    console.log("search params", searchParams)
     handleSignIn(searchParams).then(() => {
       router.push('/dashboard');
     });
-  }, [router, searchParams]);
+  }, [router, searchParams, redirectinRef]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
