@@ -55,7 +55,7 @@ export default function DashboardTemplate({children}: { children: React.ReactNod
             <BellIcon className="w-4 h-4"/>
             <span className="sr-only">Toggle notifications</span>
           </Button>
-          <Link href="/account" className="rounded-full">
+          <Link href="/" className="rounded-full">
             <UserIcon className="w-4 h-4"/>
           </Link>
           <SignOut/>
