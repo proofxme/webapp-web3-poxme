@@ -13,11 +13,11 @@ export async function GET(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('read:identity')) {
+  /*if (!scopes?.includes('read:identity')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires read:identity scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const id = request.nextUrl.searchParams.get('id');
   const route = id ? `https://api.pox.me/identities/${id}` : 'https://api.pox.me/identities';
@@ -46,11 +46,11 @@ export async function POST(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:identity')) {
+  /*if (!scopes?.includes('write:identity')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires write:identity scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const json = await request.json();
 
@@ -79,15 +79,15 @@ export async function PUT(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:identity')) {
+  /*if (!scopes?.includes('write:identity')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires write:identity scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const id = request.nextUrl.searchParams.get('id');
   const json = await request.json();
-  
+
   const response = await fetch(`https://api.pox.me/identities/${id}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -113,11 +113,11 @@ export async function DELETE(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:identity')) {
+  /*if (!scopes?.includes('write:identity')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires write:identity scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const handlerName = request.nextUrl.searchParams.get('id')
   const content = request.nextUrl.searchParams.get('content')

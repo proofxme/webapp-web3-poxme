@@ -13,11 +13,11 @@ export async function GET(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('read:credential')) {
+  /*if (!scopes?.includes('read:credential')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires read:credential scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const response = await fetch('https://api.pox.me/credentials', {
     headers: {
@@ -42,11 +42,11 @@ export async function POST(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:credential')) {
+  /*if (!scopes?.includes('write:credential')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires write:credential scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const json = await request.json();
 
@@ -75,11 +75,11 @@ export async function DELETE(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:credential')) {
+  /*if (!scopes?.includes('write:credential')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires write:credential scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const provider = request.nextUrl.searchParams.get('id')
 
@@ -107,11 +107,11 @@ export async function PUT(request: NextRequest) {
     return new Response(JSON.stringify({message: 'Unauthorized api'}), {status: 401});
   }
 
-  if (!scopes?.includes('write:credential')) {
+  /*if (!scopes?.includes('write:credential')) {
     return new Response(JSON.stringify({message: 'Access denied to route, requires write:credential scope.'}), {
       status: 403,
     });
-  }
+  }*/
 
   const json = await request.json();
   const provider = request.nextUrl.searchParams.get('id')
@@ -123,7 +123,7 @@ export async function PUT(request: NextRequest) {
     method: 'PUT',
     body: JSON.stringify(json),
   }).then((res) => res.json());
-  
+
   return new Response(
     JSON.stringify({
       data: response,
