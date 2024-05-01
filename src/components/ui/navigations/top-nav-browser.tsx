@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { JSX, SVGProps } from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import SignIn from "@/components/ui/sign-in";
+import HamIcon from "@/components/icons/hamicon";
 
 function ProofOfXIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
@@ -47,21 +48,6 @@ function ProofOfXIcon(
         d="M10.5907 18.8485H10.5905L12.2464 21.0702L12.2819 21.1185H17.4531L13.1534 15.5469L10.5907 18.8485Z"
         fill="white"
       />
-    </svg>
-  );
-}
-
-function HamIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      style={{fill: "rgba(0, 0, 0, 1)", transform: "", msFilter: ""}}
-    >
-      <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
     </svg>
   );
 }

@@ -48,7 +48,7 @@ export default async function Identities() {
               </Button>
             </Link>
           </div>
-          <div className="border rounded-lg shadow-sm">
+          <div className="border rounded-lg shadow-sm max-w-full overflow-auto">
             <Table>
               <TableHeader>
                 <TableRow>
