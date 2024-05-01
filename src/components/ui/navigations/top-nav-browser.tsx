@@ -34,7 +34,7 @@ function ProofOfXIcon(
     >
       <path
         d="M1.28966 24H22.7103C23.4227 24 24 23.4226 24 22.7103V1.28967C24 0.577353 23.4227 0 22.7103 0H1.28966C0.577346 0 0 0.577353 0 1.28967V22.7106C0 23.4226 0.577346 24 1.28966 24Z"
-        fill="#6465f7"      />
+        fill="#6465f7"/>
       <path
         d="M9.03865 18.9985L9.06226 18.9679L9.19667 18.7844L6.78953 15.5752L2.57593 21.1185H7.48712L9.04004 18.9982L9.03865 18.9985Z"
         fill="white"
@@ -59,7 +59,7 @@ function HamIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      style={{ fill: "rgba(0, 0, 0, 1)", transform: "", msFilter: "" }}
+      style={{fill: "rgba(0, 0, 0, 1)", transform: "", msFilter: ""}}
     >
       <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
     </svg>
@@ -70,7 +70,7 @@ export function TopNavBrowser() {
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 ">
       <Link className="mr-6 flex" href="/">
-        <ProofOfXIcon className="h-6 w-6" />
+        <ProofOfXIcon className="h-6 w-6"/>
         <span className="sr-only">Proof of X</span>
       </Link>
 
@@ -276,12 +276,15 @@ export function TopNavBrowser() {
           <SheetTrigger className="flex justify-end " asChild>
             <div className="absolute top-5 right-4 lg:hidden">
               <Button variant="outline">
-                <HamIcon className="h-6 w-6" />
+                <HamIcon className="h-6 w-6"/>
               </Button>
               <span className="sr-only">Toggle navigation menu</span>
             </div>
           </SheetTrigger>
           <SheetContent side="right">
+            <div className="flex justify-end p-6">
+              <SignIn/>
+            </div>
             <div className="flex flex-col gap-4 p-6">
               <Link
                 className="flex h-auto items-center justify-start gap-1 text-lg font-semibold"
@@ -296,7 +299,7 @@ export function TopNavBrowser() {
                     variant="link"
                   >
                     Features
-                    <ChevronDownIcon aria-hidden="true" />
+                    <ChevronDownIcon aria-hidden="true"/>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -323,7 +326,7 @@ export function TopNavBrowser() {
                     variant="link"
                   >
                     For investors
-                    <ChevronDownIcon aria-hidden="true" />
+                    <ChevronDownIcon aria-hidden="true"/>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -358,7 +361,7 @@ export function TopNavBrowser() {
                     variant="link"
                   >
                     Resources
-                    <ChevronDownIcon aria-hidden="true" />
+                    <ChevronDownIcon aria-hidden="true"/>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -372,9 +375,9 @@ export function TopNavBrowser() {
           </SheetContent>
         </Sheet>
       </div>
-      <div className="hidden lg:flex  ml-auto">
+      <div className="hidden lg:flex ml-auto">
         <div>
-          <SignIn />
+          <SignIn/>
         </div>
       </div>
     </header>

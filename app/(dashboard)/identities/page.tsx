@@ -10,19 +10,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getIdentities } from "app/api/identities/get-identities";
 import { IIdentity } from "app/api/interfaces/identity";
-import { deleteIdentity } from "app/api/identities/delete-identity";
 import EyeIcon from "@/components/icons/eye";
 
 export default async function Identities() {
   let identities: string | IIdentity[] = await getIdentities()
+  const deletingIdentity = false;
 
-  const deleteIdentityHandler = async (id: IIdentity) => {
+  const deleteIdentityHandler = async () => {
     'use server';
-    try {
-      await deleteIdentity(id);
-    } catch (error) {
-      console.error(error);
-    }
     revalidatePath('/identities');
     redirect('/identities');
   }

@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import IsoLogo from "@/components/ui/isologo";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import SignOut from "app/sign-out";
+import SignOut from "@/components/ui/sign-out";
 import { usePathname } from "next/navigation";
 
 export default function DashboardTemplate({children}: { children: React.ReactNode }) {
@@ -39,17 +38,7 @@ export default function DashboardTemplate({children}: { children: React.ReactNod
           </Link>
           */}
         </nav>
-        <div className="flex items-center w-full gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          <form className="flex-1 ml-auto sm:flex-initial">
-            <div className="relative">
-              <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400"/>
-              <Input
-                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-                placeholder="Search updates..."
-                type="search"
-              />
-            </div>
-          </form>
+        <div className="flex items-center justify-end w-full gap-4 md:mr-auto md:gap-2 lg:gap-4">
           <ConnectButton/>
           <Button className="rounded-full" size="icon" variant="ghost">
             <BellIcon className="w-4 h-4"/>

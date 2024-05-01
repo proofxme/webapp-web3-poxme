@@ -6,7 +6,6 @@ import React from "react";
 import { getCredentials } from "app/api/credentials/get-credentials";
 import Link from "next/link";
 import DeleteButton from "@/components/ui/delete-button";
-import { deleteCredentials } from "app/api/credentials/delete-credentials";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -19,13 +18,8 @@ import { ICredential } from "app/api/interfaces/credential";
 export default async function Credentials() {
   const credentials: string | ICredential[] = await getCredentials();
 
-  const deleteCredential = async (id: string) => {
+  const deleteCredential = async () => {
     'use server';
-    try {
-      await deleteCredentials(id);
-    } catch (error) {
-      console.error(error);
-    }
     revalidatePath('/credentials');
     redirect('/credentials');
   }
