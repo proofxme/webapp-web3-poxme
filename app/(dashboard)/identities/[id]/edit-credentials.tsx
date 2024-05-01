@@ -50,13 +50,9 @@ export default async function EditCredentials(props: {
     }
   }
 
-  const handleUnlink = async (identity: IIdentity) => {
+  const handleUnlink = async () => {
     'use server';
-    try {
-      await props.deleteAction(identity);
-    } catch (error) {
-      //setError('Failed to update identity.');
-    }
+    return true;
   }
 
   const handleCredentialSwitch = async (identity: IIdentity, value: boolean) => {
