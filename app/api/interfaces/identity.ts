@@ -11,4 +11,5 @@ export interface IIdentity {
   createdAt: string;
   displayValue: string;
   provider?: string;
+  credentials?: any[];
 }
