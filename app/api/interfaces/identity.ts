@@ -9,6 +9,6 @@ export interface IIdentity {
   userSub: string;
   value: string;
   createdAt: string;
+  displayValue: string;
   provider?: string;
-  credentials?: IIdentity[];
 }

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { IIdentity } from "app/api/interfaces/identity";
 import { Switch } from "@/components/ui/switch";
+import { updateIdentity } from "app/api/identities/update-identity";
 
 export default function ReceiveMessages(props: {
   action: (entity: IIdentity, value: boolean) => void,
@@ -13,7 +14,7 @@ export default function ReceiveMessages(props: {
 
   const updateActive = async (checked: any) => {
     try {
-      await action(entity, checked);
+      await updateIdentity(entity.handlerName, {...entity, active: checked, content: entity.content});
       setActive(checked);
     } catch (error) {
       console.error('Failed to update identity.');
