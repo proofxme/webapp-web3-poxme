@@ -1,4 +1,3 @@
-'use client';
 import { LiFiWidget, WidgetConfig } from "@lifi/widget";
 
 export const Swap = () => {
