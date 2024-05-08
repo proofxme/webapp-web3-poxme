@@ -48,7 +48,7 @@
     "tailwindcss-animate": "^1.0.7",
     "viem": "^2.9.31",
     "wagmi": "^2.8.0",
-    "zod": "^3.23.5"
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.3",

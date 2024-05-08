@@ -97,7 +97,7 @@ export default async function Identities() {
                       )}
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
-                      <Link href={`/id/${identity.handlerName}`} className="text-blue-500" title="View"
+                      <Link href={`/${identity.handlerName}`} className="text-blue-500" title="View"
                             target={"_blank"}
                             aria-label="View">
                         <EyeIcon className="w-6 h-6 pt-1 text-blue-500"/>

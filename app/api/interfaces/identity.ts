@@ -12,4 +12,5 @@ export interface IIdentity {
   displayValue: string;
   provider?: string;
   credentials?: any[];
+  avatar?: string;
 }
