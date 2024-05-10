@@ -11,7 +11,7 @@ const inter = Inter({subsets: ["latin"]});
 export const metadata: Metadata = {
   metadataBase: new URL('https://pox.me/'),
   title: "Proof of X | Home",
-  description: "Proof of X | Home",
+  description: "Proof of X is a new way to communicate and interact within the internet. Build a Digital Identity around your email.",
   openGraph: {
     title: "Proof of X | Home",
     description: "Proof of X | Home",

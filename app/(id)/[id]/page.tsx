@@ -1,10 +1,62 @@
-'use server';
-
 import { Badge } from "@/components/ui/badge"
 import { IIdentity } from "app/api/interfaces/identity";
-import { getProfile } from "app/api/profiles/get-profile";
 import Header from "app/(id)/[id]/header";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
+import { getProfile } from "app/api/profiles/get-profile";
+import { Metadata, ResolvingMetadata } from 'next'
+
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  {params, searchParams}: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.id
+
+  // fetch data
+  let identity = await getProfile(params.id);
+
+  if (typeof identity === 'string') {
+    identity = []
+  }
+
+  const coreIdentity = identity.find((i: IIdentity) => i.content = 'core');
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+  return {
+    metadataBase: new URL('https://pox.me/'),
+    title: `${coreIdentity?.handlerName || 'Identity'} | Proof of X`,
+    description: coreIdentity?.bio || 'Proof of X | Identity',
+    openGraph: {
+      title: `Proof of X | ${coreIdentity?.handlerName || 'Identity'}`,
+      description: coreIdentity?.bio || 'Proof of X | Identity',
+      url: `https://pox.me/${id}`,
+      siteName: "Proof of X",
+      images: [
+        {
+          url: "/images/home-hero.jpg",
+          width: 1800,
+          height: 1600,
+          alt: "A cool fingerprint image",
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Proof of X | ${coreIdentity?.handlerName || 'Identity'}`,
+      description: "Proof of X | Home",
+      creator: "@proofxme",
+      images: ["/images/home-hero.jpg"],
+    },
+  };
+}
 
 export default async function Identity({params}: { params: { id: string } }) {
   const identity = await getProfile(params.id);
@@ -53,8 +105,6 @@ export default async function Identity({params}: { params: { id: string } }) {
       href: "#"
     }
   ]
-
-  console.log(emails)
 
   return (
     <div key="1" className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
