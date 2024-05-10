@@ -51,7 +51,7 @@ export async function generateMetadata(
     twitter: {
       card: "summary_large_image",
       title: `Proof of X | ${coreIdentity?.handlerName || 'Identity'}`,
-      description: "Proof of X | Home",
+      description: coreIdentity?.bio || 'Proof of X | Identity',
       creator: "@proofxme",
       images: ["/images/home-hero.jpg"],
     },
