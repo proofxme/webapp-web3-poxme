@@ -5,7 +5,6 @@ export default async function DashboardTemplate({children}: { children: React.Re
 
   return (
     <div className="flex flex-col w-full min-h-screen">
-      {isAuthenticated && <h1>Authenticated</h1>}
       {children}
     </div>
   );

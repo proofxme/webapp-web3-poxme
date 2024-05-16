@@ -47,7 +47,9 @@ export default async function Identity({params}: { params: { id: string } }) {
     <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
       <div className="container mx-auto px-4">
         <div className="grid gap-4">
-          <EditIdentity id={id} updateAction={handleIdentityUpdate} identity={idCredentials}
+          <EditIdentity id={id}
+                        updateAction={handleIdentityUpdate}
+                        identity={idCredentials}
                         credentials={mappedCredentials}/>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import { Badge } from "@/components/ui/badge"
-import { IIdentity, IIdentityCore, IIdentityCredential } from "app/api/interfaces/identity";
+import { IIdentity, IIdentityCore, IIdentityCredential, IIdentityLink } from "app/api/interfaces/identity";
 import Header from "app/(id)/[id]/header";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
 import { getProfile } from "app/api/profiles/get-profile";
 import { Metadata, ResolvingMetadata } from 'next'
+import LinkCard from "app/(id)/[id]/link-card";
 
 type Props = {
   params: { id: string }
@@ -67,6 +68,7 @@ export default async function Identity({params}: { params: { id: string } }) {
 
   const id = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
   const emails = identity.filter((i: IIdentity) => i.content.includes('email~')) as unknown as IIdentityCredential[];
+  const links = identity.filter((i: IIdentity) => i.content.includes('link~')) as unknown as IIdentityLink[];
 
   if (!id) {
     return (
@@ -82,29 +84,6 @@ export default async function Identity({params}: { params: { id: string } }) {
       </div>
     )
   }
-
-  const links = [
-    {
-      id: "1",
-      content: "Link 1",
-      href: "#"
-    },
-    {
-      id: "2",
-      content: "Link 2",
-      href: "#"
-    },
-    {
-      id: "3",
-      content: "Link 3",
-      href: "#"
-    },
-    {
-      id: "4",
-      content: "Link 4",
-      href: "#"
-    }
-  ]
 
   return (
     <div key="1" className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
@@ -128,6 +107,7 @@ export default async function Identity({params}: { params: { id: string } }) {
             </div>
           </div>
           <div className="space-y-6 md:col-span-2">
+            <LinkCard links={links}/>
           </div>
           <div className="space-y-6 md:col-span-1">
           </div>
