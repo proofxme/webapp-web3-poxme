@@ -1,16 +1,32 @@
 export interface IIdentity {
   handlerName: string;
   content: string;
+  active: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface IIdentityCore extends IIdentity {
+  avatar: string;
   displayName: string;
-  visibility: boolean;
   bio: string;
+  visibility: boolean;
   active: boolean;
   privacy: boolean;
-  userSub: string;
+}
+
+export interface IIdentityCredential extends IIdentity {
+  handler: string;
+  active: boolean;
   value: string;
-  createdAt: string;
   displayValue: string;
-  provider?: string;
-  credentials?: any[];
-  avatar?: string;
+}
+
+export interface IIdentityCredential extends IIdentity {
+}
+
+export interface IIdentityLink extends IIdentity {
+  icon: string;
+  displayValue: string;
+  url: string;
 }

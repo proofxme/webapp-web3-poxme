@@ -14,9 +14,6 @@ export default async function IdentityLayout({children}: { children: React.React
   if (typeof identities === 'string') {
     return <div>{identities}</div>
   } else if (Array.isArray(identities)) {
-    identities.forEach((identity: IIdentity, index, array) => {
-      identity.credentials = array.filter((cred: IIdentity) => cred.handlerName === identity.handlerName && cred.content.includes('credential'))
-    })
     //delete all identities with the content 'credential' permanently from the array
     identities = identities.filter((id) => id.content === 'core')
   }
@@ -37,7 +34,7 @@ export default async function IdentityLayout({children}: { children: React.React
               </Link>
               {typeof identities === 'string' ?
                 <div>{identities}</div> :
-                identities.filter((id) => id.content === 'core').map((identity: IIdentity) =>
+                identities.map((identity: IIdentity) =>
                   <LinkListElement key={identity.handlerName}
                                    identity={identity}/>)}
             </div>

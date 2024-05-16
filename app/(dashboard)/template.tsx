@@ -71,11 +71,6 @@ export default function DashboardTemplate({children}: { children: React.ReactNod
                 href="/identities">
             Identities
           </Link>
-          {/*
-          \<Link className="text-gray-500 dark:text-gray-400" href="/communications">
-            Communications
-          </Link>
-          */}
         </nav>
         <div className="flex items-center justify-end w-full gap-4 md:mr-auto md:gap-2 lg:gap-4">
           <ConnectButton accountStatus="address" chainStatus="icon"/>

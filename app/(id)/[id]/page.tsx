@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge"
-import { IIdentity } from "app/api/interfaces/identity";
+import { IIdentity, IIdentityCore, IIdentityCredential } from "app/api/interfaces/identity";
 import Header from "app/(id)/[id]/header";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
 import { getProfile } from "app/api/profiles/get-profile";
@@ -24,7 +24,7 @@ export async function generateMetadata(
     identity = []
   }
 
-  const coreIdentity = identity.find((i: IIdentity) => i.content = 'core');
+  const coreIdentity = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || []
@@ -33,7 +33,7 @@ export async function generateMetadata(
     title: `${coreIdentity?.handlerName || 'Identity'} | Proof of X`,
     description: coreIdentity?.bio || 'Proof of X | Identity',
     openGraph: {
-      title: `Proof of X | ${coreIdentity?.handlerName || 'Identity'}`,
+      title: `${coreIdentity?.handlerName || 'Identity'} | Proof of X`,
       description: coreIdentity?.bio || 'Proof of X | Identity',
       url: `https://pox.me/${id}`,
       siteName: "Proof of X",
@@ -65,8 +65,8 @@ export default async function Identity({params}: { params: { id: string } }) {
     return <div>{identity}</div>
   }
 
-  const id = identity.find((i: IIdentity) => i.content = 'core');
-  const emails = identity.filter((i: IIdentity) => i.content.includes('email~'));
+  const id = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
+  const emails = identity.filter((i: IIdentity) => i.content.includes('email~')) as unknown as IIdentityCredential[];
 
   if (!id) {
     return (

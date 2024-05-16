@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { IIdentity } from "app/api/interfaces/identity";
+import { IIdentityCore, IIdentityCredential } from "app/api/interfaces/identity";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { updateIdentity } from "app/api/identities/update-identity";
 import { ICredential } from "app/api/interfaces/credential";
@@ -18,12 +18,13 @@ import { Badge } from "@/components/ui/badge";
 import ReceiveMessages from "app/(dashboard)/identities/[id]/receice-messages-button";
 import DeleteButton from "@/components/ui/delete-button";
 import LinkEmailDialog from "app/(dashboard)/identities/[id]/link-email";
+import LinkComponent from "app/(dashboard)/identities/[id]/links";
 
 export default function EditIdentity(props: {
-  id: IIdentity,
+  id: IIdentityCore,
   updateAction: () => void;
-  identity: IIdentity[],
-  credentials: { credential: ICredential; identity: IIdentity | undefined; }[],
+  identity: IIdentityCredential[],
+  credentials: { credential: ICredential; idCred: IIdentityCredential | undefined; }[],
 }) {
   const {identity, id, updateAction, credentials} = props;
 
@@ -72,9 +73,10 @@ export default function EditIdentity(props: {
 
   return (
     <Tabs defaultValue="identity">
-      <TabsList className="grid w-full grid-cols-2" defaultValue="identity">
+      <TabsList className="grid w-full grid-cols-3" defaultValue="identity">
         <TabsTrigger value="identity">Identity</TabsTrigger>
         <TabsTrigger value="credentials">Credentials</TabsTrigger>
+        <TabsTrigger value="links">Links</TabsTrigger>
       </TabsList>
       <TabsContent value="identity">
         <Card className="w-full">
@@ -158,7 +160,7 @@ export default function EditIdentity(props: {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {credentials.map(({credential, identity}) => (
+            {credentials.map(({credential, idCred}) => (
               <TableRow className="select-none" key={credential.provider}>
                 <TableCell className="flex items-center gap-4">
                   <LogInIcon className="h-4 w-4"/>
@@ -181,13 +183,13 @@ export default function EditIdentity(props: {
                 <TableCell className="content-center">
                   {identity && credential.verified ? (
                     <ReceiveMessages action={updateAction}
-                                     entity={identity!}/>
+                                     entity={idCred!}/>
                   ) : (
                     <span>{credential.verified ? 'Not Linked' : 'Not verified'}</span>
                   )}
                 </TableCell>
                 <TableCell className="content-center">
-                  <span>{identity ? identity.displayValue : 'Not Linked'}</span>
+                  <span>{idCred ? idCred.displayValue : 'Not Linked'}</span>
                 </TableCell>
                 <TableCell className="flex justify-end gap-2">
                   {identity ? (
@@ -202,6 +204,9 @@ export default function EditIdentity(props: {
             ))}
           </TableBody>
         </Table>
+      </TabsContent>
+      <TabsContent value="links">
+        <LinkComponent id={id} identity={identity} action={updateAction}/>
       </TabsContent>
     </Tabs>
   )

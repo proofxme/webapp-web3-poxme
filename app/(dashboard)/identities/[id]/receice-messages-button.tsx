@@ -24,7 +24,7 @@ export default function ReceiveMessages(props: {
   return (
     <Switch
       id="receive-messages"
-      key={entity.provider}
+      key={entity.content}
       checked={active}
       // Correctly handle the change event to extract the boolean value
       onCheckedChange={(checked) => updateActive(checked)}

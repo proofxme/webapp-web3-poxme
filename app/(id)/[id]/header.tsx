@@ -3,9 +3,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
-import { IIdentity } from "app/api/interfaces/identity";
+import { IIdentityCore } from "app/api/interfaces/identity";
 
-const Header = ({identity}: { identity: IIdentity }) => {
+const Header = ({identity}: { identity: IIdentityCore }) => {
   return (
     <header className="bg-gray-900 text-white py-6 px-4 md:px-2">
       <div className="container mx-auto flex items-center max-w-6xl">

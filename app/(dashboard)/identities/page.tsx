@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { getIdentities } from "app/api/identities/get-identities";
-import { IIdentity } from "app/api/interfaces/identity";
+import { IIdentity, IIdentityCore } from "app/api/interfaces/identity";
 import EyeIcon from "@/components/icons/eye";
 
 export default async function Identities() {
@@ -28,13 +28,9 @@ export default async function Identities() {
 
   if (typeof identities === 'string') {
     return <div>{identities}</div>
-  } else if (Array.isArray(identities)) {
-    identities.forEach((identity: IIdentity, index, array) => {
-      identity.credentials = array.filter((cred: IIdentity) => cred.handlerName === identity.handlerName && cred.content.includes('credential'))
-    })
-    //delete all identities with the content 'credential' permanently from the array
-    identities = identities.filter((id) => id.content === 'core')
   }
+  //delete all identities with the content 'credential' permanently from the array
+  const coreIdentities = identities.filter((id) => id.content === 'core') as IIdentityCore[]
 
   return (
     <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
@@ -62,7 +58,7 @@ export default async function Identities() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {identities.filter((id: IIdentity) => id.content === 'core').map((identity: IIdentity) => (
+                {coreIdentities.map((identity: IIdentityCore) => (
                   <TableRow className="select-none" key={identity.handlerName}>
                     <TableCell>
                       <Link href={`/identities/${identity.handlerName}`}>
