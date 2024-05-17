@@ -1,5 +1,5 @@
-import { NextAuthOptions } from 'next-auth';
 import TwitterProvider from 'next-auth/providers/twitter';
+import { NextAuthOptions, Session } from "next-auth";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({session, token}) {
+    async session({session, token}: { session: Session, token: any }) {
       session.accessToken = token.accessToken;
       return session;
     },
