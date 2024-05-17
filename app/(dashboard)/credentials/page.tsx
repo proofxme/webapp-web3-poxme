@@ -11,9 +11,9 @@ import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import VerifyEmail from "@/components/ui/verify-email";
 import { verifyEmailCredential } from "app/api/credentials/verify-email-credential";
-import { LogInIcon, MailIcon } from "app/(dashboard)/credentials/icons";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { ICredential } from "app/api/interfaces/credential";
+import IconSelector from "@/components/IconSelector";
 
 export default async function Credentials() {
   const credentials: string | ICredential[] = await getCredentials();
@@ -60,7 +60,6 @@ export default async function Credentials() {
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[300px]">Credential Name</TableHead>
-                  <TableHead>Kind</TableHead>
                   <TableHead>Provider</TableHead>
                   <TableHead>Verified</TableHead>
                   <TableHead className="w-[150px] text-right">Actions</TableHead>
@@ -70,14 +69,10 @@ export default async function Credentials() {
                 {credentials.map((credential: ICredential) => (
                   <TableRow className="select-none" key={credential.provider}>
                     <TableCell className="flex items-center gap-4">
-                      <LogInIcon className="h-4 w-4"/>
-                      <span className="font-medium">{credential.handler}</span>
-                    </TableCell>
-                    <TableCell>
+                      <IconSelector iconType={credential.kind}/>
                       <span className="font-medium">{credential.handler}</span>
                     </TableCell>
                     <TableCell className="content-center">
-                      <MailIcon className="h-4 w-4"/>
                       <span className="font-medium">{credential.kind.toUpperCase()}</span>
                     </TableCell>
                     <TableCell className="content-center">
