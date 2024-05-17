@@ -26,7 +26,7 @@ export default function Callback() {
       <div className={"w-16 h-16"}>
         <LogoPoxme/>
       </div>
-      <h2 className="mt-6 text-2xl font-semibold text-gray-900 dark:text-gray-100">Processing OAuth Action...</h2>
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900 dark:text-gray-100">Signing in...</h2>
       <p className="mt-2 text-gray-700 dark:text-gray-300">
         Please wait while we are processing your request. Do not close or refresh the page.
       </p>

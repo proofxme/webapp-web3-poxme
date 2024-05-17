@@ -5,6 +5,9 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { Providers } from "./providers";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { ReactNode } from "react";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -37,15 +40,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-                                     children,
-                                   }: {
-  children: React.ReactNode;
+export default async function RootLayout({children}: {
+  children: ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
     <body className={inter.className}>
-    <Providers>
+    <Providers session={session}>
       {children}
       <SpeedInsights/>
     </Providers>

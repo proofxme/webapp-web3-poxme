@@ -5,6 +5,7 @@ import AddEmailComponent from "app/(dashboard)/credentials/new/add-email-compone
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createCredential } from "app/api/credentials/create-credentials";
+import TwitterLoginComponent from "app/(dashboard)/credentials/new/add-twitter-account";
 
 export default async function NewCredential() {
   const handleCredential = async (data: any) => {
@@ -22,6 +23,7 @@ export default async function NewCredential() {
             <h1 className="font-semibold text-lg md:text-2xl">New Credential</h1>
           </div>
           <AddEmailComponent handleCredential={handleCredential}/>
+          <TwitterLoginComponent/>
         </div>
       </div>
     </div>
