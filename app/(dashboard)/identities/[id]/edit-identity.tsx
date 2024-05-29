@@ -181,7 +181,7 @@ export default function EditIdentity(props: {
                   )}
                 </TableCell>
                 <TableCell className="content-center">
-                  {identity && credential.verified && credential.kind === 'email' ? (
+                  {identity && credential.verified && credential.kind == 'email' ? (
                     <ReceiveMessages action={updateAction}
                                      entity={idCred!}/>
                   ) : (
