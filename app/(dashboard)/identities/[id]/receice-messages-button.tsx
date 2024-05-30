@@ -10,7 +10,7 @@ export default function ReceiveMessages(props: {
   entity: IIdentity
 }) {
   const {entity, action} = props;
-  const [active, setActive] = useState(entity.active);
+  const [active, setActive] = useState(entity.active || false);
 
   const updateActive = async (checked: any) => {
     try {

@@ -6,9 +6,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { createCredential } from "app/api/credentials/create-credentials";
 
-export default function AddEmailComponent(props: { handleCredential: any; }) {
-  const {handleCredential} = props;
+export default function EmailCredential() {
   const [isChecked, setIsChecked] = useState(false);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -29,7 +29,7 @@ export default function AddEmailComponent(props: { handleCredential: any; }) {
     }
 
     try {
-      await handleCredential({provider: `email~${email}`, handler: email, kind: 'email'});
+      await createCredential({provider: `email~${email}`, handler: email, kind: 'email'});
     } catch (error) {
       setError('Failed to add email. Please try again.');
     }

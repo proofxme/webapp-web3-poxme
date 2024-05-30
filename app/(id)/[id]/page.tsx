@@ -5,6 +5,9 @@ import { MailIcon } from "app/(dashboard)/credentials/icons";
 import { getProfile } from "app/api/profiles/get-profile";
 import { Metadata, ResolvingMetadata } from 'next'
 import LinkCard from "app/(id)/[id]/link-card";
+import { TwitterIcon } from "@/components/socialIconsSection";
+import EmailList from "app/(id)/[id]/email-card";
+import TwitterList from "app/(id)/[id]/twitter-card";
 
 type Props = {
   params: { id: string }
@@ -68,6 +71,7 @@ export default async function Identity({params}: { params: { id: string } }) {
 
   const id = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
   const emails = identity.filter((i: IIdentity) => i.content.includes('email~')) as unknown as IIdentityCredential[];
+  const twitters = identity.filter((i: IIdentity) => i.content.includes('twitter~')) as unknown as IIdentityCredential[];
   const links = identity.filter((i: IIdentity) => i.content.includes('link~')) as unknown as IIdentityLink[];
 
   if (!id) {
@@ -104,12 +108,21 @@ export default async function Identity({params}: { params: { id: string } }) {
                   <MailIcon/>{' '}<span className="py-2 ml-2">Email Verified</span>
                 </Badge>
               )}
+              {twitters.length > 0 && (
+                <Badge key="twitter-verified" className="ml-2">
+                  <TwitterIcon/>{' '}<span className="py-2 ml-2">Twitter Verified</span>
+                </Badge>
+              )}
             </div>
           </div>
           <div className="space-y-6 md:col-span-2">
-            <LinkCard links={links}/>
+            {links.length > 0 ? <LinkCard links={links}/> : null}
           </div>
           <div className="space-y-6 md:col-span-1">
+            <EmailList emails={emails}/>
+          </div>
+          <div className="space-y-6 md:col-span-1">
+            <TwitterList twitters={twitters}/>
           </div>
         </div>
       </main>

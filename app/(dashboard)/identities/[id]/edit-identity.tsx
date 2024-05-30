@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { IIdentityCore, IIdentityCredential } from "app/api/interfaces/identity";
+import { IIdentity, IIdentityCore, IIdentityCredential } from "app/api/interfaces/identity";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { updateIdentity } from "app/api/identities/update-identity";
 import { ICredential } from "app/api/interfaces/credential";
@@ -19,6 +19,32 @@ import ReceiveMessages from "app/(dashboard)/identities/[id]/receice-messages-bu
 import DeleteButton from "@/components/ui/delete-button";
 import LinkEmailDialog from "app/(dashboard)/identities/[id]/link-email";
 import LinkComponent from "app/(dashboard)/identities/[id]/links";
+import LinkTwitterDialog from "app/(dashboard)/identities/[id]/link-twitter";
+
+function renderLinkDialog(credential: ICredential, id: IIdentity, updateAction: { (): void; (): void; }) {
+  switch (credential.kind) {
+    case 'email':
+      return (
+        <LinkEmailDialog
+          key={credential.provider}
+          identity={id}
+          credential={credential}
+          action={updateAction}
+        />
+      );
+    case 'twitter':
+      return (
+        <LinkTwitterDialog
+          key={credential.provider}
+          identity={id}
+          credential={credential}
+          action={updateAction}
+        />
+      );
+    default:
+      return null;
+  }
+}
 
 export default function EditIdentity(props: {
   id: IIdentityCore,
@@ -152,8 +178,8 @@ export default function EditIdentity(props: {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[300px]">Credential Name</TableHead>
-              <TableHead>Kind</TableHead>
               <TableHead>Provider</TableHead>
+              <TableHead>Verified</TableHead>
               <TableHead>Receive Messages</TableHead>
               <TableHead>Display Value</TableHead>
               <TableHead className="w-[150px] text-right">Actions</TableHead>
@@ -181,23 +207,22 @@ export default function EditIdentity(props: {
                   )}
                 </TableCell>
                 <TableCell className="content-center">
-                  {identity && credential.verified && credential.kind == 'email' ? (
+                  {idCred && credential.verified && credential.kind == 'email' ? (
                     <ReceiveMessages action={updateAction}
-                                     entity={idCred!}/>
+                                     entity={idCred}/>
                   ) : (
-                    <span>{credential.verified ? 'Not Linked' : 'Not verified'}</span>
+                    <span>{credential.verified ? credential.kind === 'email' ? 'Not Linked' : '' : 'Not verified'}</span>
                   )}
                 </TableCell>
                 <TableCell className="content-center">
                   <span>{idCred ? idCred.displayValue : 'Not Linked'}</span>
                 </TableCell>
                 <TableCell className="flex justify-end gap-2">
-                  {identity ? (
+                  {idCred ? (
                     <DeleteButton action={updateAction}
                                   entity={identity}/>
                   ) : (
-                    <LinkEmailDialog key={credential.provider} identity={id} credential={credential}
-                                     action={updateAction}/>
+                    renderLinkDialog(credential, id, updateAction)
                   )}
                 </TableCell>
               </TableRow>
