@@ -16,7 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { CheckIcon, LogInIcon, MailIcon } from "app/(dashboard)/credentials/icons";
 import { Badge } from "@/components/ui/badge";
 import ReceiveMessages from "app/(dashboard)/identities/[id]/receice-messages-button";
-import DeleteButton from "@/components/ui/delete-identity-button";
+import DeleteIdentityButton from "@/components/ui/delete-identity-button";
 import LinkEmailDialog from "app/(dashboard)/identities/[id]/link-email";
 import LinkComponent from "app/(dashboard)/identities/[id]/links";
 import LinkTwitterDialog from "app/(dashboard)/identities/[id]/link-twitter";
@@ -219,8 +219,8 @@ export default function EditIdentity(props: {
                 </TableCell>
                 <TableCell className="flex justify-end gap-2">
                   {idCred ? (
-                    <DeleteButton action={updateAction}
-                                  entity={identity}/>
+                    <DeleteIdentityButton action={updateAction}
+                                          entity={idCred}/>
                   ) : (
                     renderLinkDialog(credential, id, updateAction)
                   )}
