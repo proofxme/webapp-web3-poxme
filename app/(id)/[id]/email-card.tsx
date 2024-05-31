@@ -12,7 +12,7 @@ export default function EmailList(props: { emails: IIdentityCredential[] }) {
     <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle>Email Addresses</CardTitle>
-        <CardDescription>Copy or email these addresses as needed.</CardDescription>
+        <CardDescription>Verified email addresses.</CardDescription>
       </CardHeader>
       <CardContent>
         <ul className="space-y-2">

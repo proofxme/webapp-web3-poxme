@@ -23,7 +23,8 @@ export default async function TwitterCallbackPage() {
       kind: 'twitter',
       verified: true,
       accessToken: session.accessToken,
-      twitterProfile
+      twitterProfile,
+      visibility: true
     }
 
     await createCredential(credential);

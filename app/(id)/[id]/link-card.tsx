@@ -19,7 +19,7 @@ export default function LinkCard(props: { links: IIdentityLink[] }) {
     <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle>Links</CardTitle>
-        <CardDescription>Some of these links may not be verified or verifiable.</CardDescription>
+        <CardDescription>This links cannot be verified.</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         {links.map((link: IIdentityLink) =>

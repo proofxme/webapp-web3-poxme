@@ -22,9 +22,6 @@ export interface IIdentityCredential extends IIdentity {
   displayValue: string;
 }
 
-export interface IIdentityCredential extends IIdentity {
-}
-
 export interface IIdentityLink extends IIdentity {
   icon: string;
   displayValue: string;

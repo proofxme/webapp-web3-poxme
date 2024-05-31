@@ -71,7 +71,7 @@ export default async function Identity({params}: { params: { id: string } }) {
 
   const id = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
   const emails = identity.filter((i: IIdentity) => i.content.includes('email~')) as unknown as IIdentityCredential[];
-  const twitters = identity.filter((i: IIdentity) => i.content.includes('twitter~')) as unknown as IIdentityCredential[];
+  const twitters: IIdentityCredential[] = identity.filter((i: any) => (i.content.includes('twitter~')) && (i.displayValue.includes('*'))) as unknown as IIdentityCredential[];
   const links = identity.filter((i: IIdentity) => i.content.includes('link~')) as unknown as IIdentityLink[];
 
   if (!id) {
@@ -92,40 +92,69 @@ export default async function Identity({params}: { params: { id: string } }) {
   return (
     <div key="1" className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
       <Header identity={id}/>
-      <main className="flex-1 py-6 md:px-2 lg:px-2">
-        <div className="max-w-6xl mx-auto grid gap-6 md:grid-cols-3">
+      <main className="flex-1 py-6 md:px-2 lg:px-2 px-4">
+        <div className="max-w-6xl mx-auto grid gap-6">
+          {/* Left Column */}
           <div className="space-y-6 md:col-span-1">
+            {/* Bio */}
             <div className="space-y-2">
               <h2 className="text-xl font-bold">Bio</h2>
-              <p className="text-gray-500 dark:text-gray-400">
-                {id.bio}
-              </p>
+              <p className="text-gray-500 dark:text-gray-400">{id.bio}</p>
             </div>
+
+            {/* Badges */}
             <div className="space-y-2">
               <h2 className="text-xl font-bold">Badges</h2>
-              {emails.length > 0 && (
-                <Badge key="email-verified">
-                  <MailIcon/>{' '}<span className="py-2 ml-2">Email Verified</span>
-                </Badge>
-              )}
-              {twitters.length > 0 && (
-                <Badge key="twitter-verified" className="ml-2">
-                  <TwitterIcon/>{' '}<span className="py-2 ml-2">Twitter Verified</span>
-                </Badge>
-              )}
+              <div className="flex flex-wrap gap-2">
+                {emails.length > 0 && (
+                  <Badge key="email-verified">
+                    <MailIcon/>{' '}
+                    <span className="py-2 ml-2">Email Verified</span>
+                  </Badge>
+                )}
+                {twitters.length > 0 && (
+                  <Badge key="twitter-verified">
+                    <TwitterIcon/>{' '}
+                    <span className="py-2 ml-2">Twitter Verified</span>
+                  </Badge>
+                )}
+              </div>
             </div>
+
+            {/* Links */}
+            {links.length > 0 && (
+              <div className="space-y-2">
+                <h2 className="text-xl font-bold">Links</h2>
+                <LinkCard links={links}/>
+              </div>
+            )}
           </div>
-          <div className="space-y-6 md:col-span-2">
-            {links.length > 0 ? <LinkCard links={links}/> : null}
-          </div>
+
+          {/* Middle Column */}
+          <div className="md:col-span-1"></div>
+
+          {/* Right Column */}
           <div className="space-y-6 md:col-span-1">
-            <EmailList emails={emails}/>
-          </div>
-          <div className="space-y-6 md:col-span-1">
-            <TwitterList twitters={twitters}/>
+            {/* Emails */}
+            {emails.length > 0 && (
+              <div className="space-y-2">
+                <h2 className="text-xl font-bold">Emails</h2>
+                <EmailList emails={emails}/>
+              </div>
+            )}
+
+            {/* Twitters */}
+            {twitters.length > 0 && (
+              <div className="space-y-2">
+                <h2 className="text-xl font-bold">Twitters</h2>
+                <TwitterList twitters={twitters}/>
+              </div>
+            )}
           </div>
         </div>
       </main>
+
+
     </div>
   )
 }
