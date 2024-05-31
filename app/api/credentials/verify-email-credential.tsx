@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 
 
 export async function verifyEmailCredential(data: any): Promise<string> {
+  console.log(data)
   const response = await fetch(`${config.baseUrl}/api/credentials?id=${data.id}`, {
     method: 'PUT',
     headers: {

@@ -2,7 +2,6 @@
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import DeleteButton from "@/components/ui/delete-button";
 import React from "react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -11,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { getIdentities } from "app/api/identities/get-identities";
 import { IIdentity, IIdentityCore } from "app/api/interfaces/identity";
 import EyeIcon from "@/components/icons/eye";
+import DeleteIdentityButton from "@/components/ui/delete-identity-button";
 
 export default async function Identities() {
   let identities: string | IIdentity[] = await getIdentities()
@@ -98,7 +98,7 @@ export default async function Identities() {
                             aria-label="View">
                         <EyeIcon className="w-6 h-6 pt-1 text-blue-500"/>
                       </Link>
-                      <DeleteButton action={deleteIdentityHandler} entity={identity}/>
+                      <DeleteIdentityButton action={deleteIdentityHandler} entity={identity}/>
                     </TableCell>
                   </TableRow>
                 ))}

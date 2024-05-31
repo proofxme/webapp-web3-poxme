@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import React from "react";
 import { getCredentials } from "app/api/credentials/get-credentials";
 import Link from "next/link";
-import DeleteButton from "@/components/ui/delete-button";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +13,7 @@ import { verifyEmailCredential } from "app/api/credentials/verify-email-credenti
 import { CheckIcon } from "@radix-ui/react-icons";
 import { ICredential } from "app/api/interfaces/credential";
 import IconSelector from "@/components/IconSelector";
+import DeleteCredentialButton from "@/components/ui/delete-credential-button";
 
 export default async function Credentials() {
   const credentials: string | ICredential[] = await getCredentials();
@@ -86,7 +86,7 @@ export default async function Credentials() {
                       )}
                     </TableCell>
                     <TableCell className="flex justify-end gap-2">
-                      <DeleteButton action={deleteCredential} entity={credential.provider}/>
+                      <DeleteCredentialButton action={deleteCredential} entity={credential}/>
                     </TableCell>
                   </TableRow>
                 ))}

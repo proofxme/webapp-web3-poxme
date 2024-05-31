@@ -1,6 +1,10 @@
+'use server';
+
 import { getServerSession } from 'next-auth';
 import { authOptions } from "@/lib/auth";
 import { createCredential } from "app/api/credentials/create-credentials";
+import { revalidatePath } from "next/cache";
+import { redirect, RedirectType } from "next/navigation";
 
 export default async function TwitterCallbackPage() {
   try {
@@ -21,20 +25,14 @@ export default async function TwitterCallbackPage() {
       accessToken: session.accessToken,
       twitterProfile
     }
-    
-    await createCredential(credential);
 
-    return (
-      <div>
-        <h1>Twitter Callback</h1>
-        <pre>{JSON.stringify({session, twitterProfile}, null, 2)}</pre>
-        <p>Access Token: {session.accessToken}</p>
-      </div>
-    );
+    await createCredential(credential);
   } catch (error) {
     console.error('Error handling Twitter callback:', error);
     return <div>Error handling Twitter callback</div>;
   }
+  revalidatePath(`/credentials`);
+  redirect('/credentials', RedirectType.push);
 }
 
 async function fetchTwitterBearerToken(accessToken: string): Promise<string> {

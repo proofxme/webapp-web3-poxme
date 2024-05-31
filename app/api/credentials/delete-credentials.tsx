@@ -14,7 +14,7 @@ export async function deleteCredentials(id: string) {
     },
     method: 'DELETE'
   });
-
+  
   if (!response.ok) {
     if (response.status === 403) {
       return 'Access denied to method, requires read:credential scope.';
