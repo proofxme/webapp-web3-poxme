@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 
-const AddressShortener = ({address}) => {
+const AddressShortener = ({address}: { address: string }) => {
   const [showFullAddress, setShowFullAddress] = useState(false);
 
   const toggleTooltip = () => {
