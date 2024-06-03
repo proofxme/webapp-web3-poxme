@@ -17,7 +17,7 @@ export default function DeleteIdentityButton(props: { action: () => void, entity
       props.action()
     }
     setLoading(false);
-  }, [props])
+  }, [entity, props])
 
   return <Button className="h-8 w-8" size="icon" onClick={confirmDelete} disabled={loading}>
     <TrashIcon className="h-4 w-4"/>
