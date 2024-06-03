@@ -7,14 +7,16 @@ import { ICredential } from "app/api/interfaces/credential";
 
 
 export async function deleteCredentials(id: string) {
-  const response = await fetch(`${config.baseUrl}/api/credentials?id=${id}`, {
+  //encode the url to prevent errors with the + symbol
+  const encodedProvider = encodeURIComponent(id)
+  const response = await fetch(`${config.baseUrl}/api/credentials?id=${encodedProvider}`, {
     cache: 'no-store',
     headers: {
       cookie: cookies().toString(),
     },
     method: 'DELETE'
   });
-  
+
   if (!response.ok) {
     if (response.status === 403) {
       return 'Access denied to method, requires read:credential scope.';

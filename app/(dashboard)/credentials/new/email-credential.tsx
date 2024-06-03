@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { createCredential } from "app/api/credentials/create-credentials";
+import { useRouter } from "next/navigation";
 
 export default function EmailCredential() {
+  const router = useRouter()
+  const [processing, setProcessing] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -19,20 +22,31 @@ export default function EmailCredential() {
   };
 
   const handleSubmit = async (e: any) => {
+    setProcessing(true);
+
     if (!validateEmail(email)) {
       setError('Please enter a valid email address.');
+      setProcessing(false);
       return;
     }
+
     if (!isChecked) {
       setError('You must confirm that you own this email address.');
+      setProcessing(false);
       return;
     }
 
     try {
       await createCredential({provider: `email~${email}`, handler: email, kind: 'email'});
     } catch (error) {
+      console.log(error);
       setError('Failed to add email. Please try again.');
+      setProcessing(false);
+      return;
     }
+
+    setProcessing(false);
+    router.push('/credentials');  // Redirect to the /credentials page
   };
 
   return (
@@ -42,7 +56,7 @@ export default function EmailCredential() {
         <CardDescription>Please enter your email below to receive a confirmation link</CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={handleSubmit}>
+        <form>
           {error && <div style={{color: 'red'}}>{error}</div>}
           <div className="space-y-4">
             <div className="space-y-2">
@@ -65,7 +79,7 @@ export default function EmailCredential() {
                 </p>
               </div>
             </div>
-            <Button className="w-full" type="submit" disabled={!isChecked}>
+            <Button className="w-full" type="submit" disabled={processing || !isChecked} onClick={handleSubmit}>
               Confirm
             </Button>
             <p className="text-sm text-gray-500 dark:text-gray-400">

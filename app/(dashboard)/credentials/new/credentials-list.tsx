@@ -16,11 +16,11 @@ export default function CredentialsList() {
   const [credentials, setCredentials] = useState([
     {id: 1, name: 'Twitter', icon: TwitterIcon, disabled: false, component: <TwitterCredential/>},
     {id: 2, name: 'Email', icon: MailIcon, disabled: false, component: <EmailCredential/>},
+    {id: 7, name: 'Web3', icon: WalletIcon, disabled: false, component: <Web3Credential/>},
     {id: 3, name: 'Facebook', icon: FacebookIcon, disabled: true, component: null},
     {id: 4, name: 'Google', icon: ChromeIcon, disabled: true, component: null},
     {id: 5, name: 'GitHub', icon: GithubIcon, disabled: true, component: null},
     {id: 6, name: 'Apple', icon: AppleIcon, disabled: true, component: null},
-    {id: 7, name: 'Web3', icon: WalletIcon, disabled: false, component: <Web3Credential/>},
   ]);
 
   const filteredCredentials = credentials.filter(credential =>
