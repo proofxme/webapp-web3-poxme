@@ -1,9 +1,9 @@
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 import { IIdentity, IIdentityCore, IIdentityCredential, IIdentityLink } from "app/api/interfaces/identity";
 import Header from "app/(id)/[id]/header";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
 import { getProfile } from "app/api/profiles/get-profile";
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata, ResolvingMetadata } from 'next';
 import LinkCard from "app/(id)/[id]/link-card";
 import { TwitterIcon } from "@/components/socialIconsSection";
 import EmailList from "app/(id)/[id]/email-card";
@@ -11,28 +11,24 @@ import TwitterList from "app/(id)/[id]/twitter-card";
 import WalletList from "app/(id)/[id]/wallet-card";
 
 type Props = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export async function generateMetadata(
   {params, searchParams}: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // read route params
-  const id = params.id
-
-  // fetch data
+  const id = params.id;
   let identity = await getProfile(params.id);
 
   if (typeof identity === 'string') {
-    identity = []
+    identity = [];
   }
 
-  const coreIdentity = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
+  const coreIdentity = identity.find((i: IIdentity) => i.content === 'core') as IIdentityCore;
 
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || []
+  const previousImages = (await parent).openGraph?.images || [];
   return {
     metadataBase: new URL('https://pox.me/'),
     title: `${coreIdentity?.handlerName || 'Identity'} | Proof of X`,
@@ -70,7 +66,7 @@ export default async function Identity({params}: { params: { id: string } }) {
     return <div>{identity}</div>
   }
 
-  const id = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
+  const id = identity.find((i: IIdentity) => i.content === 'core') as IIdentityCore;
   const emails = identity.filter((i: IIdentity) => i.content.includes('email~')) as unknown as IIdentityCredential[];
   const twitters: IIdentityCredential[] = identity.filter((i: any) => (i.content.includes('twitter~')) && (i.displayValue.includes('*'))) as unknown as IIdentityCredential[];
   const wallets: IIdentityCredential[] = identity.filter((i: any) => (i.content.includes('web3~'))) as unknown as IIdentityCredential[];
@@ -88,16 +84,16 @@ export default async function Identity({params}: { params: { id: string } }) {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div key="1" className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
       <Header identity={id}/>
       <main className="flex-1 py-6 md:px-2 lg:px-2 px-4">
-        <div className="max-w-6xl mx-auto grid gap-6">
+        <div className="max-w-6xl mx-auto grid gap-6 grid-cols-1 lg:grid-cols-3">
           {/* Left Column */}
-          <div className="space-y-6 md:col-span-1">
+          <div className="space-y-6 lg:col-span-2">
             {/* Bio */}
             <div className="space-y-2">
               <h2 className="text-xl font-bold">Bio</h2>
@@ -131,25 +127,20 @@ export default async function Identity({params}: { params: { id: string } }) {
               </div>
             )}
           </div>
+
           {/* Right Column */}
-          <div className="space-y-6 md:col-span-1">
+          <div className="space-y-6">
             {/* Emails */}
             {emails.length > 0 && (
               <div className="space-y-2">
                 <EmailList emails={emails}/>
               </div>
             )}
-          </div>
-          <div className="space-y-6 md:col-span-1">
-            {/* Twitters */}
             {twitters.length > 0 && (
               <div className="space-y-2">
                 <TwitterList twitters={twitters}/>
               </div>
             )}
-          </div>
-          <div className="space-y-6 md:col-span-1">
-            {/* Wallets */}
             {wallets.length > 0 && (
               <div className="space-y-2">
                 <WalletList wallets={wallets}/>
@@ -159,6 +150,5 @@ export default async function Identity({params}: { params: { id: string } }) {
         </div>
       </main>
     </div>
-  )
+  );
 }
-
