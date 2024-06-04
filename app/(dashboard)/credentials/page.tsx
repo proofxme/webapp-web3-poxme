@@ -72,13 +72,13 @@ export default async function Credentials() {
                 {credentials.map((credential: ICredential) => (
                   <TableRow className="select-none" key={credential.provider}>
                     <TableCell className="flex items-center gap-4">
-                      <IconSelector iconType={credential.kind}/>
                       {credential.kind === 'web3' ? (
                         <AddressShortener address={credential.handler}/>) : (
                         <span className="font-medium">{credential.handler}</span>
                       )}
                     </TableCell>
                     <TableCell className="content-center">
+                      <IconSelector iconType={credential.kind}/>
                       <span className="font-medium">{credential.kind.toUpperCase()}</span>
                     </TableCell>
                     <TableCell className="content-center">

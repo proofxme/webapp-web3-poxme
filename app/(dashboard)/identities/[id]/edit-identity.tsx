@@ -13,13 +13,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { updateIdentity } from "app/api/identities/update-identity";
 import { ICredential } from "app/api/interfaces/credential";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { CheckIcon, LogInIcon, MailIcon } from "app/(dashboard)/credentials/icons";
+import { CheckIcon } from "app/(dashboard)/credentials/icons";
 import { Badge } from "@/components/ui/badge";
 import ReceiveMessages from "app/(dashboard)/identities/[id]/receice-messages-button";
 import DeleteIdentityButton from "@/components/ui/delete-identity-button";
 import LinkEmailDialog from "app/(dashboard)/identities/[id]/link-email";
 import LinkComponent from "app/(dashboard)/identities/[id]/links";
 import LinkTwitterDialog from "app/(dashboard)/identities/[id]/link-twitter";
+import IconSelector from "@/components/IconSelector";
+import LinkWeb3Dialog from "app/(dashboard)/identities/[id]/link-web3";
 
 function renderLinkDialog(credential: ICredential, id: IIdentity, updateAction: { (): void; (): void; }) {
   switch (credential.kind) {
@@ -35,6 +37,15 @@ function renderLinkDialog(credential: ICredential, id: IIdentity, updateAction: 
     case 'twitter':
       return (
         <LinkTwitterDialog
+          key={credential.provider}
+          identity={id}
+          credential={credential}
+          action={updateAction}
+        />
+      );
+    case 'web3':
+      return (
+        <LinkWeb3Dialog
           key={credential.provider}
           identity={id}
           credential={credential}
@@ -189,12 +200,13 @@ export default function EditIdentity(props: {
             {credentials.map(({credential, idCred}) => (
               <TableRow className="select-none" key={credential.provider}>
                 <TableCell className="flex items-center gap-4">
-                  <LogInIcon className="h-4 w-4"/>
                   <span className="font-medium">{credential.handler}</span>
                 </TableCell>
                 <TableCell className="content-center">
-                  <MailIcon className="h-4 w-4"/>
-                  <span className="font-medium">{credential.kind.toUpperCase()}</span>
+                  <div className="flex items-center">
+                    <IconSelector iconType={credential.kind}/>
+                    <span className="ml-2 font-medium">{credential.kind.toUpperCase()}</span>
+                  </div>
                 </TableCell>
                 <TableCell className="content-center">
                   {credential.verified ? (

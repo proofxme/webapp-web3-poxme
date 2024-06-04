@@ -8,6 +8,7 @@ import LinkCard from "app/(id)/[id]/link-card";
 import { TwitterIcon } from "@/components/socialIconsSection";
 import EmailList from "app/(id)/[id]/email-card";
 import TwitterList from "app/(id)/[id]/twitter-card";
+import WalletList from "app/(id)/[id]/wallet-card";
 
 type Props = {
   params: { id: string }
@@ -72,6 +73,7 @@ export default async function Identity({params}: { params: { id: string } }) {
   const id = identity.find((i: IIdentity) => i.content = 'core') as IIdentityCore;
   const emails = identity.filter((i: IIdentity) => i.content.includes('email~')) as unknown as IIdentityCredential[];
   const twitters: IIdentityCredential[] = identity.filter((i: any) => (i.content.includes('twitter~')) && (i.displayValue.includes('*'))) as unknown as IIdentityCredential[];
+  const wallets: IIdentityCredential[] = identity.filter((i: any) => (i.content.includes('web3~'))) as unknown as IIdentityCredential[];
   const links = identity.filter((i: IIdentity) => i.content.includes('link~')) as unknown as IIdentityLink[];
 
   if (!id) {
@@ -129,32 +131,33 @@ export default async function Identity({params}: { params: { id: string } }) {
               </div>
             )}
           </div>
-
-          {/* Middle Column */}
-          <div className="md:col-span-1"></div>
-
           {/* Right Column */}
           <div className="space-y-6 md:col-span-1">
             {/* Emails */}
             {emails.length > 0 && (
               <div className="space-y-2">
-                <h2 className="text-xl font-bold">Emails</h2>
                 <EmailList emails={emails}/>
               </div>
             )}
-
+          </div>
+          <div className="space-y-6 md:col-span-1">
             {/* Twitters */}
             {twitters.length > 0 && (
               <div className="space-y-2">
-                <h2 className="text-xl font-bold">Twitters</h2>
                 <TwitterList twitters={twitters}/>
+              </div>
+            )}
+          </div>
+          <div className="space-y-6 md:col-span-1">
+            {/* Wallets */}
+            {wallets.length > 0 && (
+              <div className="space-y-2">
+                <WalletList wallets={wallets}/>
               </div>
             )}
           </div>
         </div>
       </main>
-
-
     </div>
   )
 }
