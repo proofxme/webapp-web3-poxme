@@ -3,18 +3,38 @@
     {
       "title": "Information",
       "links": [
-        { "text": "Product", "url": "#" },
-        { "text": "Features", "url": "#" },
-        { "text": "FAQ", "url": "#" }
+        {
+          "text": "Product",
+          "url": "#"
+        },
+        {
+          "text": "Features",
+          "url": "#"
+        },
+        {
+          "text": "FAQ",
+          "url": "#"
+        }
       ]
     },
     {
       "title": "Contact",
-      "links": [{ "text": "Email", "url": "mailto:hello@pox.me" }]
+      "links": [
+        {
+          "text": "Email",
+          "url": "/poxme"
+        }
+      ]
     }
   ],
   "footerLinks": [
-    { "text": "Terms of Service", "url": "#" },
-    { "text": "Privacy", "url": "#" }
+    {
+      "text": "Terms of Service",
+      "url": "#"
+    },
+    {
+      "text": "Privacy",
+      "url": "#"
+    }
   ]
 }
