@@ -63,12 +63,6 @@
         "link": "/membership",
         "disabled": false
       },
-      "migration": {
-        "title": "Migration",
-        "children": null,
-        "disabled": false,
-        "link": "/dashboard/migration"
-      },
       "roadmap": {
         "title": "Roadmap",
         "children": null,

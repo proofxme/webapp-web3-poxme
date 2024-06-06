@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
-import { JSX, SVGProps } from "react";
+import { JSX, SVGProps, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import TokenContract from "@/components/tokenContract";
@@ -54,7 +52,7 @@ export default function Investors() {
 
   const scrollToInvestSection = () => {
     if (investSectionRef.current) {
-      investSectionRef.current.scrollIntoView({ behavior: "smooth" });
+      investSectionRef.current.scrollIntoView({behavior: "smooth"});
     }
   };
   return (
@@ -65,7 +63,8 @@ export default function Investors() {
             <ProofOfXIcon className=" rounded-full"/>
             POXME token
           </h1>
-          <p className="max-w-[600px] justify-center text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 ">
+          <p
+            className="max-w-[600px] justify-center text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 ">
             The Proof of X token represents investment in the project. Its
             primary purpose is to provide liquidity to the project and serve as
             a medium for lending and borrowing memberships.
@@ -73,8 +72,8 @@ export default function Investors() {
         </div>
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3 p-1">
-        <TokenPrice scrollToInvestSection={scrollToInvestSection} />
-        <TokenContract />
+        <TokenPrice scrollToInvestSection={scrollToInvestSection}/>
+        <TokenContract/>
       </div>
 
       <section className="w-full py-12 lg:py-24">
@@ -95,7 +94,7 @@ export default function Investors() {
         </div>
         <div className=" mx-auto grid gap-4 my-6 ">
           <div className="justify-center p-4">
-            <LiFiWidgetNext />
+            <LiFiWidgetNext/>
           </div>
         </div>
       </section>
@@ -160,18 +159,6 @@ export default function Investors() {
                 as a medium for lending and borrowing memberships.
               </p>
             </div>
-            <div className="space-y-2">
-              <h3 className="text-xl font-semibold">
-                What is the POXME token migration?
-              </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                The POXME token migration is a transition from our old token to
-                a new one that complies with ERC/BEP-20 standards. This
-                migration is to enhance security, utility, and overall user
-                experience within the POXME ecosystem.
-              </p>
-            </div>
-
             <div className="space-y-2">
               <h3 className="text-xl font-semibold">
                 What is the NFT membership?
