@@ -118,7 +118,10 @@ export default async function Identity({params}: { params: { id: string } }) {
                 )}
               </div>
             </div>
+          </div>
 
+          {/* Right Column */}
+          <div className="space-y-6">
             {/* Links */}
             {links.length > 0 && (
               <div className="space-y-2">
@@ -126,10 +129,6 @@ export default async function Identity({params}: { params: { id: string } }) {
                 <LinkCard links={links}/>
               </div>
             )}
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-6">
             {/* Emails */}
             {emails.length > 0 && (
               <div className="space-y-2">

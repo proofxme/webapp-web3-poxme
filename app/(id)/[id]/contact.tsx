@@ -4,7 +4,6 @@ import { Card, CardHeader } from "@/components/ui/card";
 
 export default function Contact() {
   return (
-
     <Card>
       <CardHeader>
         <form action="#" className="space-y-8">
