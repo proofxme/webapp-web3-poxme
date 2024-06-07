@@ -1,4 +1,4 @@
-export default ({className}: { className: string }) => (
+const LogoPoxme = ({className}: { className?: string }) => (
   <svg
     className={className}
     fill="none"
@@ -20,3 +20,5 @@ export default ({className}: { className: string }) => (
           fill="white"/>
   </svg>
 )
+
+export default LogoPoxme;

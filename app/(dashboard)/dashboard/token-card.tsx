@@ -38,6 +38,7 @@ export default function TokenCard() {
 
   const getTokenBalance = useCallback(async () => {
     if (address && chainId) {
+      // @ts-ignore
       const respBalance = await getBalance(web3config, {address, chainId, token})
       setBalance(Number(respBalance.value) / Math.pow(10, respBalance.decimals));
     }
