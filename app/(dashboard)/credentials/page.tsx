@@ -14,7 +14,7 @@ import { CheckIcon } from "@radix-ui/react-icons";
 import { ICredential } from "app/api/interfaces/credential";
 import IconSelector from "@/components/IconSelector";
 import DeleteCredentialButton from "@/components/ui/delete-credential-button";
-import AddressShortener from "@/components/ui/address-shortener";
+import NameSelector from "@/components/NameSelector";
 
 export default async function Credentials() {
   const credentials: string | ICredential[] = await getCredentials();
@@ -44,8 +44,6 @@ export default async function Credentials() {
     return <div>{credentials}</div>;
   }
 
-  console.log(credentials)
-
   return (
     <div className="flex w-full min-h-screen items-start py-4 gap-4 flex-col">
       <div className="container mx-auto px-4">
@@ -72,10 +70,7 @@ export default async function Credentials() {
                 {credentials.map((credential: ICredential) => (
                   <TableRow className="select-none" key={credential.provider}>
                     <TableCell className="flex items-center gap-4">
-                      {credential.kind === 'web3' ? (
-                        <AddressShortener address={credential.handler}/>) : (
-                        <span className="font-medium">{credential.handler}</span>
-                      )}
+                      <NameSelector credential={credential}/>
                     </TableCell>
                     <TableCell className="content-center">
                       <IconSelector iconType={credential.kind}/>

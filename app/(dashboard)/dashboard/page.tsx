@@ -24,6 +24,9 @@ export default async function Dashboard() {
             <div className="flex flex-col gap-4 md:w-1/2">
               <TokenCard/>
             </div>
+            <div className="flex flex-col gap-4 md:w-1/2">
+
+            </div>
           </div>
         </div>
       </main>

@@ -3,11 +3,19 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { AppleIcon, ChromeIcon, FacebookIcon, GithubIcon, TwitterIcon } from "@/components/socialIconsSection";
+import {
+  AppleIcon,
+  ChromeIcon,
+  FacebookIcon,
+  GithubIcon,
+  TelegramIcon,
+  TwitterIcon
+} from "@/components/socialIconsSection";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
 import EmailCredential from "app/(dashboard)/credentials/new/email-credential";
 import TwitterCredential from "app/(dashboard)/credentials/new/twitter-credential";
 import Web3Credential from "app/(dashboard)/credentials/new/web3-credential";
+import TelegramLoginButton from "app/(dashboard)/credentials/new/telegram-credential";
 
 
 export default function CredentialsList() {
@@ -17,6 +25,13 @@ export default function CredentialsList() {
     {id: 1, name: 'Twitter', icon: TwitterIcon, disabled: false, component: <TwitterCredential/>},
     {id: 2, name: 'Email', icon: MailIcon, disabled: false, component: <EmailCredential/>},
     {id: 7, name: 'Web3', icon: WalletIcon, disabled: false, component: <Web3Credential/>},
+    {
+      id: 8,
+      name: 'Telegram',
+      icon: TelegramIcon,
+      disabled: false,
+      component: <TelegramLoginButton botId={6007536898}/>
+    },
     {id: 3, name: 'Facebook', icon: FacebookIcon, disabled: true, component: null},
     {id: 4, name: 'Google', icon: ChromeIcon, disabled: true, component: null},
     {id: 5, name: 'GitHub', icon: GithubIcon, disabled: true, component: null},

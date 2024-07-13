@@ -1,4 +1,4 @@
-import { TwitterIcon } from "@/components/socialIconsSection";
+import { TelegramIcon, TwitterIcon } from "@/components/socialIconsSection";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
 import { WalletIcon } from "app/(dashboard)/credentials/new/credentials-list";
 
@@ -14,6 +14,8 @@ const IconSelector: React.FC<IconProps> = ({iconType}) => {
       return <MailIcon/>;
     case 'web3':
       return <WalletIcon/>;
+    case 'telegram':
+      return <TelegramIcon/>;
     default:
       return null;
   }
