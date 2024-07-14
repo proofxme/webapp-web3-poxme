@@ -1,0 +1,9 @@
+{
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "all",
+  "files.exclude": {
+    "**/*.js": {"when": "$(basename).ts"},
+    "**/*.d.ts": {"when": "$(basename).ts"},
+    "**/*.js.map": true
+  }
+}
