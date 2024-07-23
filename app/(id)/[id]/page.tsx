@@ -9,6 +9,8 @@ import { TwitterIcon } from "@/components/socialIconsSection";
 import EmailList from "app/(id)/[id]/email-card";
 import TwitterList from "app/(id)/[id]/twitter-card";
 import WalletList from "app/(id)/[id]/wallet-card";
+import { ProfileSummary } from "app/(id)/[id]/profile-summary";
+import TelegramList from "./telegram-card";
 
 type Props = {
   params: { id: string };
@@ -71,6 +73,7 @@ export default async function Identity({params}: { params: { id: string } }) {
   const twitters: IIdentityCredential[] = identity.filter((i: any) => (i.content.includes('twitter~')) && (i.displayValue.includes('*'))) as unknown as IIdentityCredential[];
   const wallets: IIdentityCredential[] = identity.filter((i: any) => (i.content.includes('web3~'))) as unknown as IIdentityCredential[];
   const links = identity.filter((i: IIdentity) => i.content.includes('link~')) as unknown as IIdentityLink[];
+  const telegrams = identity.filter((i: IIdentity) => i.content.includes('telegram~')) as unknown as IIdentityCredential[];
 
   if (!id) {
     return (
@@ -89,16 +92,13 @@ export default async function Identity({params}: { params: { id: string } }) {
 
   return (
     <div key="1" className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
-      <Header identity={id}/>
       <main className="flex-1 py-6 md:px-2 lg:px-2 px-4">
         <div className="max-w-6xl mx-auto grid gap-6 grid-cols-1 lg:grid-cols-3">
           {/* Left Column */}
           <div className="space-y-6 lg:col-span-2">
-            {/* Bio */}
-            <div className="space-y-2">
-              <h2 className="text-xl font-bold">Bio</h2>
-              <p className="text-gray-500 dark:text-gray-400">{id.bio}</p>
-            </div>
+            <ProfileSummary
+              id={id}
+            />
 
             {/* Badges */}
             <div className="space-y-2">
@@ -122,10 +122,8 @@ export default async function Identity({params}: { params: { id: string } }) {
 
           {/* Right Column */}
           <div className="space-y-6">
-            {/* Links */}
             {links.length > 0 && (
               <div className="space-y-2">
-                <h2 className="text-xl font-bold">Links</h2>
                 <LinkCard links={links}/>
               </div>
             )}
@@ -143,6 +141,11 @@ export default async function Identity({params}: { params: { id: string } }) {
             {wallets.length > 0 && (
               <div className="space-y-2">
                 <WalletList wallets={wallets}/>
+              </div>
+            )}
+            {telegrams.length > 0 && (
+              <div className="space-y-2">
+                <TelegramList telegrams={telegrams}/>
               </div>
             )}
           </div>
