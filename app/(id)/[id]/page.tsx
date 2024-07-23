@@ -1,16 +1,16 @@
 import { Badge } from "@/components/ui/badge";
 import { IIdentity, IIdentityCore, IIdentityCredential, IIdentityLink } from "app/api/interfaces/identity";
-import Header from "app/(id)/[id]/header";
 import { MailIcon } from "app/(dashboard)/credentials/icons";
 import { getProfile } from "app/api/profiles/get-profile";
 import { Metadata, ResolvingMetadata } from 'next';
 import LinkCard from "app/(id)/[id]/link-card";
-import { TwitterIcon } from "@/components/socialIconsSection";
+import { TelegramIcon, TwitterIcon } from "@/components/socialIconsSection";
 import EmailList from "app/(id)/[id]/email-card";
 import TwitterList from "app/(id)/[id]/twitter-card";
 import WalletList from "app/(id)/[id]/wallet-card";
 import { ProfileSummary } from "app/(id)/[id]/profile-summary";
 import TelegramList from "./telegram-card";
+import { WalletIcon } from "app/(dashboard)/credentials/new/credentials-list";
 
 type Props = {
   params: { id: string };
@@ -114,6 +114,18 @@ export default async function Identity({params}: { params: { id: string } }) {
                   <Badge key="twitter-verified">
                     <TwitterIcon/>{' '}
                     <span className="py-2 ml-2">Twitter Verified</span>
+                  </Badge>
+                )}
+                {telegrams.length > 0 && (
+                  <Badge key="telegram-verified">
+                    <TelegramIcon/>{' '}
+                    <span className="py-2 ml-2">Telegram Verified</span>
+                  </Badge>
+                )}
+                {wallets.length > 0 && (
+                  <Badge key="telegram-verified">
+                    <WalletIcon/>{' '}
+                    <span className="py-2 ml-2">Wallet Verified</span>
                   </Badge>
                 )}
               </div>

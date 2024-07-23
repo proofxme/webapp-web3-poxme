@@ -1,8 +1,6 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { IIdentity } from "app/api/interfaces/identity"
+import { IIdentityCore } from "app/api/interfaces/identity"
 
 export function ProfileSummary({id}: {id: IIdentityCore}) {
   return (
@@ -17,7 +15,6 @@ export function ProfileSummary({id}: {id: IIdentityCore}) {
           </Avatar>
           <div>
             <h3 className="text-lg font-bold">{id.displayName}</h3>
-            <p className="text-sm text-muted-foreground">{id.title}</p>
           </div>
         </div>
         <p className="text-muted-foreground">{id.bio}</p>
