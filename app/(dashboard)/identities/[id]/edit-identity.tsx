@@ -22,6 +22,8 @@ import LinkComponent from "app/(dashboard)/identities/[id]/links";
 import LinkTwitterDialog from "app/(dashboard)/identities/[id]/link-twitter";
 import IconSelector from "@/components/IconSelector";
 import LinkWeb3Dialog from "app/(dashboard)/identities/[id]/link-web3";
+import LinkTelegramDialog from "app/(dashboard)/identities/[id]/link-telegram";
+import NameSelector from "@/components/NameSelector";
 
 function renderLinkDialog(credential: ICredential, id: IIdentity, updateAction: { (): void; (): void; }) {
   switch (credential.kind) {
@@ -46,6 +48,15 @@ function renderLinkDialog(credential: ICredential, id: IIdentity, updateAction: 
     case 'web3':
       return (
         <LinkWeb3Dialog
+          key={credential.provider}
+          identity={id}
+          credential={credential}
+          action={updateAction}
+        />
+      );
+    case 'telegram':
+      return (
+        <LinkTelegramDialog
           key={credential.provider}
           identity={id}
           credential={credential}
@@ -199,8 +210,8 @@ export default function EditIdentity(props: {
           <TableBody>
             {credentials.map(({credential, idCred}) => (
               <TableRow className="select-none" key={credential.provider}>
-                <TableCell className="flex items-center gap-4">
-                  <span className="font-medium">{credential.handler}</span>
+                <TableCell className="content-center">
+                  <NameSelector credential={credential} />
                 </TableCell>
                 <TableCell className="content-center">
                   <div className="flex items-center">
